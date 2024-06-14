@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: 56 59 67;
+  }
+}
+
+@layer components {
+  .padding {
+    @apply px-4 py-2;
+  }
+}
+
+.active {
+  @apply text-primary-500 shadow-navbarLink;
+  /* &::after {
+    content: "";
+    position: absolute;
+    width: 70%;
+    height: 2px;
+    top: calc(100% - 2px);
+    left: 20%;
+    @apply bg-primary-400;
+  } */
+}
