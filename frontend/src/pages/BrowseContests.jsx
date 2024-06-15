@@ -1,14 +1,28 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import ContestThumbnail from "../components/ContestThumbnail";
-import { dummyContests } from "../dummyData";
 
 const BrowseContests = () => {
+  const [fetchData, setFetchData] = useState({});
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch("http://localhost:8080/contest/");
+        const data = await response.json();
+        setFetchData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   return (
     <div className="padding">
       <AllContests>
-        {dummyContests.map((contest) => (
-          <ContestThumbnail key={contest.id} contestContents={contest} />
-        ))}
+        {fetchData.length > 0 &&
+          fetchData?.map((contest) => (
+            <ContestThumbnail key={contest._id} contestContents={contest} />
+          ))}
       </AllContests>
     </div>
   );

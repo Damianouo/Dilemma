@@ -3,9 +3,9 @@ function getVidoeId(url) {
   const videoId = parsedUrl.searchParams.get("v");
   return videoId;
 }
-export function getCoverImageUrl(obj) {
-  if (!obj) return null;
-  const coverImageUrl = `https://img.youtube.com/vi/${getVidoeId(obj.itemUrl)}/0.jpg`;
+export function getCoverImageUrl(url) {
+  if (!url) return null;
+  const coverImageUrl = `https://img.youtube.com/vi/${getVidoeId(url)}/0.jpg`;
 
   return coverImageUrl;
 }
