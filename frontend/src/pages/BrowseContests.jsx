@@ -1,28 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
 import ContestThumbnail from "../components/ContestThumbnail";
+import { json, useLoaderData } from "react-router-dom";
 
 const BrowseContests = () => {
-  const [fetchData, setFetchData] = useState({});
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch("http://localhost:8080/contest/");
-        const data = await response.json();
-        setFetchData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
+  const data = useLoaderData();
   return (
     <div className="padding">
       <AllContests>
-        {fetchData.length > 0 &&
-          fetchData?.map((contest) => (
-            <ContestThumbnail key={contest._id} contestContents={contest} />
-          ))}
+        {data.map((contest) => (
+          <ContestThumbnail key={contest._id} contestContents={contest} />
+        ))}
       </AllContests>
     </div>
   );
@@ -37,3 +24,11 @@ const AllContests = ({ children }) => {
     </div>
   );
 };
+
+export async function loader() {
+  const response = await fetch("http://localhost:8080/contest");
+  if (!response.ok) {
+    throw json({ message: "Could not fetch contests" }, { status: 500 });
+  }
+  return response;
+}

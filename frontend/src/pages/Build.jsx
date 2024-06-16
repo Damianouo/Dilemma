@@ -109,25 +109,11 @@ const Build = () => {
     //     console.log(error);
     //   }
     // })();
-    (async () => {
-      try {
-        const response = await fetch("http://localhost:8080/contest/");
-        const data = await response.json();
-        console.log(data);
-        setFetchData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
   }, []);
 
   return (
     <div className="flex flex-col gap-4 p-8">
-      {/* {fetchData && (
-        <>
-          <p>{fetchData.message}</p>
-        </>
-      )} */}
+      <p>build page</p>
     </div>
   );
 };
