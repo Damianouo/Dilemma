@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --color-bg: 56 59 67;
-  }
-}
-
 @layer components {
   .padding {
     @apply px-4 py-2;

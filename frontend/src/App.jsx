@@ -1,23 +1,29 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { routes } from "./routes";
 import Navbar from "./components/Navbar";
 import Contest from "./pages/Contest";
 import Home from "./pages/Home";
 import ConfigCtxProvider from "./contexts/ConfigCtx";
 import Ranking from "./pages/Ranking";
-
-const allRoutes = routes.map((route) => ({
-  path: route.path,
-  element: route.element,
-}));
-
+import BrowseContests, {
+  loader as BrowseContestsLoader,
+} from "./pages/BrowseContests";
+import Build from "./pages/Build";
+import About, { loader as AboutLoader } from "./pages/About";
+import Error from "./pages/Error";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Error />,
     children: [
-      { path: "/", element: <Home /> },
-      ...allRoutes,
+      { index: true, element: <Home /> },
+      {
+        path: "/contests",
+        element: <BrowseContests />,
+        loader: BrowseContestsLoader,
+      },
+      { path: "/build", element: <Build /> },
+      { path: "/about", element: <About />, loader: AboutLoader },
       {
         path: "/contests/:contestId",
         element: (
@@ -37,13 +43,15 @@ const router = createBrowserRouter([
 function Root() {
   return (
     <div
-      className="flex h-screen  flex-col bg-zinc-200 font-nunito text-xl
+      className="flex h-screen flex-col bg-zinc-200 font-nunito text-xl
     font-medium text-gray-700 "
     >
-      <Navbar />
-      <div id="detail" className="flex-1">
+      <header>
+        <Navbar />
+      </header>
+      <main id="detail" className="flex-1">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }
