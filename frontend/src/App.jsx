@@ -8,13 +8,17 @@ import BrowseContests, {
   loader as BrowseContestsLoader,
 } from "./pages/BrowseContests";
 import Build from "./pages/Build";
-import About, { loader as AboutLoader } from "./pages/About";
+import About from "./pages/About";
 import Error from "./pages/Error";
+import { rootAction, rootLoader } from "./utilityFunc";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <Error />,
+    loader: rootLoader,
+    action: rootAction,
     children: [
       { index: true, element: <Home /> },
       {
@@ -23,7 +27,7 @@ const router = createBrowserRouter([
         loader: BrowseContestsLoader,
       },
       { path: "/build", element: <Build /> },
-      { path: "/about", element: <About />, loader: AboutLoader },
+      { path: "/about", element: <About /> },
       {
         path: "/contests/:contestId",
         element: (

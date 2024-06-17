@@ -1,27 +1,20 @@
-import { useLoaderData } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const About = () => {
-  const data = useLoaderData();
-  console.log(data);
+  const user = useSelector((state) => state.user);
+  (async () => {
+    const response = await fetch("http://localhost:8080/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+    });
+    console.log(await response.json());
+  })();
   return (
     <div>
       <p>About Page</p>
-      <p>{data.message}</p>
+      <p>{user.info.email || "not login"}</p>
     </div>
   );
 };
 
 export default About;
-
-export async function loader() {
-  const response = await fetch("http://localhost:8080/auth/login/success", {
-    method: "GET",
-    credentials: "include",
-  });
-
-  if (!response.ok) {
-    throw response;
-  }
-
-  return response;
-}
