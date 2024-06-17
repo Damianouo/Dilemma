@@ -1,11 +1,6 @@
 const router = require('express').Router();
 const { Contest } = require('../models');
 
-router.use((req, res, next) => {
-  console.log('=== contest route receiving request ===');
-  next();
-});
-
 //? get all contest
 router.get('/', async (req, res) => {
   try {

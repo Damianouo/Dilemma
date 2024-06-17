@@ -1,27 +1,21 @@
-import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Link, useLocation, useSubmit } from "react-router-dom";
 import { LoginSvg, MenuSvg, WebIconSvg } from "../svgs/NavSvgs";
 import { routes } from "../routes";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
+const dropDownRoutes = [{ label: "Home", path: "/" }, ...routes];
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const submit = useSubmit();
+  const user = useSelector((state) => state.user);
 
   function handleLogin() {
     window.location.href = "http://localhost:8080/auth/google";
   }
 
-  async function handleLogout() {
-    try {
-      const response = await fetch("http://localhost:8080/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (response.ok) {
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  function handleLogout() {
+    submit(null, { method: "post", action: "/" });
   }
 
   return (
@@ -29,8 +23,7 @@ const Navbar = () => {
       {/* icon & title */}
       <Link
         to="/"
-        className="padding flex h-full items-center gap-2 bg-primary-400 text-2xl 
-            font-bold text-white transition-colors hover:bg-primary-500"
+        className="navBtn bg-primary-400 text-2xl font-bold text-white hover:bg-primary-500"
       >
         <WebIconSvg size="h-6 w-6" />
         <span>Dilemma</span>
@@ -40,22 +33,23 @@ const Navbar = () => {
       <NavbarLinks />
 
       {/* login, logout button */}
-      <button
-        onClick={handleLogin}
-        className="padding flex  content-center items-center gap-2 px-4 
-        transition-colors hover:bg-primary-50"
-      >
-        <LoginSvg size="h-6 w-6" />
-        <span>Login</span>
-      </button>
-      <button
-        onClick={handleLogout}
-        className="padding flex  content-center items-center gap-2 px-4 
-        transition-colors hover:bg-primary-50"
-      >
-        <LoginSvg size="h-6 w-6" />
-        <span>Logout</span>
-      </button>
+      {user.isLogin ? (
+        <>
+          <div className="navBtn">
+            <LoginSvg size="h-6 w-6" />
+            <p>{user.info.email}</p>
+          </div>
+          <button onClick={handleLogout} className="navBtn">
+            <LoginSvg size="h-6 w-6" />
+            <span>Logout</span>
+          </button>
+        </>
+      ) : (
+        <button onClick={handleLogin} className="navBtn">
+          <LoginSvg size="h-6 w-6" />
+          <span>Login</span>
+        </button>
+      )}
     </nav>
   );
 };
@@ -76,15 +70,13 @@ const NavbarLinks = () => {
       <ul className="hidden md:flex">
         {routes.map((route) => (
           <li className="flex h-full" key={route.label}>
-            <NavLink
-              to={route.path}
-              className=" padding content-center transition-colors hover:text-primary-400"
-            >
+            <NavLink to={route.path} className="navLink">
               {route.label}
             </NavLink>
           </li>
         ))}
       </ul>
+
       {/* drop down navbar */}
       <div className="relative ml-4 flex items-center justify-center md:hidden">
         <MenuSvg
@@ -96,31 +88,20 @@ const NavbarLinks = () => {
           className={`absolute left-full top-full z-10 bg-zinc-100  transition-all
       ${menuUp ? "opacity-100" : "pointer-events-none -translate-y-4 opacity-0"}`}
         >
-          <NavLink
-            onClick={handleMenuUp}
-            to="/"
-            key="home"
-            className={`padding block whitespace-nowrap transition-all  hover:text-primary-400
-          ${menuUp ? "py-2" : "py-0"}`}
-          >
-            Home
-          </NavLink>
-
-          {[
-            ...routes.map((route) => (
-              <NavLink
-                onClick={handleMenuUp}
-                to={route.path}
-                key={route.label}
-                className={`padding block whitespace-nowrap transition-all  hover:text-primary-400
-          ${menuUp ? "py-2" : "py-0"}`}
-              >
-                {route.label}
-              </NavLink>
-            )),
-          ]}
+          {dropDownRoutes.map((route) => (
+            <NavLink
+              onClick={handleMenuUp}
+              to={route.path}
+              key={route.label}
+              className={`navLink block whitespace-nowrap transition-all ${menuUp ? "py-2" : "py-0"}`}
+            >
+              {route.label}
+            </NavLink>
+          ))}
         </ul>
       </div>
+
+      {/* current path name */}
       {pathname && (
         <span className="padding self-center md:hidden">
           {pathname === "/"
