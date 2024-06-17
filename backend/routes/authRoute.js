@@ -25,10 +25,7 @@ router.get('/login/failed', (req, res) => {
 
 router.get('/login/success', (req, res) => {
   if (req.user) {
-    return res.status(200).json({
-      message: 'login successful',
-      user: req.user,
-    });
+    return res.status(200).json(req.user);
   } else {
     return res.status(401).send();
   }
