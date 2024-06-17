@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { getCoverImageUrl } from "../../utilityFunc";
-import Button from "./Button";
+import Button from "../UI/Button";
 import { useContext } from "react";
 import { ContentCtx } from "../../contexts/ContentCtx";
 const ContestResultPage = ({ competeResult }) => {
@@ -10,7 +10,7 @@ const ContestResultPage = ({ competeResult }) => {
   return (
     <div className=" px-20">
       <div className="my-4 flex justify-center gap-8">
-        <Button bgColor="bg-slate-300">
+        <Button className="bg-slate-300">
           <Link to="/contests">Other Contests</Link>
         </Button>
         <Button>

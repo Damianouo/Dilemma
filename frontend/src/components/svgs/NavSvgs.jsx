@@ -1,9 +1,9 @@
 import SvgWrapper from "./SvgWrapper";
 
 /* eslint-disable react/prop-types */
-export const WebIconSvg = (props) => {
+export const WebIconSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -16,9 +16,9 @@ export const WebIconSvg = (props) => {
   );
 };
 
-export const MenuSvg = (props) => {
+export const MenuSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -36,9 +36,9 @@ export const MenuSvg = (props) => {
   );
 };
 
-export const LoginSvg = (props) => {
+export const PersonSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

@@ -3,8 +3,8 @@
 import { useContext, useState } from "react";
 import { shuffleArray } from "../../utilityFunc";
 import ContestItemPreview from "./ContestItemPreview";
-import Button from "./Button";
-import { ChooseSvg } from "../../svgs/ContestSvgs";
+import Button from "../UI/Button";
+import { ChooseSvg } from "../svgs/ContestSvgs";
 import { ContentCtx } from "../../contexts/ContentCtx";
 import { ConfigCtx } from "../../contexts/ConfigCtx";
 
@@ -129,11 +129,7 @@ const CompeteItemBox = ({ children, handleClick }) => {
       {children}
       <div className="mt-4 flex flex-col gap-4 text-base">
         <p>Chat Votes : 10</p>
-        <Button
-          handleClick={handleClick}
-          bgColor="bg-slate-300"
-          customStyles="text-center"
-        >
+        <Button handleClick={handleClick} className="bg-slate-300 text-center">
           <ChooseSvg />
           <span>Win</span>
         </Button>

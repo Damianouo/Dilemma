@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .padding {
-    @apply px-4 py-2;
-  }
-  .navLink {
-    @apply padding content-center transition-colors hover:bg-primary-50 hover:text-primary-400;
-  }
-  .navBtn {
-    @apply padding flex items-center gap-2 transition-colors hover:bg-primary-50;
-  }
-}
-
 .active {
-  @apply text-primary-500 shadow-navbarLink;
+  @apply text-white;
 }

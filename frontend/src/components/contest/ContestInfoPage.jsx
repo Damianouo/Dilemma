@@ -1,9 +1,5 @@
-import {
-  RankingBtnSvg,
-  ShareBtnSvg,
-  StartBtnSvg,
-} from "../../svgs/ContestSvgs";
-import Button from "./Button";
+import { RankingBtnSvg, ShareBtnSvg, StartBtnSvg } from "../svgs/ContestSvgs";
+import Button from "../UI/Button";
 import ContestItemPreview from "./ContestItemPreview";
 import { ContentCtx } from "../../contexts/ContentCtx";
 import { ConfigCtx } from "../../contexts/ConfigCtx";
@@ -37,11 +33,11 @@ const ContestInfoPage = () => {
         <TotalCandidatesSelect />
         {/* buttons */}
         <div className="flex gap-2 ">
-          <Button handleClick={handleContestStart} bgColor="bg-red-200">
+          <Button handleClick={handleContestStart} className="bg-red-200">
             <StartBtnSvg />
             <span>Start</span>
           </Button>
-          <Button bgColor="bg-sky-200">
+          <Button className="bg-sky-200">
             <Link
               to={`/ranking/${content.id}`}
               className="flex items-center gap-1"
@@ -50,7 +46,7 @@ const ContestInfoPage = () => {
               <span>Ranking</span>
             </Link>
           </Button>
-          <Button bgColor="bg-emerald-200">
+          <Button className="bg-emerald-200">
             <ShareBtnSvg />
             <span>Share</span>
           </Button>

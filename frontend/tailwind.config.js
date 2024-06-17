@@ -13,10 +13,10 @@ export default {
         nunito: ["Nunito", "sans-serif"],
       },
       colors: {
-        primary: colors.indigo,
+        primary: colors.zinc,
+        secondary: colors.slate,
       },
       boxShadow: {
-        navbarLink: "0 2px 0px 0px",
         contestThumbnail: "0 0 5px 5px",
       },
     },

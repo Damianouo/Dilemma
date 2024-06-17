@@ -5,7 +5,7 @@ import { json, useLoaderData } from "react-router-dom";
 const BrowseContests = () => {
   const data = useLoaderData();
   return (
-    <div className="padding">
+    <div className="p-2">
       <AllContests>
         {data.map((contest) => (
           <ContestThumbnail key={contest._id} contestContents={contest} />

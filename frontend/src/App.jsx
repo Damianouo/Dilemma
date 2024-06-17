@@ -11,6 +11,7 @@ import Build from "./pages/Build";
 import About from "./pages/About";
 import Error from "./pages/Error";
 import { rootAction, rootLoader } from "./utilityFunc";
+import Layout from "./components/layout/Layout";
 
 const router = createBrowserRouter([
   {
@@ -46,17 +47,12 @@ const router = createBrowserRouter([
 
 function Root() {
   return (
-    <div
-      className="flex h-screen flex-col bg-zinc-200 font-nunito text-xl
-    font-medium text-gray-700 "
-    >
-      <header>
-        <Navbar />
-      </header>
+    <Layout>
+      <Navbar />
       <main id="detail" className="flex-1">
         <Outlet />
       </main>
-    </div>
+    </Layout>
   );
 }
 
