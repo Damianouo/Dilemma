@@ -29,7 +29,10 @@ const UserMenu = () => {
       {user.isLogin ? (
         <>
           <DropDown className="justify-end">
-            <Button className="bg-transparent" onClick={handleMenuShow}>
+            <Button
+              className="bg-transparent text-inherit"
+              onClick={handleMenuShow}
+            >
               <PersonSvg className="h-10 w-10" />
             </Button>
             <DropDownUl className=" text-left" state={menuShow}>
@@ -37,7 +40,7 @@ const UserMenu = () => {
                 <div
                   className={tm(
                     navBtnClass,
-                    " cursor-auto border-b border-primary-500 p-2  text-sm",
+                    " cursor-auto border-b border-primary-500 p-2 text-sm",
                   )}
                 >
                   <PersonSvg className="h-8 w-8" />
@@ -51,7 +54,7 @@ const UserMenu = () => {
                   className={tm(
                     navBtnClass,
                     navItemClass,
-                    "w-full justify-start rounded-none ",
+                    "w-full justify-start rounded-none bg-transparent text-inherit",
                   )}
                 >
                   <PersonSvg className="h-8 w-8" />
@@ -67,7 +70,7 @@ const UserMenu = () => {
           className={tm(
             navBtnClass,
             navItemClass,
-            "rounded-none bg-none text-white",
+            "rounded-none bg-primary-600 text-white",
           )}
         >
           <PersonSvg className="h-8 w-8" />

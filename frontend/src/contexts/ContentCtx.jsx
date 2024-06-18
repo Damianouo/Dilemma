@@ -2,12 +2,12 @@
 import { createContext } from "react";
 
 const initialContent = {
-  id: "",
-  types: "",
-  totalNumber: 8,
+  _id: "",
+  category: "",
+  totalParticipants: 8,
   title: "",
-  desc: "",
-  items: [],
+  description: "",
+  entries: [],
 };
 
 export const ContentCtx = createContext(initialContent);

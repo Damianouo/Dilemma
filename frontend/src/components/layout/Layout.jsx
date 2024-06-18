@@ -2,7 +2,7 @@
 const Layout = ({ children }) => {
   return (
     <div
-      className="flex h-screen flex-col bg-primary-800 font-nunito text-xl
+      className="flex min-h-screen flex-col bg-primary-700 font-nunito text-xl
     font-medium text-primary-400 "
     >
       {children}

@@ -15,9 +15,10 @@ export default {
       colors: {
         primary: colors.zinc,
         secondary: colors.slate,
+        tertiary: colors.gray,
       },
       boxShadow: {
-        contestThumbnail: "0 0 5px 5px",
+        contestThumbnail: "0 0 5px 2px ",
       },
     },
   },

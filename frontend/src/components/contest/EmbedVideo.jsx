@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { getEmbedUrl } from "../../utilityFunc";
 
-const EmbedVideo = ({ url, maxWidth }) => {
+const EmbedVideo = ({ url, className }) => {
   const embedUrl = getEmbedUrl(url);
   return (
-    <div className={maxWidth}>
+    <div className={className}>
       <div className="relative w-full pb-[56.25%]">
         <iframe
           className="absolute left-0 top-0 h-full w-full"

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, useParams } from "react-router-dom";
-import { dummyContests } from "../dummyData";
+import { Link, useParams, useRouteLoaderData } from "react-router-dom";
 import ContestInfoPage from "../components/contest/ContestInfoPage";
 import ContestCompetePage from "../components/contest/ContestCompetePage.";
 import { useContext, useRef } from "react";
@@ -9,15 +8,16 @@ import { ContentCtx } from "../contexts/ContentCtx";
 import ContestResultPage from "../components/contest/ContestResultPage";
 
 const Contest = () => {
+  const contestData = useRouteLoaderData("contests");
   const { config } = useContext(ConfigCtx);
   // get contest information through id
   const { contestId } = useParams();
-  const contestObj = dummyContests.find((element) => element.id === contestId);
+  const contestObj = contestData.find((element) => element._id === contestId);
   const contentRef = useRef(contestObj);
   const competeResult = useRef([]);
 
   return (
-    <div className="h-full bg-zinc-700 pt-6 text-white">
+    <div className=" h-full py-6 text-white">
       {contestObj ? (
         <ContentCtx.Provider value={contentRef.current}>
           <h2 className="mx-auto  max-w-[80%] text-center text-2xl font-bold sm:text-3xl md:text-4xl">

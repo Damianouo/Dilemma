@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const dummy = {
-  id: "1",
+  _id: "1",
   category: "video",
   totalParticipants: 16,
   title: "Music video from kpop girls group world cup(Top 16)",

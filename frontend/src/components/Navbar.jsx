@@ -15,7 +15,7 @@ const Navbar = () => {
           className={tm(
             navBtnClass,
             navItemClass,
-            "bg-primary-700 text-2xl font-bold text-white ",
+            "bg-primary-600 text-2xl font-bold text-white ",
           )}
         >
           <WebIconSvg className="h-10 w-10" />
