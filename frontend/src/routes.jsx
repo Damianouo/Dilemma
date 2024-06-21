@@ -7,3 +7,5 @@ export const routes = [
   { label: "Build Contests", path: "/build", element: <Build /> },
   { label: "About & Suggestion", path: "/about", element: <About /> },
 ];
+
+export const dropDownRoutes = [{ label: "Home", path: "/" }, ...routes];

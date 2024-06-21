@@ -1,5 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Layout from "../components/layout/Layout";
 
 const Error = () => {
   const error = useRouteError();
@@ -19,14 +20,13 @@ const Error = () => {
   }
 
   return (
-    <div
-      className="flex h-screen flex-col items-center gap-8 bg-zinc-200
-    font-nunito text-4xl font-medium text-gray-700"
-    >
+    <Layout>
       <Navbar />
-      <p className="mt-12 text-6xl font-bold">Oops !</p>
-      <p>{message}</p>
-    </div>
+      <div className="flex flex-1 flex-col items-center gap-8 pt-20 text-4xl">
+        <p className=" text-8xl font-bold">Oops !</p>
+        <p>{message}</p>
+      </div>
+    </Layout>
   );
 };
 

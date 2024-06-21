@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import SvgWrapper from "./SvgWrapper";
 
-export const StartBtnSvg = (props) => {
+export const StartBtnSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -20,9 +21,9 @@ export const StartBtnSvg = (props) => {
   );
 };
 
-export const RankingBtnSvg = (props) => {
+export const RankingBtnSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -34,9 +35,9 @@ export const RankingBtnSvg = (props) => {
   );
 };
 
-export const ShareBtnSvg = (props) => {
+export const ShareBtnSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -54,9 +55,9 @@ export const ShareBtnSvg = (props) => {
   );
 };
 
-export const ChooseSvg = (props) => {
+export const ChooseSvg = ({ className, ...props }) => {
   return (
-    <SvgWrapper {...props}>
+    <SvgWrapper className={className} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

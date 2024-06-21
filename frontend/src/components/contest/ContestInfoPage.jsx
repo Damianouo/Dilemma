@@ -1,13 +1,9 @@
-import {
-  RankingBtnSvg,
-  ShareBtnSvg,
-  StartBtnSvg,
-} from "../../svgs/ContestSvgs";
-import Button from "./Button";
-import ContestItemPreview from "./ContestItemPreview";
+import { RankingBtnSvg, ShareBtnSvg, StartBtnSvg } from "../svgs/ContestSvgs";
+import Button from "../UI/Button";
+import ContestItem from "./ContestItem";
 import { ContentCtx } from "../../contexts/ContentCtx";
 import { ConfigCtx } from "../../contexts/ConfigCtx";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
@@ -22,14 +18,14 @@ const ContestInfoPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-[1000px] rounded-lg p-4 text-base sm:p-6 sm:text-lg md:text-xl">
-      <p className="mb-6">{content.desc}</p>
+    <div className=" rounded-lg p-4 text-base sm:px-4 sm:py-8 sm:text-lg md:text-xl">
+      <p className="mb-10">{content.description}</p>
 
       {/* contest item preview */}
       <div className="flex items-center justify-center gap-2 ">
-        <ContestItemPreview item={content.items[0]} mode="info" />
-        <p className="text-4xl ">vs</p>
-        <ContestItemPreview item={content.items[1]} mode="info" />
+        <ContestItem item={content.entries[0]} mode="info" />
+        <p className="text-4xl font-bold">vs</p>
+        <ContestItem item={content.entries[1]} mode="info" />
       </div>
 
       {/* total candidate selection */}
@@ -37,20 +33,23 @@ const ContestInfoPage = () => {
         <TotalCandidatesSelect />
         {/* buttons */}
         <div className="flex gap-2 ">
-          <Button handleClick={handleContestStart} bgColor="bg-red-200">
+          <Button
+            onClick={handleContestStart}
+            className="bg-red-200 text-black"
+          >
             <StartBtnSvg />
             <span>Start</span>
           </Button>
-          <Button bgColor="bg-sky-200">
+          <Button className="bg-sky-200  text-black">
             <Link
-              to={`/ranking/${content.id}`}
+              to={`/ranking/${content._id}`}
               className="flex items-center gap-1"
             >
               <RankingBtnSvg />
               <span>Ranking</span>
             </Link>
           </Button>
-          <Button bgColor="bg-emerald-200">
+          <Button className="bg-emerald-200  text-black">
             <ShareBtnSvg />
             <span>Share</span>
           </Button>
@@ -65,11 +64,17 @@ export default ContestInfoPage;
 const TotalCandidatesSelect = () => {
   const content = useContext(ContentCtx);
   const { configDispatch } = useContext(ConfigCtx);
+  const { totalParticipants } = content;
+  useEffect(() => {
+    configDispatch({
+      type: "editTotalCandidates",
+      totalCandidates: totalParticipants,
+    });
+  }, [configDispatch, totalParticipants]);
 
-  const totalNumber = content.totalNumber;
   let optionsArr = [];
   let i = 4;
-  while (i <= totalNumber) {
+  while (i <= totalParticipants) {
     optionsArr = [i, ...optionsArr];
     i = i * 2;
   }
@@ -88,9 +93,9 @@ const TotalCandidatesSelect = () => {
         Choose the total number of candidates :
       </label>
       <select
-        className="items-center rounded-lg bg-slate-100 py-2 text-center text-base text-black"
+        className="items-center rounded-lg bg-secondary-100 py-2 text-center text-base text-black"
         onChange={handleTotleCandidatesSelect}
-        defaultValue={8}
+        defaultValue={totalParticipants}
         name="totalCandidates"
         id="totalCandidatesSelect"
       >

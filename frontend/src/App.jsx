@@ -5,12 +5,13 @@ import Home from "./pages/Home";
 import ConfigCtxProvider from "./contexts/ConfigCtx";
 import Ranking from "./pages/Ranking";
 import BrowseContests, {
-  loader as BrowseContestsLoader,
+  loader as browseContestsLoader,
 } from "./pages/BrowseContests";
 import Build from "./pages/Build";
 import About from "./pages/About";
 import Error from "./pages/Error";
 import { rootAction, rootLoader } from "./utilityFunc";
+import Layout from "./components/layout/Layout";
 
 const router = createBrowserRouter([
   {
@@ -23,19 +24,23 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: "/contests",
-        element: <BrowseContests />,
-        loader: BrowseContestsLoader,
+        id: "contests",
+        loader: browseContestsLoader,
+        children: [
+          { index: true, element: <BrowseContests /> },
+          {
+            path: ":contestId",
+            element: (
+              <ConfigCtxProvider>
+                <Contest />
+              </ConfigCtxProvider>
+            ),
+          },
+        ],
       },
       { path: "/build", element: <Build /> },
       { path: "/about", element: <About /> },
-      {
-        path: "/contests/:contestId",
-        element: (
-          <ConfigCtxProvider>
-            <Contest />
-          </ConfigCtxProvider>
-        ),
-      },
+
       {
         path: "/ranking/:contestId",
         element: <Ranking />,
@@ -46,17 +51,12 @@ const router = createBrowserRouter([
 
 function Root() {
   return (
-    <div
-      className="flex h-screen flex-col bg-zinc-200 font-nunito text-xl
-    font-medium text-gray-700 "
-    >
-      <header>
-        <Navbar />
-      </header>
+    <Layout>
+      <Navbar />
       <main id="detail" className="flex-1">
         <Outlet />
       </main>
-    </div>
+    </Layout>
   );
 }
 

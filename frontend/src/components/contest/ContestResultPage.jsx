@@ -1,41 +1,48 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { getCoverImageUrl } from "../../utilityFunc";
-import Button from "./Button";
-import { useContext } from "react";
+import Button from "../UI/Button";
+import { useContext, useState } from "react";
 import { ContentCtx } from "../../contexts/ContentCtx";
+import ContestItem from "./ContestItem";
+import { twMerge as tm } from "tailwind-merge";
+import Accordion from "../UI/Accordion";
+import AccordionItems from "../UI/AccordionItems";
+import PlusMinusSvg from "../svgs/PlusMinusSvg";
+
 const ContestResultPage = ({ competeResult }) => {
   const content = useContext(ContentCtx);
   const fullResult = competeResult.current.toReversed();
+  const resultBeforeTop4 = fullResult.slice(0, 2);
+  const resultAfterTop4 = fullResult.slice(2);
   return (
-    <div className=" px-20">
-      <div className="my-4 flex justify-center gap-8">
-        <Button bgColor="bg-slate-300">
+    <div>
+      <div className="my-8 flex justify-center gap-8">
+        <Button>
           <Link to="/contests">Other Contests</Link>
         </Button>
         <Button>
-          <Link to={`/ranking/${content.id}`}>Ranking</Link>
+          <Link to={`/ranking/${content._id}`}>Ranking</Link>
         </Button>
       </div>
-      <ul className="flex flex-col items-center gap-8  ">
-        <li className="flex flex-col items-center">
-          <h2 className="mb-2">The Winner Gose to :</h2>
-          <ResultItem item={fullResult[0].winners[0]} />
+      <ul className="mx-auto grid grid-cols-4 gap-x-2 gap-y-8 text-center text-base transition-all sm:text-2xl">
+        <li className="col-span-4 justify-self-center text-3xl font-bold">
+          <h2 className="mb-4 ">The Winner Gose to :</h2>
+          <ContestItem item={fullResult[0].winners[0]} />
         </li>
-        {fullResult.map((result) => (
-          <li
+        {resultBeforeTop4.map((result) => (
+          <ResultList
+            className="col-span-2 text-left"
             key={result.totalCandidates}
-            className="flex flex-col items-center"
           >
-            <h2 className="mb-2">
-              Stopped at the top {result.totalCandidates}
-            </h2>
-            <div className=" flex flex-wrap gap-2">
-              {result.losers.map((item) => (
-                <ResultItem key={item.itemTitle} item={item} />
-              ))}
-            </div>
-          </li>
+            <h2>Stopped at top {result.totalCandidates}</h2>
+            <ResultItems result={result} className="grid-cols-2" />
+          </ResultList>
+        ))}
+
+        {resultAfterTop4.map((result) => (
+          <ResultList key={result.totalCandidates}>
+            <ResultAccordion result={result} />
+          </ResultList>
         ))}
       </ul>
     </div>
@@ -44,14 +51,50 @@ const ContestResultPage = ({ competeResult }) => {
 
 export default ContestResultPage;
 
-const ResultItem = ({ item }) => {
-  const imageUrl = getCoverImageUrl(item);
+const ResultList = ({ className, children }) => {
   return (
-    <div className="w-[150px] rounded-lg bg-zinc-400 p-2 text-center text-black">
-      <img src={imageUrl} alt="item image" />
-      <p className="mt-2  overflow-hidden text-ellipsis whitespace-nowrap text-sm">
-        {item.itemTitle}
-      </p>
+    <li className={tm("col-span-full flex flex-col gap-4", className)}>
+      {children}
+    </li>
+  );
+};
+
+const ResultItems = ({ result, className }) => {
+  return (
+    <div className={tm(" grid grid-cols-4 gap-2 overflow-hidden", className)}>
+      {result.losers.map((item) => (
+        <ContestItem
+          key={item.title}
+          item={item}
+          titleClass="overflow-hidden text-ellipsis whitespace-nowrap sm:text-sm"
+        />
+      ))}
     </div>
+  );
+};
+
+const ResultAccordion = ({ result }) => {
+  const [accordionOpen, setAccordionOpen] = useState(false);
+  function handleAccordionOpen(e) {
+    e.stopPropagation();
+    setAccordionOpen((prev) => !prev);
+  }
+  return (
+    <Accordion onClick={handleAccordionOpen}>
+      <Button className="gap-4">
+        <PlusMinusSvg accordionOpen={accordionOpen} />
+        <span>Stopped at the top {result.totalCandidates}</span>
+      </Button>
+      <AccordionItems accordionOpen={accordionOpen}>
+        <div
+          className={tm(
+            "overflow-hidden transition-all",
+            accordionOpen ? "pt-4" : "pt-0",
+          )}
+        >
+          <ResultItems result={result} />
+        </div>
+      </AccordionItems>
+    </Accordion>
   );
 };

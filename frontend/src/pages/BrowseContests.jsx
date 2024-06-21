@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import ContestThumbnail from "../components/ContestThumbnail";
-import { json, useLoaderData } from "react-router-dom";
+import { json, useRouteLoaderData } from "react-router-dom";
 
 const BrowseContests = () => {
-  const data = useLoaderData();
+  const data = useRouteLoaderData("contests");
   return (
-    <div className="padding">
+    <div className="p-6 text-primary-300">
       <AllContests>
         {data.map((contest) => (
           <ContestThumbnail key={contest._id} contestContents={contest} />
@@ -19,7 +19,7 @@ export default BrowseContests;
 
 const AllContests = ({ children }) => {
   return (
-    <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4">
       {children}
     </div>
   );
