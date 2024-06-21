@@ -80,7 +80,7 @@ const ContestCompetePage = ({ competeResult }) => {
     });
   }
   return (
-    <div className=" flex flex-col items-center gap-8 px-4 py-8 text-center ">
+    <div className=" flex flex-col items-center gap-8 text-center sm:px-4 sm:py-8 ">
       {/* matchs info */}
       {!currentCompete.finished ? (
         <h2 className="md:text-2xl">
@@ -128,15 +128,13 @@ export default ContestCompetePage;
 
 const CompeteItemBox = ({ children, onClick }) => {
   return (
-    <div className=" max-w-[600px] flex-1">
+    <div className="flex flex-1 flex-col gap-4">
       {children}
-      <div className="mt-4 flex flex-col gap-4 text-base">
-        <p>Chat Votes : 10</p>
-        <Button onClick={onClick} className=" text-center text-lg font-bold ">
-          <ChooseSvg />
-          <span>WIN</span>
-        </Button>
-      </div>
+      <p className="text-base">Chat Votes : 10</p>
+      <Button onClick={onClick} className=" text-center text-lg font-bold ">
+        <ChooseSvg />
+        <span>WIN</span>
+      </Button>
     </div>
   );
 };

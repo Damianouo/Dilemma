@@ -8,15 +8,17 @@ const ContestItem = ({ item, mode = "info", className, titleClass }) => {
   return (
     <div
       className={tm(
-        "bg-tertiary-500 shadow-tertiary-800 overflow-hidden rounded-md text-center text-black shadow-md",
+        "overflow-hidden rounded-md bg-tertiary-500 text-center text-black shadow-md shadow-tertiary-800",
         className,
       )}
     >
       {item ? (
         <>
-          {mode === "info" && <img src={imageUrl} alt="contest item image" />}
+          {mode === "info" && (
+            <img src={imageUrl} className="" alt="contest item image" />
+          )}
           {mode === "compete" && <EmbedVideo url={item.url} />}
-          <p className={tm(" p-2 text-sm sm:text-lg", titleClass)}>
+          <p className={tm("p-2 text-sm sm:text-base", titleClass)}>
             {item.title}
           </p>
         </>

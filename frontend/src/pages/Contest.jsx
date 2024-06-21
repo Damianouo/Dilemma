@@ -17,10 +17,10 @@ const Contest = () => {
   const competeResult = useRef([]);
 
   return (
-    <div className=" h-full py-6 text-white">
+    <div className=" mx-auto h-full max-w-[1000px] px-12 py-6 text-white">
       {contestObj ? (
         <ContentCtx.Provider value={contentRef.current}>
-          <h2 className="mx-auto  max-w-[80%] text-center text-2xl font-bold sm:text-3xl md:text-4xl">
+          <h2 className="my-6 text-center text-2xl font-bold sm:text-3xl md:text-4xl">
             {contentRef.current.title}
           </h2>
 

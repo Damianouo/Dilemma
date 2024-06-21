@@ -18,7 +18,7 @@ const ContestInfoPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-[1000px] rounded-lg p-4 text-base sm:p-6 sm:text-lg md:text-xl">
+    <div className=" rounded-lg p-4 text-base sm:px-4 sm:py-8 sm:text-lg md:text-xl">
       <p className="mb-10">{content.description}</p>
 
       {/* contest item preview */}
