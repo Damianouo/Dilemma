@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { getCoverImageUrl } from "../../utilityFunc";
+import { getCoverImageUrl } from "../../utils/contest";
 import EmbedVideo from "./EmbedVideo";
 import { twMerge as tm } from "tailwind-merge";
 

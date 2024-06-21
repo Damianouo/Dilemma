@@ -1,34 +1,6 @@
 import { json, redirect } from "react-router-dom";
-import { store } from "./store/index";
-import { userActions } from "./store/userSlice";
-
-function getVideoId(url) {
-  const parsedUrl = new URL(url);
-  const videoId = parsedUrl.searchParams.get("v");
-  return videoId;
-}
-export function getCoverImageUrl(url) {
-  if (!url) return null;
-  const coverImageUrl = `https://img.youtube.com/vi/${getVideoId(url)}/0.jpg`;
-
-  return coverImageUrl;
-}
-
-export function getEmbedUrl(url) {
-  if (!url) return null;
-  const id = getVideoId(url);
-  return "https://www.youtube.com/embed/" + id;
-}
-
-export function shuffleArray(array) {
-  const arr = [...array];
-
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]]; // ES6 array destructuring to swap elements
-  }
-  return arr;
-}
+import { store } from "../store/index";
+import { userActions } from "../store/userSlice";
 
 export async function rootLoader() {
   const state = store.getState();

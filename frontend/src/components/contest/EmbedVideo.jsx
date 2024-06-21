@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { getEmbedUrl } from "../../utilityFunc";
+import { getEmbedUrl } from "../../utils/contest";
 
 const EmbedVideo = ({ url, className }) => {
   const embedUrl = getEmbedUrl(url);
