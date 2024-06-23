@@ -12,16 +12,18 @@ const Input = ({
   return (
     <div
       className={tm(
-        "flex flex-col gap-2 text-base md:flex-row md:items-center",
+        "flex flex-col justify-between gap-2 text-base md:flex-row md:items-center",
         className,
       )}
     >
-      <label htmlFor={id} className="flex-1">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={id} className="flex-1">
+          {label}
+        </label>
+      )}
       <input
         className={tm(
-          " border-2 border-secondary-400 bg-primary-200 px-2 py-1 md:flex-[5_1_0%]",
+          "flex-[5_1_0%] border-2 border-secondary-400 bg-primary-200 px-2 py-1",
           "text-primary-700 focus-visible:border-secondary-600  focus-visible:outline-none",
           inputClassName,
         )}

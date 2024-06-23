@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import { twMerge as tm } from "tailwind-merge";
 
-const Button = ({ children, onClick, className, ...props }) => {
+const Button = ({
+  children,
+  onClick,
+  className,
+  type = "button",
+  ...props
+}) => {
   return (
     <button
       className={tm(
@@ -9,6 +15,7 @@ const Button = ({ children, onClick, className, ...props }) => {
         className,
       )}
       onClick={onClick}
+      type={type}
       {...props}
     >
       {children}
