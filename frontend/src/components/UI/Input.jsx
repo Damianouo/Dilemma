@@ -23,7 +23,7 @@ const Input = ({
       )}
       <input
         className={tm(
-          "flex-[5_1_0%] border-2 border-secondary-400 bg-primary-200 px-2 py-1",
+          "flex-[5_1_0%] border-2 border-secondary-400 bg-primary-200 px-2 py-1 transition-colors",
           "text-primary-700 focus-visible:border-secondary-600  focus-visible:outline-none",
           inputClassName,
         )}

@@ -1,4 +1,4 @@
-function getVideoId(url) {
+export function getVideoId(url) {
   const parsedUrl = new URL(url);
   const videoId = parsedUrl.searchParams.get("v");
   return videoId;

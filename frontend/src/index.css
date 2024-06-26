@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  thead th {
+    @apply border border-primary-400 p-2;
+  }
+  tbody td {
+    @apply border border-primary-500;
+  }
+}
+
 .active {
   @apply text-white;
 }

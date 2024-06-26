@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Error from "./pages/Error";
 import { rootAction, rootLoader } from "./utils/root";
 import Layout from "./components/layout/Layout";
+import CreationCtxProvider from "./contexts/CreationCtx";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,14 @@ const router = createBrowserRouter([
           },
         ],
       },
-      { path: "/create", element: <CreateContest /> },
+      {
+        path: "/create",
+        element: (
+          <CreationCtxProvider>
+            <CreateContest />
+          </CreationCtxProvider>
+        ),
+      },
       { path: "/about", element: <About /> },
 
       {
