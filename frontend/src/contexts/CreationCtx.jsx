@@ -6,6 +6,7 @@ const initialValue = {
     title: "",
     description: "",
     totalParticipants: 32,
+    category: "video",
     entries: [
       {
         title: "Nmixx-O.O",
@@ -343,6 +344,7 @@ const initialValue = {
   },
   pageNum: 1,
   shouldSave: false,
+  activeTab: "info",
 };
 export const CreationCtx = createContext();
 
@@ -533,6 +535,13 @@ function creationReducer(creation, action) {
         ...creation,
         shouldSave: false,
         pageNum: action.payload,
+      };
+    }
+    case "changeTab": {
+      return {
+        ...creation,
+        shouldSave: false,
+        activeTab: action.payload,
       };
     }
     default: {

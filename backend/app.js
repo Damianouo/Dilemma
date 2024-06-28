@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { contestRoute, authRoute } = require('./routes');
+const { contestRoute, authRoute, youtubeApiRoute } = require('./routes');
 require('./config/passport');
 const session = require('express-session');
 const passport = require('passport');
@@ -42,5 +42,6 @@ app.use(passport.session());
 //? routes
 app.use('/auth', authRoute);
 app.use('/contest', contestRoute);
+app.use('./ytapi', youtubeApiRoute);
 
 app.listen(8080, () => console.log('server is running on port 8080'));

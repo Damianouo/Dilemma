@@ -5,9 +5,9 @@ const { Contest } = require('../models');
 router.get('/', async (req, res) => {
   try {
     const allContests = await Contest.find({}).populate('author').exec();
-    return res.send(allContests);
+    return res.json(allContests);
   } catch (error) {
-    return res.status(500).send(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -16,9 +16,9 @@ router.get('/:_id', async (req, res) => {
   const { _id } = req.params;
   try {
     const foundContests = await Contest.find({ author: _id }).populate('author').exec();
-    return res.send(foundContests);
+    return res.json(foundContests);
   } catch (error) {
-    return res.status(500).send(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -47,14 +47,12 @@ router.post('/', authCheck, async (req, res) => {
       author: req.user._id,
     });
     const savedContest = await newContest.save();
-    console.log('contest creation successful');
-    return res.send({
+    return res.json({
       message: 'contest creation successful',
       savedContest,
     });
   } catch (error) {
-    console.log(req.user);
-    return res.status(500).send({
+    return res.status(500).json({
       message: 'fail to create a new contest',
       error,
     });

@@ -1,15 +1,10 @@
 import { useContext } from "react";
 import { CreationCtx } from "../contexts/CreationCtx";
-import { getVideoTitle } from "../utils/creation";
+import { getVideoTitle } from "../utils/entry";
 
 export const useCreationCtx = () => {
   const { creation, dispatch } = useContext(CreationCtx);
-  function setState(state) {
-    dispatch({
-      type: "setState",
-      payload: state,
-    });
-  }
+
   function titleChange(e) {
     const title = e.target.value;
     dispatch({
@@ -48,6 +43,7 @@ export const useCreationCtx = () => {
       });
       return;
     }
+
     try {
       const title = await getVideoTitle(url);
       dispatch({
@@ -55,7 +51,6 @@ export const useCreationCtx = () => {
         payload: { title, url },
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: "addEntryError",
         payload: error.message,
@@ -107,7 +102,6 @@ export const useCreationCtx = () => {
         payload: { title, url },
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: "updateEntryError",
         payload: error.message,
@@ -129,8 +123,13 @@ export const useCreationCtx = () => {
       payload: creation.pageNum + 1,
     });
   }
+  function changeTab(tabname) {
+    dispatch({
+      type: "changeTab",
+      payload: tabname,
+    });
+  }
   const handler = {
-    setState,
     titleChange,
     descriptionChange,
     participantsChange,
@@ -144,6 +143,7 @@ export const useCreationCtx = () => {
     changePage,
     previousPage,
     nextPage,
+    changeTab,
   };
-  return { creation, handler };
+  return { creation, handler, dispatch };
 };

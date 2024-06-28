@@ -7,7 +7,7 @@ import Ranking from "./pages/Ranking";
 import BrowseContests, {
   loader as browseContestsLoader,
 } from "./pages/BrowseContests";
-import CreateContest from "./pages/CreateContest";
+import CreateContest, { action as creationAction } from "./pages/CreateContest";
 import About from "./pages/About";
 import Error from "./pages/Error";
 import { rootAction, rootLoader } from "./utils/root";
@@ -41,6 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/create",
+        action: creationAction,
         element: (
           <CreationCtxProvider>
             <CreateContest />

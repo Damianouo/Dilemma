@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { getEmbedUrl } from "../../utils/contest";
+import { getEmbedUrl } from "../../utils/entry";
 
 const EmbedVideo = ({ url, className }) => {
   const embedUrl = getEmbedUrl(url);
