@@ -7,11 +7,12 @@ import Ranking from "./pages/Ranking";
 import BrowseContests, {
   loader as browseContestsLoader,
 } from "./pages/BrowseContests";
-import Build from "./pages/Build";
+import CreateContest, { action as creationAction } from "./pages/CreateContest";
 import About from "./pages/About";
 import Error from "./pages/Error";
-import { rootAction, rootLoader } from "./utilityFunc";
+import { rootAction, rootLoader } from "./utils/root";
 import Layout from "./components/layout/Layout";
+import CreationCtxProvider from "./contexts/CreationCtx";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,15 @@ const router = createBrowserRouter([
           },
         ],
       },
-      { path: "/build", element: <Build /> },
+      {
+        path: "/create",
+        action: creationAction,
+        element: (
+          <CreationCtxProvider>
+            <CreateContest />
+          </CreationCtxProvider>
+        ),
+      },
       { path: "/about", element: <About /> },
 
       {

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useContext, useState } from "react";
-import { shuffleArray } from "../../utilityFunc";
+import { shuffleArray } from "../../utils/entry";
 import ContestItem from "./ContestItem";
 import Button from "../UI/Button";
 import { ChooseSvg } from "../svgs/ContestSvgs";
