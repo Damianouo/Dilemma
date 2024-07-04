@@ -10,11 +10,11 @@ router.get('/:id', async (req, res) => {
       throw new Error();
     }
     if (data.items.length === 0) {
-      return res.status(400).json({ message: 'Can not find video, please check link' });
+      return res.status(400).json({ message: 'Can not find video, please check the link.' });
     }
     return res.json({ title: data.items[0].snippet.title });
   } catch (error) {
-    return res.status(500).json({ message: 'Can not add video, please try again later' });
+    return res.status(500).json({ message: 'Can not add/update video, please try again later.' });
   }
 });
 

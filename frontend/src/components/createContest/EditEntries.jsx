@@ -1,91 +1,73 @@
 import { useCreationCtx } from "../../hooks/useCreationCtx";
+import useModalCtx from "../../hooks/useModalCtx";
 import { getCoverImageUrl } from "../../utils/entry";
 import Button from "../UI/Button";
-import Input from "../UI/Input";
+import DeleteModal from "./DeleteModal";
+import EditModal from "./EditModal";
 import FormTitle from "./FormTitle";
 import PageButtons from "./PageButtons";
 const EditEntries = () => {
   const { creation, handler } = useCreationCtx();
+  const { editEntryRef, deleteEntryRef } = useModalCtx();
   const entries = creation.content.entries;
   const totalDisplayedEntries = 10;
   const startIndex = (creation.pageNum - 1) * totalDisplayedEntries;
   const endIndex = creation.pageNum * totalDisplayedEntries;
   const displayedEntries = entries.slice(startIndex, endIndex);
+
+  function handleEdit(index) {
+    editEntryRef.current.open();
+    handler.startEditing(index);
+  }
+  function handleDelete(index) {
+    deleteEntryRef.current.open();
+    handler.startEditing(index);
+  }
   return (
     <>
       <FormTitle>Edit all videos</FormTitle>
+      <EditModal />
+      <DeleteModal />
       {entries.length > 0 ? (
         <div className="flex flex-col gap-4 p-4">
           {/* page buttons */}
           <PageButtons />
 
           <table
-            className="border-collapse border-2 border-primary-300
-         bg-primary-600  text-primary-300"
+            className="border-collapse border-2 border-primary-300 bg-primary-600
+          text-xs text-primary-300 md:text-base"
           >
             <thead>
               <tr className="bg-primary-600">
                 <th scope="col">Order</th>
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
-                <th scope="col">Link</th>
+                <th scope="col" className="hidden sm:table-cell">
+                  Link
+                </th>
                 <th scope="col">Edit/Delete</th>
               </tr>
             </thead>
-            <tbody className="text-base">
+            <tbody className="">
               {displayedEntries.map((entry, index) => (
                 <tr key={entry.title + (index + startIndex)}>
                   <td className=" text-center">{index + 1 + startIndex}</td>
                   <td className="w-[120px] ">
                     <img src={getCoverImageUrl(entry.url)} alt="entry image" />
                   </td>
+                  <td className="px-2">{entry.title}</td>
+                  <td className=" hidden px-2 sm:table-cell">{entry.url}</td>
                   <td className="px-2">
-                    {creation.updateEntry.editingIndex ===
-                    index + startIndex ? (
-                      <Input
-                        className="text-sm"
-                        type="text"
-                        defaultValue={entry.title}
-                        onChange={(e) => handler.entryTitleChange(e)}
-                      />
-                    ) : (
-                      entry.title
-                    )}
-                  </td>
-                  <td className="px-2">
-                    {creation.updateEntry.editingIndex ===
-                    index + startIndex ? (
-                      <Input
-                        className="text-sm"
-                        type="text"
-                        defaultValue={entry.url}
-                        onChange={(e) => handler.entryUrlChange(e)}
-                      />
-                    ) : (
-                      entry.url
-                    )}
-                  </td>
-                  <td className="">
                     <div className="flex justify-center gap-2">
                       <Button
-                        className=" bg-secondary-500 text-sm text-white"
-                        disabled={creation.updateEntry.loading}
-                        onClick={() =>
-                          creation.updateEntry.editingIndex ===
-                          index + startIndex
-                            ? handler.updateEntry()
-                            : handler.startEditing(index + startIndex)
-                        }
+                        className=" bg-secondary-500 text-xs text-white"
+                        onClick={() => handleEdit(index + startIndex)}
                       >
-                        {creation.updateEntry.editingIndex ===
-                        index + startIndex
-                          ? "Update"
-                          : "Edit"}
+                        Edit
                       </Button>
                       <Button
-                        className=" bg-secondary-700 text-sm text-white"
-                        disabled={creation.updateEntry.editingIndex}
-                        onClick={() => handler.deleteEntry(index + startIndex)}
+                        className=" bg-secondary-700 text-xs text-white"
+                        onClick={() => handleDelete(index + startIndex)}
                       >
                         Delete
                       </Button>
@@ -100,7 +82,7 @@ const EditEntries = () => {
           <PageButtons />
         </div>
       ) : (
-        <p className="p-4 md:p-8">No video added</p>
+        <p className="p-4 md:p-8">No Entry added</p>
       )}
     </>
   );
