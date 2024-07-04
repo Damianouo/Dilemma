@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CreationCtx } from "../contexts/CreationCtx";
 import { getVideoTitle } from "../utils/entry";
+import { updateValidation, uploadValidation } from "../utils/validation";
 
 export const useCreationCtx = () => {
   const { creation, dispatch } = useContext(CreationCtx);
@@ -36,12 +37,13 @@ export const useCreationCtx = () => {
   async function addEntry() {
     dispatch({ type: "addEntryStart" });
     const url = creation.addEntry.linkInput;
-    if (url.length === 0) {
-      dispatch({
+    const validationResult = uploadValidation(url);
+
+    if (!validationResult.successful) {
+      return dispatch({
         type: "addEntryError",
-        payload: "no link provided",
+        payload: validationResult.message,
       });
-      return;
     }
 
     try {
@@ -88,15 +90,26 @@ export const useCreationCtx = () => {
     dispatch({ type: "updateEntryStart" });
     const title = creation.updateEntry.entryTitleInput;
     const url = creation.updateEntry.entryUrlInput;
-    if (url.length === 0) {
-      dispatch({
-        type: "updateEntryError",
-        payload: "no link provided",
+
+    const { editingIndex } = creation.updateEntry;
+    const prevUrl = creation.content.entries[editingIndex].url;
+    if (url === prevUrl) {
+      return dispatch({
+        type: "updateEntrySuccess",
+        payload: { title, url },
       });
-      return;
     }
+
+    const validationResult = updateValidation(title, url);
+    if (!validationResult.successful) {
+      return dispatch({
+        type: "updateEntryError",
+        payload: validationResult.message,
+      });
+    }
+
     try {
-      await getVideoTitle(url);
+      const title = await getVideoTitle(url);
       dispatch({
         type: "updateEntrySuccess",
         payload: { title, url },

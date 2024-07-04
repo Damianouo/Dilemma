@@ -16,6 +16,7 @@ const UserMenu = () => {
   function handleMenuShow() {
     setMenuShow((prev) => !prev);
   }
+
   function handleLogin() {
     window.location.href = "http://localhost:8080/auth/google";
   }

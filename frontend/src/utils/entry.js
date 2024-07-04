@@ -1,12 +1,19 @@
 export function getVideoId(url) {
-  const parsedUrl = new URL(url);
-  const videoId = parsedUrl.searchParams.get("v");
-  return videoId;
+  const videoId = url.split("watch?v=");
+  if (videoId.length > 1) {
+    return videoId[1];
+  }
+  const shortsId = url.split("shorts/");
+  if (shortsId.length > 1) {
+    return shortsId[1];
+  }
+  return null;
 }
 
 export function getCoverImageUrl(url) {
   if (!url) return null;
-  const coverImageUrl = `https://img.youtube.com/vi/${getVideoId(url)}/0.jpg`;
+
+  const coverImageUrl = `https://i.ytimg.com/vi/${getVideoId(url)}/hqdefault.jpg`;
 
   return coverImageUrl;
 }
@@ -19,6 +26,7 @@ export function getEmbedUrl(url) {
 
 export async function getVideoTitle(url) {
   const id = getVideoId(url);
+
   try {
     const response = await fetch(`http://localhost:8080/ytapi/${id}`);
     const data = await response.json();
@@ -27,6 +35,9 @@ export async function getVideoTitle(url) {
     }
     return data.title;
   } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error("Can not add/update video, please try again later.");
+    }
     throw new Error(error.message);
   }
 }
