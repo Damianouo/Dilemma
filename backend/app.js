@@ -42,6 +42,6 @@ app.use(passport.session());
 //? routes
 app.use('/auth', authRoute);
 app.use('/contest', contestRoute);
-app.use('./ytapi', youtubeApiRoute);
+app.use('/ytapi', youtubeApiRoute);
 
 app.listen(8080, () => console.log('server is running on port 8080'));
