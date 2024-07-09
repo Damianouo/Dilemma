@@ -1,12 +1,12 @@
 import DropDown from "../UI/DropDown";
 import DropDownUl from "../UI/DropDownUl";
 import { PersonSvg } from "../svgs/NavSvgs";
-import { useSubmit } from "react-router-dom";
+import { NavLink, useSubmit } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Button from "../UI/Button";
 import { twMerge as tm } from "tailwind-merge";
-import { navItemClass, navBtnClass } from "./cssClass";
+import { navItemClass } from "./cssClass";
 
 const UserMenu = () => {
   const submit = useSubmit();
@@ -15,10 +15,6 @@ const UserMenu = () => {
 
   function handleMenuShow() {
     setMenuShow((prev) => !prev);
-  }
-
-  function handleLogin() {
-    window.location.href = "http://localhost:8080/auth/google";
   }
 
   function handleLogout() {
@@ -37,23 +33,15 @@ const UserMenu = () => {
               <PersonSvg className="h-10 w-10" />
             </Button>
             <DropDownUl className=" text-left" state={menuShow}>
-              <li>
-                <div
-                  className={tm(
-                    navBtnClass,
-                    " cursor-auto border-b border-primary-500 p-2 text-sm",
-                  )}
-                >
-                  <PersonSvg className="h-8 w-8" />
-                  <p>{user.info.email}</p>
-                </div>
+              <li className="flex cursor-auto items-center gap-1 border-b border-primary-500 p-2 text-sm">
+                <PersonSvg className="h-8 w-8" />
+                <p>{user.info.email}</p>
               </li>
 
               <li>
                 <Button
                   onClick={handleLogout}
                   className={tm(
-                    navBtnClass,
                     navItemClass,
                     "w-full justify-start rounded-none bg-transparent text-inherit",
                   )}
@@ -66,17 +54,16 @@ const UserMenu = () => {
           </DropDown>
         </>
       ) : (
-        <Button
-          onClick={handleLogin}
+        <NavLink
+          to="/login"
           className={tm(
-            navBtnClass,
             navItemClass,
-            "rounded-none bg-primary-600 text-white",
+            "flex items-center gap-1 rounded-none bg-primary-600 text-white",
           )}
         >
           <PersonSvg className="h-8 w-8" />
           <span>Login</span>
-        </Button>
+        </NavLink>
       )}
     </>
   );
