@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import Button from "../components/UI/Button";
-import { Form, useSubmit } from "react-router-dom";
+import { Form, redirect, useSubmit } from "react-router-dom";
 import { useCreationCtx } from "../hooks/useCreationCtx";
 import InfoUpload from "../components/createContest/InfoUpload";
 import EditEntries from "../components/createContest/EditEntries";
@@ -9,6 +9,7 @@ import TabButtons from "../components/createContest/TabButtons";
 import SubmitModal from "../components/createContest/SubmitModal";
 import useModalCtx from "../hooks/useModalCtx";
 import { creationValidation } from "../utils/validation";
+import { store } from "../store";
 
 const CreateContest = () => {
   const { creation, dispatch } = useCreationCtx();
@@ -70,6 +71,14 @@ const CreateContest = () => {
 };
 
 export default CreateContest;
+
+export function loader() {
+  const state = store.getState();
+  if (!state.user.isLogin) {
+    return redirect("/login?from=create");
+  }
+  return null;
+}
 
 export async function action({ request }) {
   const data = await request.json();

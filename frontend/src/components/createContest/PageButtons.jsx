@@ -44,7 +44,7 @@ const PageButtons = () => {
           {pageNum}
         </PageBtn>
       ))}
-      <PageBtn pageNum={totalPages}>{totalPages}</PageBtn>
+      {totalPages > 1 && <PageBtn pageNum={totalPages}>{totalPages}</PageBtn>}
 
       <Button
         className="bg-secondary-600 px-6 text-primary-200 disabled:bg-primary-300 disabled:text-primary-400"

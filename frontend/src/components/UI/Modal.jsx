@@ -14,8 +14,21 @@ const Modal = forwardRef(function Modal({ children, onClose }, ref) {
     };
   });
 
+  function handleClose(event) {
+    const rect = dialogRef.current.getBoundingClientRect();
+    if (
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom ||
+      event.clientX < rect.left ||
+      event.clientX > rect.right
+    ) {
+      dialogRef.current.close();
+    }
+  }
+
   return (
     <dialog
+      onMouseDown={handleClose}
       ref={dialogRef}
       onClose={onClose}
       className="rounded-md bg-tertiary-500 px-6 py-8 text-white"

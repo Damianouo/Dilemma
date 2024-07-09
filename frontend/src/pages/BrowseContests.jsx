@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import ContestThumbnail from "../components/ContestThumbnail";
+import ContestThumbnail from "../components/contest/ContestThumbnail";
 import { json, useRouteLoaderData } from "react-router-dom";
 
 const BrowseContests = () => {

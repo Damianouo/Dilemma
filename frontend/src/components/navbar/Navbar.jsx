@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { WebIconSvg } from "./svgs/NavSvgs";
+import { WebIconSvg } from "../svgs/NavSvgs";
 import { twMerge as tm } from "tailwind-merge";
-import NavbarLinks from "./navbar/NavbarLinks";
-import { navItemClass, navBtnClass } from "./navbar/cssClass";
-import UserMenu from "./navbar/UserMenu";
-import NavAccordion from "./navbar/NavAccordion";
+import NavbarLinks from "./NavbarLinks";
+import { navItemClass } from "./cssClass";
+import UserMenu from "./UserMenu";
+import NavAccordion from "./NavAccordion";
 
 const Navbar = () => {
   return (
@@ -15,9 +15,8 @@ const Navbar = () => {
           <Link
             to="/"
             className={tm(
-              navBtnClass,
               navItemClass,
-              "bg-primary-600 text-2xl font-bold text-white ",
+              "flex items-center gap-1 bg-primary-600 text-2xl font-bold text-white ",
             )}
           >
             <WebIconSvg className="h-10 w-10" />

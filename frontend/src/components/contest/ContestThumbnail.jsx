@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import ContestItem from "./contest/ContestItem";
+import ContestItem from "./ContestItem";
 
 const ContestThumbnail = ({ contestContents }) => {
   return (
     <Link
-      className="bg-tertiary-600/70 flex flex-col gap-2 rounded-lg p-2 text-sm
+      className="flex flex-col gap-2 rounded-lg bg-tertiary-600/70 p-2 text-sm
        shadow-contestThumbnail shadow-secondary-400 md:gap-4"
       to={`/contests/${contestContents._id}`}
     >
