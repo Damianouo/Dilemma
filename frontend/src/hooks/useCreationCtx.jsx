@@ -50,7 +50,7 @@ export const useCreationCtx = () => {
       const title = await getVideoTitle(url);
       dispatch({
         type: "addEntrySuccess",
-        payload: { title, url },
+        payload: { title, url, winCount: 0 },
       });
     } catch (error) {
       dispatch({
@@ -92,11 +92,11 @@ export const useCreationCtx = () => {
     const url = creation.updateEntry.entryUrlInput;
 
     const { editingIndex } = creation.updateEntry;
-    const prevUrl = creation.content.entries[editingIndex].url;
-    if (url === prevUrl) {
+    const prevEntry = creation.content.entries[editingIndex];
+    if (url === prevEntry.url) {
       return dispatch({
         type: "updateEntrySuccess",
-        payload: { title, url },
+        payload: { ...prevEntry, title },
       });
     }
 
@@ -112,7 +112,7 @@ export const useCreationCtx = () => {
       const title = await getVideoTitle(url);
       dispatch({
         type: "updateEntrySuccess",
-        payload: { title, url },
+        payload: { title, url, winCount: 0 },
       });
     } catch (error) {
       dispatch({
