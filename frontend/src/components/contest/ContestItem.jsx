@@ -14,9 +14,7 @@ const ContestItem = ({ item, mode = "info", className, titleClass }) => {
     >
       {item ? (
         <>
-          {mode === "info" && (
-            <img src={imageUrl} className="w-full" alt="contest item image" />
-          )}
+          {mode === "info" && <img src={imageUrl} alt="contest item image" />}
           {mode === "compete" && <EmbedVideo url={item.url} />}
           <p className={tm("p-2 text-sm sm:text-base", titleClass)}>
             {item.title}

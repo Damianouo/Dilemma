@@ -11,11 +11,22 @@ router.get('/', async (req, res) => {
   }
 });
 
-//? get contests by user id
+//? get contests by contest id
 router.get('/:_id', async (req, res) => {
   const { _id } = req.params;
   try {
-    const foundContests = await Contest.find({ author: _id }).populate('author').exec();
+    const foundContests = await Contest.findOne({ _id }).populate('author').exec();
+    return res.json(foundContests);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
+//? get contests by user id
+router.get('/user/:userId', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const foundContests = await Contest.find({ author: userId }).populate('author').exec();
     return res.json(foundContests);
   } catch (error) {
     return res.status(500).json(error);

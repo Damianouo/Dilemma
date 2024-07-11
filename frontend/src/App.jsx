@@ -3,7 +3,6 @@ import Navbar from "./components/navbar/Navbar";
 import Contest from "./pages/Contest";
 import Home from "./pages/Home";
 import ConfigCtxProvider from "./contexts/ConfigCtx";
-import Ranking from "./pages/Ranking";
 import BrowseContests, {
   loader as browseContestsLoader,
 } from "./pages/BrowseContests";
@@ -17,6 +16,7 @@ import { rootAction, rootLoader } from "./utils/root";
 import Layout from "./components/layout/Layout";
 import CreationCtxProvider from "./contexts/CreationCtx";
 import Login, { loader as loginLoader } from "./pages/Login";
+import Ranking, { loader as rankingLoader } from "./pages/Ranking";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +57,7 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       {
         path: "/ranking/:contestId",
+        loader: rankingLoader,
         element: <Ranking />,
       },
     ],
