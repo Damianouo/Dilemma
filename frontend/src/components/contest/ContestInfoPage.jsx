@@ -1,31 +1,23 @@
+/* eslint-disable react/prop-types */
 import { RankingBtnSvg, ShareBtnSvg, StartBtnSvg } from "../svgs/ContestSvgs";
 import Button from "../UI/Button";
 import ContestItem from "./ContestItem";
-import { ContentCtx } from "../../contexts/ContentCtx";
-import { ConfigCtx } from "../../contexts/ConfigCtx";
-import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useContestCtx from "../../hooks/useContestCtx";
+import useCompeteCtx from "../../hooks/useCompeteCtx";
 
-/* eslint-disable react/prop-types */
 const ContestInfoPage = () => {
-  const content = useContext(ContentCtx);
-  const { configDispatch } = useContext(ConfigCtx);
-  function handleContestStart() {
-    configDispatch({
-      type: "changePhase",
-      phase: "compete",
-    });
-  }
-
+  const { handler } = useCompeteCtx();
+  const { contest } = useContestCtx();
   return (
     <div className=" rounded-lg p-4 text-base sm:px-4 sm:py-8 sm:text-lg md:text-xl">
-      <p className="mb-10">{content.description}</p>
+      <p className="mb-10">{contest.description}</p>
 
       {/* contest item preview */}
       <div className="flex items-center justify-center gap-2 ">
-        <ContestItem item={content.entries[0]} mode="info" />
+        <ContestItem item={contest.entries[0]} />
         <p className="text-4xl font-bold">vs</p>
-        <ContestItem item={content.entries[1]} mode="info" />
+        <ContestItem item={contest.entries[1]} />
       </div>
 
       {/* total candidate selection */}
@@ -34,7 +26,7 @@ const ContestInfoPage = () => {
         {/* buttons */}
         <div className="flex gap-2 ">
           <Button
-            onClick={handleContestStart}
+            onClick={() => handler.startCompeting(contest.entries)}
             className="bg-red-200 text-black"
           >
             <StartBtnSvg />
@@ -42,7 +34,7 @@ const ContestInfoPage = () => {
           </Button>
           <Button className="bg-sky-200  text-black">
             <Link
-              to={`/ranking/${content._id}`}
+              to={`/ranking/${contest._id}`}
               className="flex items-center gap-1"
             >
               <RankingBtnSvg />
@@ -62,49 +54,38 @@ const ContestInfoPage = () => {
 export default ContestInfoPage;
 
 const TotalCandidatesSelect = () => {
-  const content = useContext(ContentCtx);
-  const { configDispatch } = useContext(ConfigCtx);
-  const { totalParticipants } = content;
-  useEffect(() => {
-    configDispatch({
-      type: "editTotalCandidates",
-      totalCandidates: totalParticipants,
-    });
-  }, [configDispatch, totalParticipants]);
+  const { handler } = useCompeteCtx();
+  const { contest } = useContestCtx();
 
   let optionsArr = [];
   let i = 4;
-  while (i <= totalParticipants) {
+  while (i <= contest.totalParticipants) {
     optionsArr = [i, ...optionsArr];
     i = i * 2;
   }
 
-  function handleTotleCandidatesSelect(e) {
-    const totalNum = +e.target.value;
-    configDispatch({
-      type: "editTotalCandidates",
-      totalCandidates: totalNum,
-    });
-  }
-
   return (
     <div className="my-6 flex items-center gap-2">
-      <label htmlFor="totalCandidatesSelect">
-        Choose the total number of candidates :
-      </label>
-      <select
-        className="items-center rounded-lg bg-secondary-100 py-2 text-center text-base text-black"
-        onChange={handleTotleCandidatesSelect}
-        defaultValue={totalParticipants}
-        name="totalCandidates"
-        id="totalCandidatesSelect"
-      >
-        {optionsArr.map((optionNum) => (
-          <option key={optionNum} value={optionNum}>
-            Top {optionNum}
-          </option>
-        ))}
-      </select>
+      {contest && (
+        <>
+          <label htmlFor="selectParticipants">
+            Choose the total number of candidates :
+          </label>
+          <select
+            className="items-center rounded-lg bg-secondary-100 py-2 text-center text-base text-black"
+            onChange={(e) => handler.changeParticipants(+e.target.value)}
+            defaultValue={contest.totalParticipants}
+            name="selectParticipants"
+            id="selectParticipants"
+          >
+            {optionsArr.map((optionNum) => (
+              <option key={optionNum} value={optionNum}>
+                Top {optionNum}
+              </option>
+            ))}
+          </select>
+        </>
+      )}
     </div>
   );
 };

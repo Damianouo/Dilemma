@@ -2,36 +2,49 @@
 import { Link, useParams, useRouteLoaderData } from "react-router-dom";
 import ContestInfoPage from "../components/contest/ContestInfoPage";
 import ContestCompetePage from "../components/contest/ContestCompetePage.";
-import { useContext, useRef } from "react";
-import { ConfigCtx } from "../contexts/ConfigCtx";
-import { ContentCtx } from "../contexts/ContentCtx";
 import ContestResultPage from "../components/contest/ContestResultPage";
+import useContestCtx from "../hooks/useContestCtx";
+import useCompeteCtx from "../hooks/useCompeteCtx";
+import { useEffect } from "react";
 
 const Contest = () => {
-  const contestData = useRouteLoaderData("contests");
-  const { config } = useContext(ConfigCtx);
+  const { compete, dispatch } = useCompeteCtx();
+  const { setContest } = useContestCtx();
+
   // get contest information through id
+  const data = useRouteLoaderData("contests");
   const { contestId } = useParams();
-  const contestObj = contestData.find((element) => element._id === contestId);
-  const contentRef = useRef(contestObj);
-  const competeResult = useRef([]);
+  const contestData = data.find((element) => element._id === contestId);
+
+  useEffect(() => {
+    if (contestData) {
+      setContest(contestData);
+      dispatch({
+        type: "changeParticipants",
+        payload: contestData.totalParticipants,
+      });
+    }
+  }, [contestData, setContest, dispatch]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("competeContent");
+    if (data) {
+      dispatch({ type: "setState", payload: JSON.parse(data) });
+    }
+  }, [dispatch]);
 
   return (
     <div className=" mx-auto h-full max-w-[1000px] px-12 py-6 text-white">
-      {contestObj ? (
-        <ContentCtx.Provider value={contentRef.current}>
+      {contestData ? (
+        <>
           <h2 className="my-6 text-center text-2xl font-bold sm:text-3xl md:text-4xl">
-            {contentRef.current.title}
+            {contestData.title}
           </h2>
 
-          {config.phase === "info" && <ContestInfoPage />}
-          {config.phase === "compete" && (
-            <ContestCompetePage competeResult={competeResult} />
-          )}
-          {config.phase === "result" && (
-            <ContestResultPage competeResult={competeResult} />
-          )}
-        </ContentCtx.Provider>
+          {compete.phase === "info" && <ContestInfoPage />}
+          {compete.phase === "compete" && <ContestCompetePage />}
+          {compete.phase === "result" && <ContestResultPage />}
+        </>
       ) : (
         // no contest found
         <div className="flex flex-col items-start gap-4 p-20">
