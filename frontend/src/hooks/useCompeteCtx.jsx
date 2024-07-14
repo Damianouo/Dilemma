@@ -22,16 +22,25 @@ const useCompeteCtx = () => {
     });
   }
 
-  function startCompeting(entries) {
+  function startCompeting(obj) {
     dispatch({
       type: "startCompeting",
-      payload: entries,
+      payload: obj,
     });
+  }
+  function endCompeting() {
+    dispatch({ type: "endCompeting" });
   }
   function chooseWinner(winItem, loseItem) {
     dispatch({
       type: "chooseWinner",
       payload: { winItem, loseItem },
+    });
+  }
+  function changeOpponent(index) {
+    dispatch({
+      type: "changeOpponent",
+      payload: index,
     });
   }
 
@@ -40,7 +49,9 @@ const useCompeteCtx = () => {
     changePhase,
     changeParticipants,
     startCompeting,
+    endCompeting,
     chooseWinner,
+    changeOpponent,
   };
 
   return { compete, handler, dispatch };

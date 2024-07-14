@@ -19,19 +19,18 @@ const Contest = () => {
   useEffect(() => {
     if (contestData) {
       setContest(contestData);
-      dispatch({
-        type: "changeParticipants",
-        payload: contestData.totalParticipants,
-      });
     }
-  }, [contestData, setContest, dispatch]);
+  }, [contestData, setContest]);
 
   useEffect(() => {
     const data = localStorage.getItem("competeContent");
     if (data) {
-      dispatch({ type: "setState", payload: JSON.parse(data) });
+      const parsedData = JSON.parse(data);
+      if (parsedData[contestId]) {
+        dispatch({ type: "setState", payload: parsedData[contestId] });
+      }
     }
-  }, [dispatch]);
+  }, [dispatch, contestId]);
 
   return (
     <div className=" mx-auto h-full max-w-[1000px] px-12 py-6 text-white">

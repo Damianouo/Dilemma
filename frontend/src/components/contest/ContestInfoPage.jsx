@@ -26,7 +26,7 @@ const ContestInfoPage = () => {
         {/* buttons */}
         <div className="flex gap-2 ">
           <Button
-            onClick={() => handler.startCompeting(contest.entries)}
+            onClick={() => handler.startCompeting(contest)}
             className="bg-red-200 text-black"
           >
             <StartBtnSvg />

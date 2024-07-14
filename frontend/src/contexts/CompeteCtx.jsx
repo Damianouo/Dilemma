@@ -3,6 +3,7 @@ import { createContext, useReducer } from "react";
 import { getCompeteEntries, shuffleArray } from "../utils/entry";
 
 const initialValue = {
+  _id: "",
   phase: "info",
   participantsNum: 0,
   match: 1,
@@ -29,10 +30,16 @@ export default CompeteCtxProvider;
 function reducer(compete, action) {
   function updateState(newState, save = true) {
     const nextState = { ...compete, ...newState };
+    const data = localStorage.getItem("competeContent");
     if (save) {
-      localStorage.setItem("competeContent", JSON.stringify(nextState));
+      const newData = data
+        ? { ...JSON.parse(data), [compete._id]: nextState }
+        : { [compete._id]: nextState };
+      localStorage.setItem("competeContent", JSON.stringify(newData));
     } else {
-      localStorage.removeItem("competeContent");
+      const parsedData = JSON.parse(data);
+      delete parsedData[compete._id];
+      localStorage.setItem("competeContent", JSON.stringify(parsedData));
     }
     return nextState;
   }
@@ -53,15 +60,23 @@ function reducer(compete, action) {
       };
     }
     case "startCompeting": {
+      const contest = action.payload;
+      const participantsNum =
+        compete.participantsNum || contest.totalParticipants;
       const competeEntries = getCompeteEntries(
-        action.payload,
-        compete.participantsNum,
+        contest.entries,
+        participantsNum,
       );
       return {
         ...compete,
+        _id: contest._id,
         phase: "compete",
+        participantsNum,
         entries: competeEntries,
       };
+    }
+    case "endCompeting": {
+      return updateState(initialValue, false);
     }
     case "chooseWinner": {
       const { winItem, loseItem } = action.payload;
@@ -105,6 +120,15 @@ function reducer(compete, action) {
         match: compete.match + 1,
         winners: [...compete.winners, winItem],
         losers: [...compete.losers, loseItem],
+      });
+    }
+    case "changeOpponent": {
+      const index = action.payload;
+      const entriesPart1 = compete.entries.slice(0, index);
+      const entriesPart2 = shuffleArray(compete.entries.slice(index));
+      const newEntries = [...entriesPart1, ...entriesPart2];
+      return updateState({
+        entries: newEntries,
       });
     }
     default: {

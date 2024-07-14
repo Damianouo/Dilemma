@@ -3,21 +3,51 @@ import ContestItem from "./ContestItem";
 import Button from "../UI/Button";
 import { ChooseSvg } from "../svgs/ContestSvgs";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
+import RefreshSvg from "../svgs/RefreshSvg";
+import XmarkSvg from "../svgs/XmarkSvg";
+import { useEffect } from "react";
+import { useSubmit } from "react-router-dom";
 
 const ContestCompetePage = () => {
+  const submit = useSubmit();
   const { compete, handler } = useCompeteCtx();
 
   const competeItemIndex = (compete.match - 1) * 2;
   const competeItem1 = compete.entries[competeItemIndex];
   const competeItem2 = compete.entries[competeItemIndex + 1];
 
+  useEffect(() => {
+    if (compete.finished) {
+      submit({
+        contestId: compete._id,
+        entryId: compete.result[compete.result.length - 1].winners[0]._id,
+      });
+    }
+  }, [compete, submit]);
+
   return (
     <div className=" flex flex-col items-center gap-8 text-center sm:px-4 sm:py-8 ">
       {/* matchs info */}
       {!compete.finished ? (
-        <h2 className="md:text-2xl">
-          Round of {compete.participantsNum} : Match {compete.match}
-        </h2>
+        <>
+          <h2 className="md:text-2xl">
+            Round of {compete.participantsNum} : Match {compete.match}
+          </h2>
+          <div className="flex gap-4">
+            <Button
+              onClick={() => handler.changeOpponent(competeItemIndex)}
+              className="bg-transparent p-1 text-primary-200  hover:bg-primary-600"
+            >
+              <RefreshSvg />
+            </Button>
+            <Button
+              onClick={handler.endCompeting}
+              className="bg-transparent p-1 text-primary-200  hover:bg-primary-600"
+            >
+              <XmarkSvg />
+            </Button>
+          </div>
+        </>
       ) : (
         <h2 className="md:text-2xl">The Winner Gose to :</h2>
       )}
@@ -68,3 +98,5 @@ const CompeteItemBox = ({ children, onClick }) => {
     </div>
   );
 };
+
+//TODO action function to send request to add winCount
