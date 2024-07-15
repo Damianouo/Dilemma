@@ -16,20 +16,42 @@ export const WebIconSvg = ({ className, ...props }) => {
   );
 };
 
-export const MenuSvg = ({ className, ...props }) => {
+export const MenuSvg = ({ className, accordionOpen, ...props }) => {
   return (
     <SvgWrapper className={className} {...props}>
       <svg
+        className="shrink-0"
+        fill="currentColor"
+        width="16"
+        height="16"
         xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        <rect
+          y="0"
+          x={accordionOpen ? "2" : "0"}
+          width="16"
+          height="2"
+          rx="1"
+          className={`origin-top-left rotate-0 transition-all ease-out ${
+            accordionOpen && "!rotate-45"
+          }`}
+        />
+        <rect
+          y="7"
+          width="16"
+          height="2"
+          rx="1"
+          className={`transition-all ease-out ${accordionOpen && "opacity-0"}`}
+        />
+        <rect
+          y="14"
+          x={accordionOpen ? "2" : "0"}
+          width="16"
+          height="2"
+          rx="1"
+          className={`origin-bottom-left rotate-0 transition-all ease-out ${
+            accordionOpen && "!-rotate-45"
+          }`}
         />
       </svg>
     </SvgWrapper>

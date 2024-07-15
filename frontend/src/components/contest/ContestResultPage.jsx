@@ -82,8 +82,8 @@ const ResultAccordion = ({ result }) => {
     setAccordionOpen((prev) => !prev);
   }
   return (
-    <Accordion onClick={handleAccordionOpen}>
-      <Button className="gap-4">
+    <Accordion>
+      <Button onClick={handleAccordionOpen} className="gap-4">
         <PlusMinusSvg accordionOpen={accordionOpen} />
         <span>Stopped at the top {result.participantsNum}</span>
       </Button>

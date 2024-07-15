@@ -2,7 +2,8 @@
 const PlusMinusSvg = ({ accordionOpen }) => {
   return (
     <svg
-      className="shrink-0 fill-zinc-400"
+      className="shrink-0"
+      fill="currentColor"
       width="16"
       height="16"
       xmlns="http://www.w3.org/2000/svg"

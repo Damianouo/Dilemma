@@ -4,7 +4,7 @@ const AccordionItems = ({ children, accordionOpen, className }) => {
   return (
     <div
       className={tm(
-        "grid overflow-hidden shadow-md transition-all",
+        "grid overflow-hidden transition-all",
         accordionOpen
           ? "grid-rows-[1fr] opacity-100"
           : "grid-rows-[0fr]  opacity-0",

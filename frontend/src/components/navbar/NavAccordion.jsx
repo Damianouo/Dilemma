@@ -18,16 +18,20 @@ const NavAccordion = () => {
   const title = dropDownRoutes.filter((route) => route.path === pathname)[0]
     ?.label;
   return (
-    <Accordion onClick={handleAccordionOpen} className="md:hidden">
+    <Accordion className="relative border-y border-primary-500 md:hidden">
       <Button
+        onClick={handleAccordionOpen}
         className={
-          "justify-start rounded-none bg-primary-700 text-inherit shadow-md hover:bg-primary-500"
+          "justify-start rounded-none bg-primary-700 text-inherit hover:bg-primary-500"
         }
       >
-        <MenuSvg className="h-8 w-8" />
+        <MenuSvg accordionOpen={accordionOpen} className="h-8 w-8" />
         <span>{title}</span>
       </Button>
-      <AccordionItems accordionOpen={accordionOpen}>
+      <AccordionItems
+        className="absolute top-full w-full border-y border-primary-500 bg-primary-700"
+        accordionOpen={accordionOpen}
+      >
         <ul
           className={tm(
             "overflow-hidden px-2 transition-all",
@@ -37,6 +41,7 @@ const NavAccordion = () => {
           {dropDownRoutes.map((route) => (
             <li key={route.label}>
               <NavLink
+                onClick={handleAccordionOpen}
                 to={route.path}
                 className={tm(
                   navItemClass,
