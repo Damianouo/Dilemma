@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Contest from "./pages/Contest";
 import Home from "./pages/Home";
-import ConfigCtxProvider from "./contexts/ConfigCtx";
 import BrowseContests, {
   loader as browseContestsLoader,
 } from "./pages/BrowseContests";
@@ -17,6 +16,9 @@ import Layout from "./components/layout/Layout";
 import CreationCtxProvider from "./contexts/CreationCtx";
 import Login, { loader as loginLoader } from "./pages/Login";
 import Ranking, { loader as rankingLoader } from "./pages/Ranking";
+import ContestCtxProvider from "./contexts/ContestCtx";
+import CompeteCtxProvider from "./contexts/CompeteCtx";
+import { action as competeAction } from "./components/contest/ContestCompetePage.";
 
 const router = createBrowserRouter([
   {
@@ -35,10 +37,13 @@ const router = createBrowserRouter([
           { index: true, element: <BrowseContests /> },
           {
             path: ":contestId",
+            action: competeAction,
             element: (
-              <ConfigCtxProvider>
-                <Contest />
-              </ConfigCtxProvider>
+              <ContestCtxProvider>
+                <CompeteCtxProvider>
+                  <Contest />
+                </CompeteCtxProvider>
+              </ContestCtxProvider>
             ),
           },
         ],

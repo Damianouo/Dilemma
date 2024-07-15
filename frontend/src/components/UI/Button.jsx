@@ -11,7 +11,7 @@ const Button = ({
   return (
     <button
       className={tm(
-        "flex items-center justify-center gap-1 rounded-md bg-secondary-300 p-2 text-base text-secondary-700",
+        "flex items-center justify-center gap-1 rounded-md bg-secondary-300 p-2 text-base text-secondary-700 transition-colors hover:bg-secondary-400",
         className,
       )}
       onClick={onClick}

@@ -1,120 +1,85 @@
 /* eslint-disable react/prop-types */
-
-import { useContext, useState } from "react";
-import { shuffleArray } from "../../utils/entry";
 import ContestItem from "./ContestItem";
 import Button from "../UI/Button";
 import { ChooseSvg } from "../svgs/ContestSvgs";
-import { ContentCtx } from "../../contexts/ContentCtx";
-import { ConfigCtx } from "../../contexts/ConfigCtx";
+import useCompeteCtx from "../../hooks/useCompeteCtx";
+import RefreshSvg from "../svgs/RefreshSvg";
+import XmarkSvg from "../svgs/XmarkSvg";
+import { useEffect } from "react";
+import { useSubmit } from "react-router-dom";
 
-function getCurrentCompete(items, totalNum) {
-  const itemsArray = [...items];
-  return shuffleArray(itemsArray).slice(0, totalNum);
-}
+const ContestCompetePage = () => {
+  const submit = useSubmit();
+  const { compete, handler } = useCompeteCtx();
 
-const ContestCompetePage = ({ competeResult }) => {
-  //contexts
-  const content = useContext(ContentCtx);
-  const { config, configDispatch } = useContext(ConfigCtx);
+  const competeItemIndex = (compete.match - 1) * 2;
+  const competeItem1 = compete.entries[competeItemIndex];
+  const competeItem2 = compete.entries[competeItemIndex + 1];
 
-  //states
-  const [currentCompete, setCurrentCompete] = useState({
-    totalCandidates: config.totalCandidates,
-    match: 1,
-    candidates: getCurrentCompete(content.entries, config.totalCanditates),
-    winners: [],
-    losers: [],
-    finished: false,
-  });
-
-  const competeItemIndex = (currentCompete.match - 1) * 2;
-  const competeItem1 = currentCompete.candidates[competeItemIndex];
-  const competeItem2 = currentCompete.candidates[competeItemIndex + 1];
-
-  function handleChooseWinner(bool) {
-    const winItem = bool ? competeItem1 : competeItem2;
-    const loseItem = bool ? competeItem2 : competeItem1;
-
-    const result = {
-      ...currentCompete,
-      winners: [...currentCompete.winners, winItem],
-      losers: [...currentCompete.losers, loseItem],
-    };
-    if (result.match === result.totalCandidates / 2) {
-      competeResult.current = [...competeResult.current, result];
+  useEffect(() => {
+    if (compete.finished) {
+      submit(
+        {
+          entryId: compete.result[compete.result.length - 1].winners[0]._id,
+        },
+        {
+          method: "patch",
+          encType: "application/json",
+        },
+      );
     }
+  }, [compete, submit]);
 
-    setCurrentCompete((prev) => {
-      const result = {
-        ...prev,
-        winners: [...prev.winners, winItem],
-        losers: [...prev.losers, loseItem],
-      };
-      // last match of the game
-      if (result.totalCandidates === 2) {
-        return { ...result, finished: true };
-      }
-      // last match of the rounds
-      if (result.match === result.totalCandidates / 2) {
-        return {
-          totalCandidates: result.totalCandidates / 2,
-          match: 1,
-          candidates: shuffleArray(result.winners),
-          winners: [],
-          losers: [],
-        };
-      }
-      // normal situation
-      return {
-        ...result,
-        match: result.match + 1,
-      };
-    });
-  }
-
-  function handleShowResult() {
-    configDispatch({
-      type: "changePhase",
-      phase: "result",
-    });
-  }
   return (
     <div className=" flex flex-col items-center gap-8 text-center sm:px-4 sm:py-8 ">
       {/* matchs info */}
-      {!currentCompete.finished ? (
-        <h2 className="md:text-2xl">
-          Round of {currentCompete.totalCandidates} : Match{" "}
-          {currentCompete.match}
-        </h2>
+      {!compete.finished ? (
+        <>
+          <h2 className="md:text-2xl">
+            Round of {compete.participantsNum} : Match {compete.match}
+          </h2>
+          <div className="flex gap-4">
+            <Button
+              onClick={() => handler.changeOpponent(competeItemIndex)}
+              className="bg-transparent p-1 text-primary-200  hover:bg-primary-600"
+            >
+              <RefreshSvg />
+            </Button>
+            <Button
+              onClick={handler.endCompeting}
+              className="bg-transparent p-1 text-primary-200  hover:bg-primary-600"
+            >
+              <XmarkSvg />
+            </Button>
+          </div>
+        </>
       ) : (
         <h2 className="md:text-2xl">The Winner Gose to :</h2>
       )}
 
       {/* items to compete */}
       <div className="flex w-full flex-col justify-center gap-4 sm:flex-row ">
-        {!currentCompete.finished && (
+        {!compete.finished ? (
           <>
-            <CompeteItemBox onClick={() => handleChooseWinner(true)}>
+            <CompeteItemBox
+              onClick={() => handler.chooseWinner(competeItem1, competeItem2)}
+            >
               <ContestItem item={competeItem1} mode="compete" />
             </CompeteItemBox>
             <p className="self-center text-4xl">VS</p>
-            <CompeteItemBox onClick={() => handleChooseWinner(false)}>
+            <CompeteItemBox
+              onClick={() => handler.chooseWinner(competeItem2, competeItem1)}
+            >
               <ContestItem item={competeItem2} mode="compete" />
             </CompeteItemBox>
           </>
-        )}
-
-        {currentCompete.finished && (
+        ) : (
           <div className="flex flex-col items-center gap-8">
             <ContestItem
-              item={
-                competeResult.current[competeResult.current.length - 1]
-                  .winners[0]
-              }
+              item={compete.result[compete.result.length - 1].winners[0]}
               mode="info"
             />
-            <Button onClick={handleShowResult}>
+            <Button onClick={() => handler.changePhase("result")}>
               <span>Show Full Result</span>
             </Button>
           </div>
@@ -138,3 +103,18 @@ const CompeteItemBox = ({ children, onClick }) => {
     </div>
   );
 };
+
+//TODO action function to send request to add winCount
+export async function action({ request, params }) {
+  const data = await request.json();
+  const { contestId } = params;
+  await fetch(`http://localhost:8080/contest/${contestId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return null;
+}

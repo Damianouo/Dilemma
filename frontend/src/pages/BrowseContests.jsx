@@ -26,6 +26,7 @@ const AllContests = ({ children }) => {
 };
 
 export async function loader() {
+  console.log("contests loader runs");
   const response = await fetch("http://localhost:8080/contest");
   if (!response.ok) {
     throw json({ message: "Could not fetch contests" }, { status: 500 });

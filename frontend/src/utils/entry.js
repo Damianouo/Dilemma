@@ -51,3 +51,8 @@ export function shuffleArray(array) {
   }
   return arr;
 }
+
+export function getCompeteEntries(entries, participantsNum) {
+  const entriesArray = [...entries];
+  return shuffleArray(entriesArray).slice(0, participantsNum);
+}
