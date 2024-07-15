@@ -33,6 +33,24 @@ router.get('/user/:userId', async (req, res) => {
   }
 });
 
+//? add entry winCount
+router.patch('/:_id', async (req, res) => {
+  const { _id } = req.params;
+  const { entryId } = req.body;
+
+  try {
+    const foundContest = await Contest.findOne({ _id }).exec();
+    if (!foundContest) throw new Error();
+    const entry = foundContest.entries.id(entryId);
+    if (!entry) throw new Error();
+    entry.winCount += 1;
+    await foundContest.save();
+    return res.send();
+  } catch (error) {
+    return res.status(500).send('internal server error');
+  }
+});
+
 const authCheck = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();

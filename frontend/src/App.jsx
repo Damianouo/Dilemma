@@ -18,6 +18,7 @@ import Login, { loader as loginLoader } from "./pages/Login";
 import Ranking, { loader as rankingLoader } from "./pages/Ranking";
 import ContestCtxProvider from "./contexts/ContestCtx";
 import CompeteCtxProvider from "./contexts/CompeteCtx";
+import { action as competeAction } from "./components/contest/ContestCompetePage.";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
           { index: true, element: <BrowseContests /> },
           {
             path: ":contestId",
+            action: competeAction,
             element: (
               <ContestCtxProvider>
                 <CompeteCtxProvider>

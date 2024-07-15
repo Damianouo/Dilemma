@@ -18,10 +18,15 @@ const ContestCompetePage = () => {
 
   useEffect(() => {
     if (compete.finished) {
-      submit({
-        contestId: compete._id,
-        entryId: compete.result[compete.result.length - 1].winners[0]._id,
-      });
+      submit(
+        {
+          entryId: compete.result[compete.result.length - 1].winners[0]._id,
+        },
+        {
+          method: "patch",
+          encType: "application/json",
+        },
+      );
     }
   }, [compete, submit]);
 
@@ -100,3 +105,16 @@ const CompeteItemBox = ({ children, onClick }) => {
 };
 
 //TODO action function to send request to add winCount
+export async function action({ request, params }) {
+  const data = await request.json();
+  const { contestId } = params;
+  await fetch(`http://localhost:8080/contest/${contestId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return null;
+}
