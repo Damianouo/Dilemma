@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { twMerge as tm } from "tailwind-merge";
 
-const DropDownUl = ({ children, className, state }) => {
+const DropDownItem = ({ children, className, state }) => {
   return (
     <ul
       className={tm(
@@ -17,4 +17,4 @@ const DropDownUl = ({ children, className, state }) => {
   );
 };
 
-export default DropDownUl;
+export default DropDownItem;

@@ -1,6 +1,6 @@
 import DropDown from "../UI/DropDown";
-import DropDownUl from "../UI/DropDownUl";
-import { PersonSvg } from "../svgs/NavSvgs";
+import DropDownItem from "../UI/DropDownItem";
+import { LogoutSvg, PersonSvg } from "../svgs/NavSvgs";
 import { NavLink, useSubmit } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -32,7 +32,7 @@ const UserMenu = () => {
             >
               <PersonSvg className="h-10 w-10" />
             </Button>
-            <DropDownUl className=" text-left" state={menuShow}>
+            <DropDownItem className=" text-left" state={menuShow}>
               <li className="flex cursor-auto items-center gap-1 border-b border-primary-500 p-2 text-sm">
                 <PersonSvg className="h-8 w-8" />
                 <p>{user.info.email}</p>
@@ -46,11 +46,11 @@ const UserMenu = () => {
                     "w-full justify-start rounded-none bg-transparent text-inherit",
                   )}
                 >
-                  <PersonSvg className="h-8 w-8" />
+                  <LogoutSvg className="h-8 w-8" />
                   <span>Logout</span>
                 </Button>
               </li>
-            </DropDownUl>
+            </DropDownItem>
           </DropDown>
         </>
       ) : (
