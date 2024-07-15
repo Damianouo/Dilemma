@@ -27,7 +27,7 @@ const UserMenu = () => {
         <>
           <DropDown className="justify-end">
             <Button
-              className="bg-transparent text-inherit"
+              className="bg-transparent text-inherit hover:bg-primary-600"
               onClick={handleMenuShow}
             >
               <PersonSvg className="h-10 w-10" />

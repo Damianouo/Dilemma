@@ -21,7 +21,7 @@ const NavAccordion = () => {
     <Accordion onClick={handleAccordionOpen} className="md:hidden">
       <Button
         className={
-          "justify-start rounded-none bg-primary-700 text-inherit shadow-md"
+          "justify-start rounded-none bg-primary-700 text-inherit shadow-md hover:bg-primary-500"
         }
       >
         <MenuSvg className="h-8 w-8" />

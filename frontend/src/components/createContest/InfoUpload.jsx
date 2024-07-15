@@ -71,8 +71,8 @@ const InfoUpload = () => {
               )}
             </div>
             <Button
-              className="col-start-3 self-center justify-self-end bg-primary-600 px-4 
-              text-secondary-300 "
+              className="col-start-3 self-center justify-self-end bg-primary-600 px-4 text-secondary-300 
+              hover:bg-primary-700 "
               disabled={creation.addEntry.state === "loading"}
               onClick={handler.addEntry}
             >
