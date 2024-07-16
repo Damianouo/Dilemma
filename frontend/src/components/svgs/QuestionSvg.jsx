@@ -3,7 +3,7 @@ import SvgWrapper from "./SvgWrapper";
 import { twMerge as tm } from "tailwind-merge";
 const QuestionSvg = ({ className }) => {
   return (
-    <SvgWrapper className={tm("w-8 text-blue-600", className)}>
+    <SvgWrapper className={tm("w-8 text-primary-300", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

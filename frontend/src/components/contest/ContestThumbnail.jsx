@@ -5,8 +5,8 @@ import ContestItem from "./ContestItem";
 const ContestThumbnail = ({ contest }) => {
   return (
     <Link
-      className="shadow-around flex flex-col gap-2 rounded-lg bg-tertiary-600/70 p-2
-       text-sm shadow-secondary-400 md:gap-4"
+      className="shadow-around flex flex-col gap-2 rounded-lg bg-gradient-to-b from-primary-600 to-primary-700 p-2
+       text-sm shadow-primary-300 md:gap-4"
       to={`/contests/${contest._id}`}
     >
       {/* cover image */}

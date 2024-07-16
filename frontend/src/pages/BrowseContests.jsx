@@ -5,7 +5,7 @@ import { json, useRouteLoaderData } from "react-router-dom";
 const BrowseContests = () => {
   const data = useRouteLoaderData("contests");
   return (
-    <div className="p-6 text-primary-300">
+    <div className="p-6 text-primary-100">
       <AllContests>
         {data.map((contest) => (
           <ContestThumbnail key={contest._id} contest={contest} />
@@ -26,7 +26,6 @@ const AllContests = ({ children }) => {
 };
 
 export async function loader() {
-  console.log("contests loader runs");
   const response = await fetch("http://localhost:8080/contest");
   if (!response.ok) {
     throw json({ message: "Could not fetch contests" }, { status: 500 });

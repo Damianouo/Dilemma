@@ -17,18 +17,19 @@ const NavAccordion = () => {
   const title = dropDownRoutes.filter((route) => route.path === pathname)[0]
     ?.label;
   return (
-    <Accordion className="relative border-y border-primary-500 md:hidden">
+    <Accordion className="relative border-y border-primary-700 md:hidden">
       <Button
         onClick={handleAccordionOpen}
         className={
-          "justify-start rounded-none bg-primary-700 text-inherit hover:bg-primary-500"
+          "justify-start rounded-none bg-gradient-to-b from-primary-800 to-primary-900 text-inherit hover:bg-primary-500"
         }
       >
         <MenuSvg accordionOpen={accordionOpen} className="h-8 w-8" />
         <span>{title}</span>
       </Button>
       <AccordionItems
-        className="absolute top-full w-full border-y border-primary-500 bg-primary-700"
+        className="absolute top-full w-full border-y border-primary-700
+        bg-gradient-to-b from-primary-800 to-primary-900"
         accordionOpen={accordionOpen}
       >
         <ul

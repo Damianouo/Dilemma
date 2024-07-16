@@ -5,7 +5,7 @@ const DropDownItem = ({ children, className, state }) => {
   return (
     <ul
       className={tm(
-        "absolute top-full z-10 rounded-md bg-primary-600 p-2 text-left transition-all",
+        "absolute top-full z-10 rounded-md p-2 text-left transition-all",
         state
           ? " opacity-100 "
           : "pointer-events-none -translate-y-4 opacity-0",

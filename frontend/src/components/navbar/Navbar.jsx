@@ -12,7 +12,8 @@ const Navbar = () => {
           {/* icon & title */}
           <Link
             to="/"
-            className="navItem flex items-center gap-1 bg-primary-600 text-2xl font-bold text-white"
+            className="navItem flex items-center gap-1 bg-gradient-to-b from-primary-500 to-primary-700
+            text-2xl font-bold text-primary-100 "
           >
             <WebIconSvg className="h-10 w-10" />
             <span>Dilemma</span>

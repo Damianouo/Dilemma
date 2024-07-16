@@ -27,12 +27,12 @@ const ContestInfoPage = () => {
         <div className="flex gap-2 ">
           <Button
             onClick={() => handler.startCompeting(contest)}
-            className="bg-red-200 text-black hover:bg-red-300"
+            className="bg-red-300 bg-none text-black hover:bg-red-400"
           >
             <StartBtnSvg />
             <span>Start</span>
           </Button>
-          <Button className="bg-sky-200 text-black  hover:bg-sky-300">
+          <Button className="bg-sky-300 bg-none text-black hover:bg-sky-400">
             <Link
               to={`/ranking/${contest._id}`}
               className="flex items-center gap-1"
@@ -41,7 +41,7 @@ const ContestInfoPage = () => {
               <span>Ranking</span>
             </Link>
           </Button>
-          <Button className="bg-emerald-200 text-black hover:bg-emerald-300">
+          <Button className="bg-emerald-300 bg-none text-black hover:bg-emerald-400">
             <ShareBtnSvg />
             <span>Share</span>
           </Button>
@@ -65,14 +65,14 @@ const TotalCandidatesSelect = () => {
   }
 
   return (
-    <div className="my-6 flex items-center gap-2">
+    <div className="my-10 flex items-center gap-2">
       {contest && (
         <>
           <label htmlFor="selectParticipants">
             Choose the total number of candidates :
           </label>
           <select
-            className="items-center rounded-lg bg-secondary-100 py-2 text-center text-base text-black"
+            className="items-center rounded-lg bg-primary-200 py-2 text-center text-base text-black"
             onChange={(e) => handler.changeParticipants(+e.target.value)}
             defaultValue={contest.totalParticipants}
             name="selectParticipants"
