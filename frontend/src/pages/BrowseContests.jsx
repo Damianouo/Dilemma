@@ -8,7 +8,7 @@ const BrowseContests = () => {
     <div className="p-6 text-primary-300">
       <AllContests>
         {data.map((contest) => (
-          <ContestThumbnail key={contest._id} contestContents={contest} />
+          <ContestThumbnail key={contest._id} contest={contest} />
         ))}
       </AllContests>
     </div>

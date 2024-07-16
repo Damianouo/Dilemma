@@ -18,7 +18,7 @@ export default {
         tertiary: colors.gray,
       },
       boxShadow: {
-        contestThumbnail: "0 0 5px 2px ",
+        around: "0 0 5px 2px ",
       },
     },
   },

@@ -5,8 +5,6 @@ import { NavLink, useSubmit } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Button from "../UI/Button";
-import { twMerge as tm } from "tailwind-merge";
-import { navItemClass } from "./cssClass";
 
 const UserMenu = () => {
   const submit = useSubmit();
@@ -41,10 +39,7 @@ const UserMenu = () => {
               <li>
                 <Button
                   onClick={handleLogout}
-                  className={tm(
-                    navItemClass,
-                    "w-full justify-start rounded-none bg-transparent text-inherit",
-                  )}
+                  className="navItem w-full justify-start rounded-none bg-transparent text-inherit"
                 >
                   <LogoutSvg className="h-8 w-8" />
                   <span>Logout</span>
@@ -56,10 +51,7 @@ const UserMenu = () => {
       ) : (
         <NavLink
           to="/login"
-          className={tm(
-            navItemClass,
-            "flex items-center gap-1 rounded-none bg-primary-600 text-white",
-          )}
+          className="navItem flex items-center gap-1 rounded-none bg-primary-600 text-white"
         >
           <PersonSvg className="h-8 w-8" />
           <span>Login</span>

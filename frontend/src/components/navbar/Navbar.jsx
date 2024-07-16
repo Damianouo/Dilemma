@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { WebIconSvg } from "../svgs/NavSvgs";
-import { twMerge as tm } from "tailwind-merge";
 import NavbarLinks from "./NavbarLinks";
-import { navItemClass } from "./cssClass";
 import UserMenu from "./UserMenu";
 import NavAccordion from "./NavAccordion";
 
@@ -14,10 +12,7 @@ const Navbar = () => {
           {/* icon & title */}
           <Link
             to="/"
-            className={tm(
-              navItemClass,
-              "flex items-center gap-1 bg-primary-600 text-2xl font-bold text-white ",
-            )}
+            className="navItem flex items-center gap-1 bg-primary-600 text-2xl font-bold text-white"
           >
             <WebIconSvg className="h-10 w-10" />
             <span>Dilemma</span>

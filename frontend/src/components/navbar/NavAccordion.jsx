@@ -1,7 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { twMerge as tm } from "tailwind-merge";
 import { dropDownRoutes } from "../../routes";
-import { navItemClass } from "./cssClass";
 import Accordion from "../UI/Accordion";
 import AccordionItems from "../UI/AccordionItems";
 import { useState } from "react";
@@ -43,10 +42,7 @@ const NavAccordion = () => {
               <NavLink
                 onClick={handleAccordionOpen}
                 to={route.path}
-                className={tm(
-                  navItemClass,
-                  "block whitespace-nowrap rounded-md transition-all",
-                )}
+                className="navItem block whitespace-nowrap rounded-md transition-all"
               >
                 {route.label}
               </NavLink>

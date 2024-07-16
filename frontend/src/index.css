@@ -11,6 +11,12 @@
   }
 }
 
+@layer components {
+  .navItem {
+    @apply p-2 transition-colors hover:bg-primary-500;
+  }
+}
+
 .active {
   @apply text-white;
 }
