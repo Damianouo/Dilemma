@@ -10,19 +10,19 @@ const ContestInfoPage = () => {
   const { handler } = useCompeteCtx();
   const { contest } = useContestCtx();
   return (
-    <div className=" rounded-lg p-4 text-base sm:px-4 sm:py-8 sm:text-lg md:text-xl">
-      <p className="mb-10">{contest.description}</p>
+    <div className="text-base sm:px-4 sm:py-8 sm:text-lg md:text-xl">
+      <p className="mb-10 text-center">{contest.description}</p>
 
       {/* contest item preview */}
       <div className="flex items-center justify-center gap-2 ">
         <ContestItem item={contest.entries[0]} />
-        <p className="text-4xl font-bold">vs</p>
+        <p className="text-2xl font-bold sm:text-4xl">vs</p>
         <ContestItem item={contest.entries[1]} />
       </div>
 
       {/* total candidate selection */}
       <div className="flex flex-col items-center justify-center md:flex-row md:gap-6">
-        <TotalCandidatesSelect />
+        <TotalParticipantsSelect />
         {/* buttons */}
         <div className="flex gap-2 ">
           <Button
@@ -53,7 +53,7 @@ const ContestInfoPage = () => {
 
 export default ContestInfoPage;
 
-const TotalCandidatesSelect = () => {
+const TotalParticipantsSelect = () => {
   const { handler } = useCompeteCtx();
   const { contest } = useContestCtx();
 
@@ -69,7 +69,7 @@ const TotalCandidatesSelect = () => {
       {contest && (
         <>
           <label htmlFor="selectParticipants">
-            Choose the total number of candidates :
+            Choose the total number of participants :
           </label>
           <select
             className="items-center rounded-lg bg-primary-200 py-2 text-center text-base text-black"

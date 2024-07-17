@@ -5,7 +5,7 @@ import { json, useRouteLoaderData } from "react-router-dom";
 const BrowseContests = () => {
   const data = useRouteLoaderData("contests");
   return (
-    <div className="p-6 text-primary-100">
+    <div className="p-4 text-primary-100 sm:p-6">
       <AllContests>
         {data.map((contest) => (
           <ContestThumbnail key={contest._id} contest={contest} />
@@ -19,7 +19,7 @@ export default BrowseContests;
 
 const AllContests = ({ children }) => {
   return (
-    <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4 sm:gap-6">
       {children}
     </div>
   );

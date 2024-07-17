@@ -33,10 +33,10 @@ const Contest = () => {
   }, [dispatch, contestId]);
 
   return (
-    <div className=" mx-auto h-full max-w-[1000px] px-12 py-6 text-primary-100">
+    <div className="p-4 text-primary-100 md:px-8 md:py-6">
       {contestData ? (
         <>
-          <h2 className="my-6 text-center text-2xl font-bold sm:text-3xl md:text-4xl">
+          <h2 className="my-2 text-center text-2xl font-bold sm:my-6 md:text-4xl">
             {contestData.title}
           </h2>
 

@@ -31,11 +31,11 @@ const ContestCompetePage = () => {
   }, [compete, submit]);
 
   return (
-    <div className=" flex flex-col items-center gap-8 text-center sm:px-4 sm:py-8 ">
+    <div className="mx-auto flex max-w-[1500px] flex-col items-center gap-4 text-center md:gap-6 md:p-4 ">
       {/* matchs info */}
       {!compete.finished ? (
         <>
-          <h2 className="md:text-2xl">
+          <h2 className="text-lg md:text-2xl">
             Round of {compete.participantsNum} : Match {compete.match}
           </h2>
           <div className="flex gap-4">
@@ -58,7 +58,7 @@ const ContestCompetePage = () => {
       )}
 
       {/* items to compete */}
-      <div className="flex w-full flex-col justify-center gap-4 sm:flex-row ">
+      <div className="block w-full items-stretch justify-between gap-4 md:flex xl:gap-8 ">
         {!compete.finished ? (
           <>
             <CompeteItemBox
@@ -66,7 +66,7 @@ const ContestCompetePage = () => {
             >
               <ContestItem item={competeItem1} mode="compete" />
             </CompeteItemBox>
-            <p className="self-center text-4xl">VS</p>
+            <p className="my-4 self-center text-2xl md:my-0 xl:text-4xl">VS</p>
             <CompeteItemBox
               onClick={() => handler.chooseWinner(competeItem2, competeItem1)}
             >
@@ -74,7 +74,7 @@ const ContestCompetePage = () => {
             </CompeteItemBox>
           </>
         ) : (
-          <div className="flex flex-col items-center gap-8">
+          <div className="mx-auto flex flex-col items-center gap-8">
             <ContestItem
               item={compete.result[compete.result.length - 1].winners[0]}
               mode="info"
@@ -93,10 +93,13 @@ export default ContestCompetePage;
 
 const CompeteItemBox = ({ children, onClick }) => {
   return (
-    <div className="flex flex-1 flex-col gap-4">
+    <div className="mx-auto flex max-w-[550px] flex-1 flex-col gap-2 rounded-md bg-primary-900/50 sm:gap-4">
       {children}
       <p className="text-base">Chat Votes : 10</p>
-      <Button onClick={onClick} className=" text-center text-lg font-bold ">
+      <Button
+        onClick={onClick}
+        className="text-center font-bold hover:text-primary-300 md:text-lg "
+      >
         <ChooseSvg />
         <span>WIN</span>
       </Button>
