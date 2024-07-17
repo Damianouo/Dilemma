@@ -25,13 +25,13 @@ const UserMenu = () => {
         <>
           <DropDown className="justify-end">
             <Button
-              className="bg-none text-inherit shadow-none hover:bg-primary-800"
+              className="navItem bg-none text-inherit shadow-none"
               onClick={handleMenuShow}
             >
               <PersonSvg className="h-10 w-10" />
             </Button>
             <DropDownItem
-              className=" bg-gradient-to-b from-primary-700 to-primary-800 text-left shadow-lg"
+              className=" bg-gradient-to-b from-primary-800 to-primary-900 text-left shadow-lg"
               state={menuShow}
             >
               <li className="flex cursor-auto items-center gap-1 border-b border-primary-500 p-2 text-sm">
@@ -42,8 +42,7 @@ const UserMenu = () => {
               <li>
                 <Button
                   onClick={handleLogout}
-                  className="navItem w-full justify-start bg-none text-inherit
-                   shadow-none hover:bg-primary-600"
+                  className="navItem w-full justify-start bg-none text-inherit shadow-none"
                 >
                   <LogoutSvg className="h-8 w-8" />
                   <span>Logout</span>

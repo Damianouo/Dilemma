@@ -19,6 +19,7 @@ import Ranking, { loader as rankingLoader } from "./pages/Ranking";
 import ContestCtxProvider from "./contexts/ContestCtx";
 import CompeteCtxProvider from "./contexts/CompeteCtx";
 import { action as competeAction } from "./components/contest/ContestCompetePage.";
+import PageBackground from "./components/layout/PageBackground";
 
 const router = createBrowserRouter([
   {
@@ -73,8 +74,11 @@ function Root() {
   return (
     <Layout>
       <Navbar />
-      <main id="detail" className="flex-1">
-        <Outlet />
+      <main id="detail" className="relative flex-1">
+        <PageBackground />
+        <div className="relative z-10">
+          <Outlet />
+        </div>
       </main>
     </Layout>
   );

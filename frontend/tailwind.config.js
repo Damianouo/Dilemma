@@ -44,6 +44,18 @@ export default {
       boxShadow: {
         around: "0 0 5px 2px ",
       },
+      backgroundImage: {
+        "card-pattern": "url('/src/components/svgs/card-pattern.svg')",
+      },
+      animation: {
+        "bg-pan": "bg-pan 100s linear infinite",
+      },
+      keyframes: {
+        "bg-pan": {
+          "0%": { "background-position": "0% 0%" },
+          "100%": { "background-position": "100% 0%" },
+        },
+      },
     },
   },
   plugins: [],

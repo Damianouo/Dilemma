@@ -28,7 +28,7 @@ const NavAccordion = () => {
         <span>{title}</span>
       </Button>
       <AccordionItems
-        className="absolute top-full w-full border-y border-primary-700
+        className="absolute top-full z-50 w-full border-y border-primary-700
         bg-gradient-to-b from-primary-800 to-primary-900"
         accordionOpen={accordionOpen}
       >
