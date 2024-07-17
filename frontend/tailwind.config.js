@@ -42,7 +42,8 @@ export default {
         tertiary: colors.gray,
       },
       boxShadow: {
-        around: "0 0 5px 2px ",
+        around: "0 0 5px 2px",
+        "hover-around": "0 0 5px 5px",
       },
       backgroundImage: {
         "card-pattern": "url('/src/components/svgs/card-pattern.svg')",
