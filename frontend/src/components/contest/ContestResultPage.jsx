@@ -1,23 +1,18 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import Button from "../UI/Button";
-import { useState } from "react";
 import ContestItem from "./ContestItem";
-import { twMerge as tm } from "tailwind-merge";
-import Accordion from "../UI/Accordion";
-import AccordionItems from "../UI/AccordionItems";
-import PlusMinusSvg from "../svgs/PlusMinusSvg";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
 import useContestCtx from "../../hooks/useContestCtx";
+import ResultList from "./ResultList";
 
 const ContestResultPage = () => {
   const { contest } = useContestCtx();
   const { compete } = useCompeteCtx();
   const fullResult = compete.result.toReversed();
-  const resultBeforeTop4 = fullResult.slice(0, 2);
   const resultAfterTop4 = fullResult.slice(2);
   return (
-    <div>
+    <div className="">
       <div className="my-8 flex justify-center gap-8">
         <Button>
           <Link to="/contests">Other Contests</Link>
@@ -26,24 +21,52 @@ const ContestResultPage = () => {
           <Link to={`/ranking/${contest._id}`}>Ranking</Link>
         </Button>
       </div>
-      <ul className="mx-auto grid grid-cols-4 gap-x-2 gap-y-8 text-center text-base transition-all sm:text-2xl">
-        <li className="col-span-4 justify-self-center text-3xl font-bold">
+      <ul className="mx-auto flex max-w-[1224px] flex-col gap-x-2 gap-y-8 text-center text-base transition-all sm:text-2xl">
+        <li className="self-center text-3xl font-bold">
           <h2 className="mb-4 ">The Winner Gose to :</h2>
           <ContestItem item={fullResult[0].winners[0]} />
         </li>
-        {resultBeforeTop4.map((result) => (
-          <ResultList
-            className="col-span-2 text-left"
-            key={"result" + result.participantsNum}
-          >
-            <h2>Stopped at top {result.participantsNum}</h2>
-            <ResultItems result={result} className="grid-cols-2" />
-          </ResultList>
-        ))}
+
+        <ResultList participantsNum={4}>
+          <div className="grid grid-cols-1 gap-2 overflow-hidden xl:grid-cols-4">
+            <div>
+              <p className="mb-2">Runner up:</p>
+              <ContestItem
+                className="mx-auto max-w-[400px]"
+                item={fullResult[0].losers[0]}
+              />
+            </div>
+            <div className="xl:col-span-2 xl:col-start-3">
+              <p className="mb-2">Stop at top 4:</p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <ContestItem
+                  className="max-w-[400px]"
+                  item={fullResult[1].losers[0]}
+                />
+                <ContestItem
+                  className="max-w-[400px]"
+                  item={fullResult[1].losers[1]}
+                />
+              </div>
+            </div>
+          </div>
+        </ResultList>
 
         {resultAfterTop4.map((result) => (
-          <ResultList key={"result" + result.participantsNum}>
-            <ResultAccordion result={result} />
+          <ResultList
+            key={"result" + result.participantsNum}
+            participantsNum={result.participantsNum}
+          >
+            <div className="grid grid-cols-1 justify-center gap-2 overflow-hidden sm:grid-cols-2 xl:grid-cols-4">
+              {result.losers.map((item) => (
+                <ContestItem
+                  key={item.title}
+                  item={item}
+                  className="max-w-[400px]"
+                  titleClass="overflow-hidden text-ellipsis whitespace-nowrap sm:text-sm"
+                />
+              ))}
+            </div>
           </ResultList>
         ))}
       </ul>
@@ -52,51 +75,3 @@ const ContestResultPage = () => {
 };
 
 export default ContestResultPage;
-
-const ResultList = ({ className, children }) => {
-  return (
-    <li className={tm("col-span-full flex flex-col gap-4", className)}>
-      {children}
-    </li>
-  );
-};
-
-const ResultItems = ({ result, className }) => {
-  return (
-    <div className={tm(" grid grid-cols-4 gap-2 overflow-hidden", className)}>
-      {result.losers.map((item) => (
-        <ContestItem
-          key={item.title}
-          item={item}
-          titleClass="overflow-hidden text-ellipsis whitespace-nowrap sm:text-sm"
-        />
-      ))}
-    </div>
-  );
-};
-
-const ResultAccordion = ({ result }) => {
-  const [accordionOpen, setAccordionOpen] = useState(false);
-  function handleAccordionOpen(e) {
-    e.stopPropagation();
-    setAccordionOpen((prev) => !prev);
-  }
-  return (
-    <Accordion onClick={handleAccordionOpen}>
-      <Button className="gap-4">
-        <PlusMinusSvg accordionOpen={accordionOpen} />
-        <span>Stopped at the top {result.participantsNum}</span>
-      </Button>
-      <AccordionItems accordionOpen={accordionOpen}>
-        <div
-          className={tm(
-            "overflow-hidden transition-all",
-            accordionOpen ? "pt-4" : "pt-0",
-          )}
-        >
-          <ResultItems result={result} />
-        </div>
-      </AccordionItems>
-    </Accordion>
-  );
-};

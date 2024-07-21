@@ -1,25 +1,21 @@
 import { Link } from "react-router-dom";
-import { WebIconSvg } from "../svgs/NavSvgs";
-import { twMerge as tm } from "tailwind-merge";
 import NavbarLinks from "./NavbarLinks";
-import { navItemClass } from "./cssClass";
 import UserMenu from "./UserMenu";
 import NavAccordion from "./NavAccordion";
+import CardSvg from "../svgs/CardSvg";
 
 const Navbar = () => {
   return (
     <header>
       <nav className="text-base">
-        <div className="flex justify-between shadow-md">
+        <div className="flex justify-between bg-gradient-to-b from-primary-800 to-primary-950 shadow-md">
           {/* icon & title */}
           <Link
             to="/"
-            className={tm(
-              navItemClass,
-              "flex items-center gap-1 bg-primary-600 text-2xl font-bold text-white ",
-            )}
+            className="navItem flex items-center gap-1 bg-gradient-to-b from-primary-500 to-primary-800
+            text-2xl font-bold text-primary-100 "
           >
-            <WebIconSvg className="h-10 w-10" />
+            <CardSvg className="h-10 w-10" />
             <span>Dilemma</span>
           </Link>
           {/* nav links */}

@@ -3,7 +3,7 @@ import SvgWrapper from "./SvgWrapper";
 import { twMerge as tm } from "tailwind-merge";
 const SuccessSvg = ({ className }) => {
   return (
-    <SvgWrapper className={tm("w-8 text-emerald-500", className)}>
+    <SvgWrapper className={tm("h-8 w-8 shrink-0 text-emerald-500", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

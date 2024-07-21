@@ -10,7 +10,7 @@ const initialValue = {
     description: "",
     totalParticipants: 32,
     category: "video",
-    entries: [],
+    entries: dummyEntries.slice(0, 32),
   },
   addEntry: {
     linkInput: "",

@@ -2,20 +2,20 @@
 import { Link } from "react-router-dom";
 import ContestItem from "./ContestItem";
 
-const ContestThumbnail = ({ contestContents }) => {
+const ContestThumbnail = ({ contest }) => {
   return (
     <Link
-      className="flex flex-col gap-2 rounded-lg bg-tertiary-600/70 p-2 text-sm
-       shadow-contestThumbnail shadow-secondary-400 md:gap-4"
-      to={`/contests/${contestContents._id}`}
+      className="hover:shadow-hover-around flex flex-col gap-2 rounded-lg bg-gradient-to-b from-primary-600 to-primary-700 p-2
+       text-sm shadow-around shadow-primary-300 transition-all hover:shadow-primary-400 md:gap-4"
+      to={`/contests/${contest._id}`}
     >
       {/* cover image */}
       <div className="grid grid-cols-2 gap-2 text-sm">
-        <ContestItem item={contestContents.entries[0]} />
-        <ContestItem item={contestContents.entries[1]} />
+        <ContestItem item={contest.entries[0]} />
+        <ContestItem item={contest.entries[1]} />
       </div>
-      <h3 className=" text-xl font-semibold">{contestContents.title}</h3>
-      <p>{contestContents.description}</p>
+      <h3 className=" text-xl font-semibold">{contest.title}</h3>
+      <p>{contest.description}</p>
     </Link>
   );
 };

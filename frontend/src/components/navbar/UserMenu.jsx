@@ -1,12 +1,10 @@
 import DropDown from "../UI/DropDown";
-import DropDownUl from "../UI/DropDownUl";
-import { PersonSvg } from "../svgs/NavSvgs";
+import DropDownItem from "../UI/DropDownItem";
+import { LogoutSvg, PersonSvg } from "../svgs/NavSvgs";
 import { NavLink, useSubmit } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Button from "../UI/Button";
-import { twMerge as tm } from "tailwind-merge";
-import { navItemClass } from "./cssClass";
 
 const UserMenu = () => {
   const submit = useSubmit();
@@ -27,12 +25,15 @@ const UserMenu = () => {
         <>
           <DropDown className="justify-end">
             <Button
-              className="bg-transparent text-inherit"
+              className="navItem bg-none text-inherit shadow-none"
               onClick={handleMenuShow}
             >
               <PersonSvg className="h-10 w-10" />
             </Button>
-            <DropDownUl className=" text-left" state={menuShow}>
+            <DropDownItem
+              className=" bg-gradient-to-b from-primary-800 to-primary-900 text-left shadow-lg"
+              state={menuShow}
+            >
               <li className="flex cursor-auto items-center gap-1 border-b border-primary-500 p-2 text-sm">
                 <PersonSvg className="h-8 w-8" />
                 <p>{user.info.email}</p>
@@ -41,25 +42,19 @@ const UserMenu = () => {
               <li>
                 <Button
                   onClick={handleLogout}
-                  className={tm(
-                    navItemClass,
-                    "w-full justify-start rounded-none bg-transparent text-inherit",
-                  )}
+                  className="navItem w-full justify-start bg-none text-inherit shadow-none"
                 >
-                  <PersonSvg className="h-8 w-8" />
+                  <LogoutSvg className="h-8 w-8" />
                   <span>Logout</span>
                 </Button>
               </li>
-            </DropDownUl>
+            </DropDownItem>
           </DropDown>
         </>
       ) : (
         <NavLink
           to="/login"
-          className={tm(
-            navItemClass,
-            "flex items-center gap-1 rounded-none bg-primary-600 text-white",
-          )}
+          className="navItem flex items-center gap-1 text-primary-100"
         >
           <PersonSvg className="h-8 w-8" />
           <span>Login</span>

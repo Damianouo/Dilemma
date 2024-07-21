@@ -34,11 +34,11 @@ const EditEntries = () => {
           <PageButtons />
 
           <table
-            className="border-collapse border-2 border-primary-300 bg-primary-600
-          text-xs text-primary-300 md:text-base"
+            className=" border-collapse border-2 border-primary-400 bg-gradient-to-b from-primary-800 to-primary-950 text-xs
+          text-primary-200  md:text-base"
           >
             <thead>
-              <tr className="bg-primary-600">
+              <tr className="bg-primary-950 text-primary-100">
                 <th scope="col">Order</th>
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
@@ -60,13 +60,13 @@ const EditEntries = () => {
                   <td className="px-2">
                     <div className="flex justify-center gap-2">
                       <Button
-                        className=" bg-secondary-500 text-xs text-white"
+                        className="bg-secondary-500 bg-none text-xs text-white hover:bg-secondary-400"
                         onClick={() => handleEdit(index + startIndex)}
                       >
                         Edit
                       </Button>
                       <Button
-                        className=" bg-secondary-700 text-xs text-white"
+                        className="bg-secondary-700 bg-none text-xs text-white hover:bg-secondary-600"
                         onClick={() => handleDelete(index + startIndex)}
                       >
                         Delete

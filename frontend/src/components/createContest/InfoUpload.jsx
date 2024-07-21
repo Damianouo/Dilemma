@@ -30,8 +30,8 @@ const InfoUpload = () => {
           <div className="flex items-center gap-6 py-4 md:py-6">
             <label htmlFor="totalEntries">Total Number of Entries</label>
             <select
-              className="border-2 border-secondary-400 bg-primary-200 px-1 py-1 text-center transition-colors 
-            focus-visible:border-secondary-600 focus-visible:outline-none"
+              className="rounded-md border-2 border-primary-500 bg-primary-200 px-1 py-1 text-center text-primary-950 transition-colors 
+            focus-visible:border-primary-950 focus-visible:outline-none"
               name="totalEntries"
               id="totalEntries"
               value={creation.content.totalParticipants}
@@ -71,8 +71,8 @@ const InfoUpload = () => {
               )}
             </div>
             <Button
-              className="col-start-3 self-center justify-self-end bg-primary-600 px-4 
-              text-secondary-300 "
+              className="col-start-3 self-center justify-self-end 
+              bg-secondary-400 bg-none px-4 text-secondary-950 hover:bg-secondary-300"
               disabled={creation.addEntry.state === "loading"}
               onClick={handler.addEntry}
             >

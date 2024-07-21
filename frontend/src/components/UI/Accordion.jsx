@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
 import { twMerge as tm } from "tailwind-merge";
 
-const Accordion = ({ children, className, onClick }) => {
+const Accordion = ({ children, className }) => {
   return (
-    <div
-      onClick={onClick}
-      className={tm("flex flex-col transition-all", className)}
-    >
+    <div className={tm("flex flex-col transition-all", className)}>
       {children}
     </div>
   );
