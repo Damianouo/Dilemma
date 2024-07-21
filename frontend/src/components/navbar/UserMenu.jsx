@@ -54,8 +54,7 @@ const UserMenu = () => {
       ) : (
         <NavLink
           to="/login"
-          className="navItem flex items-center gap-1 rounded-none
-           bg-gradient-to-b from-primary-600 to-primary-800 text-primary-100"
+          className="navItem flex items-center gap-1 text-primary-100"
         >
           <PersonSvg className="h-8 w-8" />
           <span>Login</span>
