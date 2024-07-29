@@ -6,7 +6,8 @@ import ContestResultPage from "../components/contest/ContestResultPage";
 import useContestCtx from "../hooks/useContestCtx";
 import useCompeteCtx from "../hooks/useCompeteCtx";
 import { useEffect } from "react";
-
+import { motion, AnimatePresence } from "framer-motion";
+import { variants } from "../components/contest/variants";
 const Contest = () => {
   const { compete, dispatch } = useCompeteCtx();
   const { setContest } = useContestCtx();
@@ -33,17 +34,26 @@ const Contest = () => {
   }, [dispatch, contestId]);
 
   return (
-    <div className="p-4 text-primary-100 md:px-8 md:py-6">
+    <div className="mx-auto max-w-[1500px] p-4 text-primary-100 md:p-8">
       {contestData ? (
-        <>
-          <h2 className="my-2 text-center text-2xl font-bold sm:my-6 md:text-4xl">
-            {contestData.title}
-          </h2>
+        <AnimatePresence mode="wait">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={variants}
+            transition={{ duration: 0.5 }}
+            key={`${compete.phase}container`}
+          >
+            <h2 className=" mb-6 text-center text-2xl font-bold sm:mb-10 sm:text-3xl md:text-4xl">
+              {contestData.title}
+            </h2>
 
-          {compete.phase === "info" && <ContestInfoPage />}
-          {compete.phase === "compete" && <ContestCompetePage />}
-          {compete.phase === "result" && <ContestResultPage />}
-        </>
+            {compete.phase === "info" && <ContestInfoPage />}
+            {compete.phase === "compete" && <ContestCompetePage />}
+            {compete.phase === "result" && <ContestResultPage />}
+          </motion.div>
+        </AnimatePresence>
       ) : (
         // no contest found
         <div className="flex flex-col items-start gap-4 p-20">

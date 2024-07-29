@@ -12,7 +12,7 @@ const ContestResultPage = () => {
   const fullResult = compete.result.toReversed();
   const resultAfterTop4 = fullResult.slice(2);
   return (
-    <div className="">
+    <>
       <div className="my-8 flex justify-center gap-8">
         <Button>
           <Link to="/contests">Other Contests</Link>
@@ -70,7 +70,7 @@ const ContestResultPage = () => {
           </ResultList>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
