@@ -1,4 +1,4 @@
-import { json, redirect } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { store } from "../store/index";
 import { userActions } from "../store/userSlice";
 
@@ -19,7 +19,7 @@ export async function rootLoader() {
     }
 
     if (!response.ok) {
-      throw json({ message: "Failed to check login status" }, { status: 500 });
+      throw new Response.json({ message: "Failed to check login status" }, { status: 500 });
     }
 
     const user = await response.json();
@@ -35,10 +35,7 @@ export async function rootAction() {
   });
 
   if (!response.ok) {
-    throw json(
-      { message: "Logout failed, please try again later" },
-      { status: 500 },
-    );
+    throw new Response.json({ message: "Logout failed, please try again later" }, { status: 500 });
   }
   store.dispatch(userActions.logout());
   return redirect("/");

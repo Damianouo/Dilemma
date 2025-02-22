@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { json, useRouteLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import ContestThumbnail from "../components/contest/ContestThumbnail";
 
 const BrowseContests = () => {
@@ -28,7 +28,7 @@ const AllContests = ({ children }) => {
 export async function loader() {
   const response = await fetch("http://localhost:8080/contest");
   if (!response.ok) {
-    throw json({ message: "Could not fetch contests" }, { status: 500 });
+    throw new Response.json({ message: "Could not fetch contests" }, { status: 500 });
   }
   return response;
 }
