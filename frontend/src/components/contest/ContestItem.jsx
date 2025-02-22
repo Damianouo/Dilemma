@@ -8,7 +8,7 @@ const ContestItem = ({ item, mode = "info", className, titleClass }) => {
   return (
     <div
       className={tm(
-        "overflow-hidden rounded-md bg-gradient-to-b from-primary-200 to-primary-400 text-center text-primary-950 shadow-md shadow-primary-950",
+        "overflow-hidden rounded-md bg-gradient-to-b from-primary-300 to-primary-400 text-center text-primary-950 shadow-md shadow-primary-950",
         className,
       )}
     >

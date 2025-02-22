@@ -10,8 +10,8 @@ const ContestInfoPage = () => {
   const { handler } = useCompeteCtx();
   const { contest } = useContestCtx();
   return (
-    <div className="text-base sm:px-4 sm:py-8 sm:text-lg md:text-xl">
-      <p className="mb-10 text-center">{contest.description}</p>
+    <div className="text-base sm:text-xl md:text-2xl">
+      <p className="mb-6 text-center sm:mb-10">{contest.description}</p>
 
       {/* contest item preview */}
       <div className="flex items-center justify-center gap-2 ">
