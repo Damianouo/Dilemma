@@ -18,7 +18,7 @@ export const MenuSvg = ({ className, accordionOpen, ...props }) => {
           height="2"
           rx="1"
           className={`origin-top-left rotate-0 transition-all ease-out ${
-            accordionOpen && "!rotate-45"
+            accordionOpen && "rotate-45!"
           }`}
         />
         <rect
@@ -35,7 +35,7 @@ export const MenuSvg = ({ className, accordionOpen, ...props }) => {
           height="2"
           rx="1"
           className={`origin-bottom-left rotate-0 transition-all ease-out ${
-            accordionOpen && "!-rotate-45"
+            accordionOpen && "-rotate-45!"
           }`}
         />
       </svg>

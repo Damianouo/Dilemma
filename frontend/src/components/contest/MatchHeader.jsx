@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useIsPresent } from "framer-motion";
+import { motion, AnimatePresence, useIsPresent } from "motion/react";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
 import { duration, variants } from "./variants";
 import Button from "../UI/Button";
@@ -39,16 +39,14 @@ const CompeteBtns = () => {
     <div className="flex gap-4">
       <Button
         onClick={() => handler.changeOpponent(competeItemIndex)}
-        className={`bg-none p-1 shadow-none
-          ${isPresent ? "hover:bg-primary-800" : " "}`}
+        className={`bg-none p-1 shadow-none ${isPresent ? "hover:bg-primary-800" : " "}`}
         disabled={!isPresent}
       >
         <RefreshSvg />
       </Button>
       <Button
         onClick={handler.endCompeting}
-        className={`bg-none p-1 shadow-none
-          ${isPresent ? "hover:bg-primary-800" : " "}`}
+        className={`bg-none p-1 shadow-none ${isPresent ? "hover:bg-primary-800" : " "}`}
         disabled={!isPresent}
       >
         <XmarkSvg />

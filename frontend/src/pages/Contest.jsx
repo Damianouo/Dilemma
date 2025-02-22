@@ -6,7 +6,7 @@ import ContestResultPage from "../components/contest/ContestResultPage";
 import useContestCtx from "../hooks/useContestCtx";
 import useCompeteCtx from "../hooks/useCompeteCtx";
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { variants } from "../components/contest/variants";
 const Contest = () => {
   const { compete, dispatch } = useCompeteCtx();
@@ -34,7 +34,7 @@ const Contest = () => {
   }, [dispatch, contestId]);
 
   return (
-    <div className="mx-auto max-w-[1500px] p-4 text-primary-100 md:p-8">
+    <div className="text-primary-100 mx-auto max-w-[1500px] p-4 md:p-8">
       {contestData ? (
         <AnimatePresence mode="wait">
           <motion.div
@@ -45,7 +45,7 @@ const Contest = () => {
             transition={{ duration: 0.5 }}
             key={`${compete.phase}container`}
           >
-            <h2 className=" mb-6 text-center text-2xl font-bold sm:mb-10 sm:text-3xl md:text-4xl">
+            <h2 className="mb-6 text-center text-2xl font-bold sm:mb-10 sm:text-3xl md:text-4xl">
               {contestData.title}
             </h2>
 
@@ -58,7 +58,7 @@ const Contest = () => {
         // no contest found
         <div className="flex flex-col items-start gap-4 p-20">
           <p>Can not find contest, please check contest id.</p>
-          <Link to="/contests" className="rounded-lg bg-primary-200 p-2">
+          <Link to="/contests" className="bg-primary-200 rounded-lg p-2">
             Browse all Contests
           </Link>
         </div>

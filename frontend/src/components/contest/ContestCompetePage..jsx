@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useSubmit } from "react-router-dom";
 import MatchHeader from "./MatchHeader";
 import CompeteItems from "./CompeteItems";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { variants } from "./variants";
 const ContestCompetePage = () => {
   const submit = useSubmit();

@@ -12,7 +12,7 @@ const Button = ({
     <button
       className={tm(
         "flex items-center justify-center gap-1 rounded-md p-2 text-base transition-colors",
-        "bg-gradient-to-b from-secondary-500 to-secondary-700 text-secondary-100 shadow-md",
+        "bg-linear-to-b from-secondary-500 to-secondary-700 text-secondary-100 shadow-md",
         className,
       )}
       onClick={onClick}

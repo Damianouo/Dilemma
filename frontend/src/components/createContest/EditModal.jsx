@@ -16,7 +16,7 @@ const EditModal = () => {
 
   return (
     <Modal ref={editEntryRef} onClose={editEntryRef.current?.close}>
-      <div className="grid grid-rows-[repeat(5,_minmax(40px,_auto))] gap-8">
+      <div className="grid grid-rows-[repeat(5,minmax(40px,auto))] gap-8">
         <h2 className=" text-3xl font-bold">Edit Entry</h2>
         <div className="grid grid-cols-2 grid-rows-2 gap-4 overflow-hidden rounded-md bg-tertiary-400 pr-4 text-black shadow-md shadow-tertiary-800">
           <div className="row-span-2 flex max-w-[300px] items-center">

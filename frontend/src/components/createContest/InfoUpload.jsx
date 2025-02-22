@@ -31,7 +31,7 @@ const InfoUpload = () => {
             <label htmlFor="totalEntries">Total Number of Entries</label>
             <select
               className="rounded-md border-2 border-primary-500 bg-primary-200 px-1 py-1 text-center text-primary-950 transition-colors 
-            focus-visible:border-primary-950 focus-visible:outline-none"
+            focus-visible:border-primary-950 focus-visible:outline-hidden"
               name="totalEntries"
               id="totalEntries"
               value={creation.content.totalParticipants}

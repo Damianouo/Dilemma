@@ -14,8 +14,8 @@ const Input = ({
       {label && <label htmlFor={id}>{label}</label>}
       <input
         className={tm(
-          "flex-1 rounded-md border-2 border-primary-500 bg-gradient-to-b from-primary-200 to-primary-300 px-2 py-1 transition-colors",
-          "text-primary-950 focus-visible:border-primary-950  focus-visible:outline-none",
+          "flex-1 rounded-md border-2 border-primary-500 bg-linear-to-b from-primary-200 to-primary-300 px-2 py-1 transition-colors",
+          "text-primary-950 focus-visible:border-primary-950  focus-visible:outline-hidden",
           inputClassName,
         )}
         id={id}

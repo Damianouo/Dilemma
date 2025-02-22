@@ -21,7 +21,7 @@ const NavAccordion = () => {
       <Button
         onClick={handleAccordionOpen}
         className={
-          "justify-start rounded-none bg-gradient-to-b from-primary-800 to-primary-900 text-inherit hover:bg-primary-500"
+          "justify-start rounded-none bg-linear-to-b from-primary-800 to-primary-900 text-inherit hover:bg-primary-500"
         }
       >
         <MenuSvg accordionOpen={accordionOpen} className="h-8 w-8" />
@@ -29,7 +29,7 @@ const NavAccordion = () => {
       </Button>
       <AccordionItems
         className="absolute top-full z-50 w-full border-y border-primary-700
-        bg-gradient-to-b from-primary-800 to-primary-900"
+        bg-linear-to-b from-primary-800 to-primary-900"
         accordionOpen={accordionOpen}
       >
         <ul

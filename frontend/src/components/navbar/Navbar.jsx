@@ -8,11 +8,11 @@ const Navbar = () => {
   return (
     <header>
       <nav className="text-base">
-        <div className="flex justify-between bg-gradient-to-b from-primary-800 to-primary-950 shadow-md">
+        <div className="flex justify-between bg-linear-to-b from-primary-800 to-primary-950 shadow-md">
           {/* icon & title */}
           <Link
             to="/"
-            className="navItem flex items-center gap-1 bg-gradient-to-b from-primary-500 to-primary-800
+            className="navItem flex items-center gap-1 bg-linear-to-b from-primary-500 to-primary-800
             text-2xl font-bold text-primary-100 "
           >
             <CardSvg className="h-10 w-10" />

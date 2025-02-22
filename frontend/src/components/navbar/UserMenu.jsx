@@ -31,7 +31,7 @@ const UserMenu = () => {
               <PersonSvg className="h-10 w-10" />
             </Button>
             <DropDownItem
-              className=" bg-gradient-to-b from-primary-800 to-primary-900 text-left shadow-lg"
+              className=" bg-linear-to-b from-primary-800 to-primary-900 text-left shadow-lg"
               state={menuShow}
             >
               <li className="flex cursor-auto items-center gap-1 border-b border-primary-500 p-2 text-sm">

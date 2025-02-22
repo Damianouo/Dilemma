@@ -54,7 +54,7 @@ const CreateContest = () => {
       <SubmitModal />
       <TabButtons />
       {/* form */}
-      <Form className=" bg-gradient-to-b from-primary-700 to-primary-900 text-primary-100">
+      <Form className=" bg-linear-to-b from-primary-700 to-primary-900 text-primary-100">
         {activeTab === "info" && <InfoUpload />}
         {activeTab === "edit" && <EditEntries />}
         <div className="flex justify-center gap-4 py-8">

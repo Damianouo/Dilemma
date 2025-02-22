@@ -5,7 +5,7 @@ import ContestItem from "./ContestItem";
 const ContestThumbnail = ({ contest }) => {
   return (
     <Link
-      className="hover:shadow-hover-around flex flex-col gap-2 rounded-lg bg-gradient-to-b from-primary-600 to-primary-700 p-2
+      className="hover:shadow-hover-around flex flex-col gap-2 rounded-lg bg-linear-to-b from-primary-600 to-primary-700 p-2
        text-sm shadow-around shadow-primary-300 transition-all hover:shadow-primary-400 md:gap-4"
       to={`/contests/${contest._id}`}
     >
