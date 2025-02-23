@@ -31,7 +31,7 @@ const Modal = forwardRef(function Modal({ children, onClose }, ref) {
       onMouseDown={handleClose}
       ref={dialogRef}
       onClose={onClose}
-      className="rounded-md bg-tertiary-700 px-6 py-8 text-white"
+      className="bg-tertiary-700 m-auto rounded-md px-6 py-8 text-white"
     >
       {children}
     </dialog>

@@ -74,4 +74,7 @@
   tbody td {
     @apply border-primary-600 border;
   }
+  dialog::backdrop {
+    @apply bg-black/40;
+  }
 }
