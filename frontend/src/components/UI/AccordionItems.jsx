@@ -1,13 +1,12 @@
+import { cn } from "../../utils/cn";
+
 /* eslint-disable react/prop-types */
-import { twMerge as tm } from "tailwind-merge";
 const AccordionItems = ({ children, accordionOpen, className }) => {
   return (
     <div
-      className={tm(
+      className={cn(
         "grid overflow-hidden transition-all",
-        accordionOpen
-          ? "grid-rows-[1fr] opacity-100"
-          : "grid-rows-[0fr]  opacity-0",
+        accordionOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
         className,
       )}
     >

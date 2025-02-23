@@ -1,13 +1,10 @@
-import { twMerge as tm } from "tailwind-merge";
+import { cn } from "../../utils/cn";
 
 /* eslint-disable react/prop-types */
 const DropDown = ({ children, className, onClick }) => {
   return (
     <div
-      className={tm(
-        "relative flex cursor-pointer items-center justify-center",
-        className,
-      )}
+      className={cn("relative flex cursor-pointer items-center justify-center", className)}
       onClick={onClick}
     >
       {children}

@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
-import { twMerge as tm } from "tailwind-merge";
+
+import { cn } from "../../utils/cn";
 
 const Accordion = ({ children, className }) => {
-  return (
-    <div className={tm("flex flex-col transition-all", className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn("flex flex-col transition-all", className)}>{children}</div>;
 };
 
 export default Accordion;
