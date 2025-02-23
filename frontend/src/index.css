@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --transition-duration: 300ms;
@@ -44,7 +44,7 @@
   --shadow-around: 0 0 5px 2px;
   --shadow-hover-around: 0 0 5px 5px;
 
-  --background-image-card-pattern: url('/src/components/svgs/card-pattern.svg');
+  --background-image-card-pattern: url("/src/components/svgs/card-pattern.svg");
 
   --animate-bg-pan: bg-pan 100s linear infinite;
 
@@ -58,37 +58,20 @@
   }
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+@layer components {
+  .navItem {
+    @apply hover:bg-primary-700 p-2 transition-colors;
   }
-}
-
-@utility navItem {
-  @apply p-2 transition-colors hover:bg-primary-700;
+  .active {
+    @apply text-white;
+  }
 }
 
 @layer base {
   thead th {
-    @apply border border-primary-500 p-2;
+    @apply border-primary-500 border p-2;
   }
   tbody td {
-    @apply border border-primary-600;
+    @apply border-primary-600 border;
   }
-}
-
-.active {
-  @apply text-white;
 }
