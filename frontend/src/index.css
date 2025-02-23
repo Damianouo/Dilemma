@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --transition-duration: 300ms;
-
+  --default-transition-duration: 300ms;
   --font-nunito: Nunito, sans-serif;
 
   --color-primary-50: #f7f7f8;

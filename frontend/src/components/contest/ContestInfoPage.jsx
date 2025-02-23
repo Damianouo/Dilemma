@@ -1,9 +1,9 @@
-import { RankingBtnSvg, ShareBtnSvg, StartBtnSvg } from "../svgs/ContestSvgs";
+import { ShareBtnSvg, StartBtnSvg } from "../svgs/ContestSvgs";
 import Button from "../UI/Button";
 import ContestItem from "./ContestItem";
-import { Link } from "react-router-dom";
 import useContestCtx from "../../hooks/useContestCtx";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
+import RankingLink from "./RankingLink";
 
 const ContestInfoPage = () => {
   const { handler } = useCompeteCtx();
@@ -31,13 +31,7 @@ const ContestInfoPage = () => {
             <StartBtnSvg />
             <span>Start</span>
           </Button>
-          <Link
-            to={`/ranking/${contest._id}`}
-            className="btn bg-sky-300 text-black hover:bg-sky-400"
-          >
-            <RankingBtnSvg />
-            <span>Ranking</span>
-          </Link>
+          <RankingLink />
           <Button className="bg-emerald-300 text-black hover:bg-emerald-400">
             <ShareBtnSvg />
             <span>Share</span>

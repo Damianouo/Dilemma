@@ -18,8 +18,8 @@ const TabButtons = () => {
           className={cn(
             "rounded-none",
             activeTab === tab.tabName
-              ? "from-secondary-300 to-secondary-500 text-primary-950 font-bold"
-              : "bg-secondary-800 hover:bg-secondary-600 bg-none",
+              ? "bg-secondary-400 text-secondary-950 pointer-events-none font-bold"
+              : "bg-secondary-800 text-secondary-300 hover:bg-secondary-700",
           )}
           onClick={() => handler.changeTab(tab.tabName)}
         >

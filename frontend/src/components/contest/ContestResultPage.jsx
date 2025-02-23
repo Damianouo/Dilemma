@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 import Button from "../UI/Button";
 import ContestItem from "./ContestItem";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
-import useContestCtx from "../../hooks/useContestCtx";
 import ResultList from "./ResultList";
+import RankingLink from "./RankingLink";
 
 const ContestResultPage = () => {
-  const { contest } = useContestCtx();
   const { compete } = useCompeteCtx();
   const fullResult = compete.result.toReversed();
   const resultAfterTop4 = fullResult.slice(2);
@@ -16,9 +15,7 @@ const ContestResultPage = () => {
         <Button>
           <Link to="/contests">Other Contests</Link>
         </Button>
-        <Button>
-          <Link to={`/ranking/${contest._id}`}>Ranking</Link>
-        </Button>
+        <RankingLink />
       </div>
       <ul className="mx-auto flex max-w-[1224px] flex-col gap-x-2 gap-y-8 text-center text-base transition-all sm:text-2xl">
         <li className="self-center text-3xl font-bold">
