@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { getEmbedUrl } from "../../utils/entry";
 
 const EmbedVideo = ({ url, className }) => {
@@ -7,7 +6,7 @@ const EmbedVideo = ({ url, className }) => {
     <div className={className}>
       <div className="relative w-full pb-[56.25%]">
         <iframe
-          className="absolute left-0 top-0 h-full w-full"
+          className="absolute top-0 left-0 h-full w-full"
           width="560"
           height="315"
           src={embedUrl}

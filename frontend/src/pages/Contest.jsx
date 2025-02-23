@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Link, useParams, useRouteLoaderData } from "react-router-dom";
 import ContestInfoPage from "../components/contest/ContestInfoPage";
 import ContestCompetePage from "../components/contest/ContestCompetePage.";

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useRouteLoaderData } from "react-router-dom";
 import ContestThumbnail from "../components/contest/ContestThumbnail";
 

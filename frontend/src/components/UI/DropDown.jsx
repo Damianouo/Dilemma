@@ -1,6 +1,5 @@
 import { cn } from "../../utils/cn";
 
-/* eslint-disable react/prop-types */
 const DropDown = ({ children, className, onClick }) => {
   return (
     <div

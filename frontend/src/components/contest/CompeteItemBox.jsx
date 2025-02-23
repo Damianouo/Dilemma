@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { motion, useAnimate, usePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import Button from "../UI/Button";

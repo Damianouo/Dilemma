@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 
 const initialValue = {
@@ -15,11 +14,7 @@ export const ContestCtx = createContext(initialValue);
 
 const ContestCtxProvider = ({ children }) => {
   const [contest, setContest] = useState(initialValue);
-  return (
-    <ContestCtx.Provider value={{ contest, setContest }}>
-      {children}
-    </ContestCtx.Provider>
-  );
+  return <ContestCtx.Provider value={{ contest, setContest }}>{children}</ContestCtx.Provider>;
 };
 
 export default ContestCtxProvider;

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { cn } from "../../utils/cn";
 import FailSvg from "../svgs/FailSvg";
 import Message from "./Message";

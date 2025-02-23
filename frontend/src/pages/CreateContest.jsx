@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import Button from "../components/UI/Button";
 import { Form, Navigate, useRouteLoaderData, useSubmit } from "react-router-dom";

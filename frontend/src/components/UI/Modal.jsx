@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { forwardRef, useImperativeHandle, useRef } from "react";
 
 const Modal = forwardRef(function Modal({ children, onClose }, ref) {

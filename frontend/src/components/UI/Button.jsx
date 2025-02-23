@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { cn } from "../../utils/cn";
 
 const Button = ({ children, onClick, className, type = "button", ...props }) => {

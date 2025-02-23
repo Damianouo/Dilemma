@@ -1,6 +1,5 @@
 import { cn } from "../../utils/cn";
 
-/* eslint-disable react/prop-types */
 const AccordionItems = ({ children, accordionOpen, className }) => {
   return (
     <div

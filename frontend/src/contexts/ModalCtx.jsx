@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useRef } from "react";
 
 export const ModalCtx = createContext();
@@ -8,9 +7,7 @@ const ModalCtxProvider = ({ children }) => {
   const editEntryRef = useRef();
   const deleteEntryRef = useRef();
   return (
-    <ModalCtx.Provider
-      value={{ creationSubmitRef, editEntryRef, deleteEntryRef }}
-    >
+    <ModalCtx.Provider value={{ creationSubmitRef, editEntryRef, deleteEntryRef }}>
       {children}
     </ModalCtx.Provider>
   );

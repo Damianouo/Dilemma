@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { cn } from "../../utils/cn";
 import { getCoverImageUrl } from "../../utils/entry";
 import EmbedVideo from "./EmbedVideo";

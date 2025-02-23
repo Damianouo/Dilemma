@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Accordion from "../UI/Accordion";
 import Button from "../UI/Button";

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import ContestItem from "./ContestItem";
 import Button from "../UI/Button";
 import useCompeteCtx from "../../hooks/useCompeteCtx";

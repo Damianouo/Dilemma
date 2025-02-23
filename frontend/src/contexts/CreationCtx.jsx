@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useReducer } from "react";
 import { dummyContests } from "../dummyData";
 
@@ -33,11 +32,7 @@ export const CreationCtx = createContext();
 const CreationCtxProvider = ({ children }) => {
   const [creation, dispatch] = useReducer(creationReducer, initialValue);
 
-  return (
-    <CreationCtx.Provider value={{ creation, dispatch }}>
-      {children}
-    </CreationCtx.Provider>
-  );
+  return <CreationCtx.Provider value={{ creation, dispatch }}>{children}</CreationCtx.Provider>;
 };
 
 export default CreationCtxProvider;

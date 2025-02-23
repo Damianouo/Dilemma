@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { cn } from "../../utils/cn";
 
 const DropDownItem = ({ children, className, state }) => {
