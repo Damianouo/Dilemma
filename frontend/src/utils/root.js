@@ -24,7 +24,7 @@ export async function rootLoader() {
 
     const user = await response.json();
     store.dispatch(userActions.login(user));
-    return user;
+    return { isLogin: true, info: user };
   }
 }
 
