@@ -72,7 +72,7 @@ const CompeteItemBox = ({ children, onClick, leftside }) => {
         <p className="text-base">Chat Votes : 10</p>
         <Button
           onClick={handleClick}
-          className={`text-center font-bold md:text-lg ${isPresent ? "hover:text-primary-300" : ""}`}
+          className="text-center font-bold md:text-lg"
           disabled={!isPresent}
         >
           <ChooseSvg />

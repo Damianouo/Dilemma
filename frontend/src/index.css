@@ -59,11 +59,14 @@
 }
 
 @layer components {
+  .active {
+    @apply text-white;
+  }
   .navItem {
     @apply hover:bg-primary-700 p-2 transition-colors;
   }
-  .active {
-    @apply text-white;
+  .btn {
+    @apply flex cursor-pointer items-center justify-center gap-1 rounded-md p-2 text-base shadow-md transition-colors;
   }
 }
 
@@ -76,5 +79,8 @@
   }
   dialog::backdrop {
     @apply bg-black/40;
+  }
+  button:disabled {
+    @apply pointer-events-none;
   }
 }

@@ -25,16 +25,16 @@ const UserMenu = () => {
         <>
           <DropDown className="justify-end">
             <Button
-              className="navItem bg-none text-inherit shadow-none"
+              className="navItem hover:bg-primary-700 bg-transparent text-inherit shadow-none"
               onClick={handleMenuShow}
             >
               <PersonSvg className="h-10 w-10" />
             </Button>
             <DropDownItem
-              className=" bg-linear-to-b from-primary-800 to-primary-900 text-left shadow-lg"
+              className="from-primary-800 to-primary-900 bg-linear-to-b text-left shadow-lg"
               state={menuShow}
             >
-              <li className="flex cursor-auto items-center gap-1 border-b border-primary-500 p-2 text-sm">
+              <li className="border-primary-500 flex cursor-auto items-center gap-1 border-b p-2 text-sm">
                 <PersonSvg className="h-8 w-8" />
                 <p>{user.info.email}</p>
               </li>
@@ -42,7 +42,7 @@ const UserMenu = () => {
               <li>
                 <Button
                   onClick={handleLogout}
-                  className="navItem w-full justify-start bg-none text-inherit shadow-none"
+                  className="navItem hover:bg-primary-700 w-full justify-start bg-transparent text-inherit shadow-none"
                 >
                   <LogoutSvg className="h-8 w-8" />
                   <span>Logout</span>
@@ -52,10 +52,7 @@ const UserMenu = () => {
           </DropDown>
         </>
       ) : (
-        <NavLink
-          to="/login"
-          className="navItem flex items-center gap-1 text-primary-100"
-        >
+        <NavLink to="/login" className="navItem text-primary-100 flex items-center gap-1">
           <PersonSvg className="h-8 w-8" />
           <span>Login</span>
         </NavLink>

@@ -13,7 +13,9 @@ const ResultList = ({ children, className, participantsNum }) => {
   }
   return (
     <li className={cn("flex flex-col gap-4", className)}>
-      <Accordion className={cn("bg-primary-600/50 mx-auto", accordionOpen ? "gap-4" : "gap-0")}>
+      <Accordion
+        className={cn("bg-primary-600/50 mx-auto rounded-md", accordionOpen ? "gap-4" : "gap-0")}
+      >
         <Button onClick={handleAccordionOpen} className="gap-4">
           <PlusMinusSvg open={accordionOpen} />
           <span>Stopped at the top {participantsNum}</span>

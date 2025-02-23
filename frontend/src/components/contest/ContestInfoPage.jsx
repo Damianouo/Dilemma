@@ -26,18 +26,19 @@ const ContestInfoPage = () => {
         <div className="flex gap-2">
           <Button
             onClick={() => handler.startCompeting(contest)}
-            className="bg-red-300 bg-none text-black hover:bg-red-400"
+            className="bg-red-300 text-black hover:bg-red-400"
           >
             <StartBtnSvg />
             <span>Start</span>
           </Button>
-          <Button className="bg-sky-300 bg-none text-black hover:bg-sky-400">
-            <Link to={`/ranking/${contest._id}`} className="flex items-center gap-1">
-              <RankingBtnSvg />
-              <span>Ranking</span>
-            </Link>
-          </Button>
-          <Button className="bg-emerald-300 bg-none text-black hover:bg-emerald-400">
+          <Link
+            to={`/ranking/${contest._id}`}
+            className="btn bg-sky-300 text-black hover:bg-sky-400"
+          >
+            <RankingBtnSvg />
+            <span>Ranking</span>
+          </Link>
+          <Button className="bg-emerald-300 text-black hover:bg-emerald-400">
             <ShareBtnSvg />
             <span>Share</span>
           </Button>
