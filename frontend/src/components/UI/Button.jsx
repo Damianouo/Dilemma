@@ -1,20 +1,9 @@
-/* eslint-disable react/prop-types */
-import { twMerge as tm } from "tailwind-merge";
+import { cn } from "../../utils/cn";
 
-const Button = ({
-  children,
-  onClick,
-  className,
-  type = "button",
-  ...props
-}) => {
+const Button = ({ children, onClick, className, type = "button", ...props }) => {
   return (
     <button
-      className={tm(
-        "flex items-center justify-center gap-1 rounded-md p-2 text-base transition-colors",
-        "bg-gradient-to-b from-secondary-500 to-secondary-700 text-secondary-100 shadow-md",
-        className,
-      )}
+      className={cn("btn hover:bg-secondary-600 bg-secondary-700 text-secondary-100", className)}
       onClick={onClick}
       type={type}
       {...props}

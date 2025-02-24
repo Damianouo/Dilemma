@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useReducer } from "react";
 
 const initialConfig = {
@@ -9,11 +8,7 @@ export const ConfigCtx = createContext();
 
 const ConfigCtxProvider = ({ children }) => {
   const [config, configDispatch] = useReducer(configReducer, initialConfig);
-  return (
-    <ConfigCtx.Provider value={{ config, configDispatch }}>
-      {children}
-    </ConfigCtx.Provider>
-  );
+  return <ConfigCtx.Provider value={{ config, configDispatch }}>{children}</ConfigCtx.Provider>;
 };
 
 export default ConfigCtxProvider;

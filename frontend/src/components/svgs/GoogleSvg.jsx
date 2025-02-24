@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
+import { cn } from "../../utils/cn";
 import SvgWrapper from "./SvgWrapper";
-import { twMerge as tm } from "tailwind-merge";
 const GoogleSvg = ({ className }) => {
   return (
-    <SvgWrapper className={tm("", className)}>
+    <SvgWrapper className={cn("", className)}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
         <path
           fill="#FFC107"

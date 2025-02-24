@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useReducer } from "react";
 import { getCompeteEntries, shuffleArray } from "../utils/entry";
 
@@ -18,11 +17,7 @@ export const CompeteCtx = createContext();
 
 const CompeteCtxProvider = ({ children }) => {
   const [compete, dispatch] = useReducer(reducer, initialValue);
-  return (
-    <CompeteCtx.Provider value={{ compete, dispatch }}>
-      {children}
-    </CompeteCtx.Provider>
-  );
+  return <CompeteCtx.Provider value={{ compete, dispatch }}>{children}</CompeteCtx.Provider>;
 };
 
 export default CompeteCtxProvider;
@@ -61,12 +56,8 @@ function reducer(compete, action) {
     }
     case "startCompeting": {
       const contest = action.payload;
-      const participantsNum =
-        compete.participantsNum || contest.totalParticipants;
-      const competeEntries = getCompeteEntries(
-        contest.entries,
-        participantsNum,
-      );
+      const participantsNum = compete.participantsNum || contest.totalParticipants;
+      const competeEntries = getCompeteEntries(contest.entries, participantsNum);
       return {
         ...compete,
         _id: contest._id,

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 import { duration, variants } from "./variants";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
@@ -19,12 +19,9 @@ const CompeteItems = () => {
         variants={variants}
         transition={{ delay: duration.borderTotal }}
         key={`${compete.participantsNum}${compete.match}competeItems`}
-        className="block w-full items-stretch justify-between gap-4 md:flex xl:gap-8 "
+        className="block w-full items-stretch justify-between gap-4 md:flex xl:gap-8"
       >
-        <CompeteItemBox
-          leftside
-          onClick={() => handler.chooseWinner(competeItem1, competeItem2)}
-        >
+        <CompeteItemBox leftside onClick={() => handler.chooseWinner(competeItem1, competeItem2)}>
           <ContestItem item={competeItem1} mode="compete" />
         </CompeteItemBox>
 

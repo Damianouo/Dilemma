@@ -1,8 +1,4 @@
-/* eslint-disable react/prop-types */
 import { createContext, useReducer } from "react";
-import { dummyContests } from "../dummyData";
-
-const dummyEntries = dummyContests[0].entries;
 
 const initialValue = {
   content: {
@@ -10,7 +6,7 @@ const initialValue = {
     description: "",
     totalParticipants: 32,
     category: "video",
-    entries: dummyEntries.slice(0, 32),
+    entries: [],
   },
   addEntry: {
     linkInput: "",
@@ -33,11 +29,7 @@ export const CreationCtx = createContext();
 const CreationCtxProvider = ({ children }) => {
   const [creation, dispatch] = useReducer(creationReducer, initialValue);
 
-  return (
-    <CreationCtx.Provider value={{ creation, dispatch }}>
-      {children}
-    </CreationCtx.Provider>
-  );
+  return <CreationCtx.Provider value={{ creation, dispatch }}>{children}</CreationCtx.Provider>;
 };
 
 export default CreationCtxProvider;

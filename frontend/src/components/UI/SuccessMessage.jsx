@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import SuccessSvg from "../svgs/SuccessSvg";
 import Message from "./Message";
 

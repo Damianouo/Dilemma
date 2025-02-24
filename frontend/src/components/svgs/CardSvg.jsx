@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import SvgWrapper from "./SvgWrapper";
 
 const CardSvg = ({ className, ...props }) => {

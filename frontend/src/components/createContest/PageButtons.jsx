@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useCreationCtx } from "../../hooks/useCreationCtx";
 import Button from "../UI/Button";
 import ChevronLeftSvg from "../svgs/ChevronLeftSvg";
@@ -29,10 +28,9 @@ const PageButtons = () => {
   }
 
   return (
-    <div className="flex items-center  justify-center gap-2">
+    <div className="flex items-center justify-center gap-2">
       <Button
-        className="bg-secondary-300 bg-none px-6 text-secondary-900 hover:bg-secondary-400
-         disabled:bg-secondary-800 disabled:text-secondary-600"
+        className="bg-secondary-300 text-secondary-900 hover:bg-secondary-400 disabled:bg-secondary-800 disabled:text-secondary-600 bg-none px-6"
         disabled={currentPage === 1}
         onClick={handler.previousPage}
       >
@@ -48,8 +46,7 @@ const PageButtons = () => {
       {totalPages > 1 && <PageBtn pageNum={totalPages}>{totalPages}</PageBtn>}
 
       <Button
-        className="bg-secondary-300 bg-none px-6 text-secondary-900 hover:bg-secondary-400
-         disabled:bg-secondary-800 disabled:text-secondary-600"
+        className="bg-secondary-300 text-secondary-900 hover:bg-secondary-400 disabled:bg-secondary-800 disabled:text-secondary-600 bg-none px-6"
         disabled={currentPage === totalPages}
         onClick={handler.nextPage}
       >
@@ -65,8 +62,7 @@ const PageBtn = ({ pageNum }) => {
   const { creation, handler } = useCreationCtx();
   return (
     <Button
-      className="h-10 w-10 bg-secondary-400 bg-none text-secondary-900 outline outline-0 outline-secondary-950
-       hover:bg-secondary-300 disabled:bg-secondary-300 disabled:outline-4"
+      className="bg-secondary-400 text-secondary-900 outline-secondary-950 hover:bg-secondary-300 disabled:bg-secondary-300 h-10 w-10 bg-none outline outline-0 disabled:outline-4"
       type="button"
       key={"pageButton" + pageNum}
       disabled={creation.pageNum === pageNum}

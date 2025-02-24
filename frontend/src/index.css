@@ -1,22 +1,85 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  thead th {
-    @apply border border-primary-500 p-2;
-  }
-  tbody td {
-    @apply border border-primary-600;
+@theme {
+  --default-transition-duration: 300ms;
+  --font-nunito: Nunito, sans-serif;
+
+  --color-primary-50: #f7f7f8;
+  --color-primary-100: #ededf1;
+  --color-primary-200: #d8d9df;
+  --color-primary-300: #b6b7c3;
+  --color-primary-400: #8e90a2;
+  --color-primary-500: #717386;
+  --color-primary-600: #5b5d6e;
+  --color-primary-700: #4a4a5a;
+  --color-primary-800: #40414c;
+  --color-primary-900: #383842;
+  --color-primary-950: #28282f;
+
+  --color-secondary-50: #f6f6f9;
+  --color-secondary-100: #ecedf2;
+  --color-secondary-200: #d6d7e1;
+  --color-secondary-300: #b2b5c7;
+  --color-secondary-400: #878da9;
+  --color-secondary-500: #69708e;
+  --color-secondary-600: #545975;
+  --color-secondary-700: #494d66;
+  --color-secondary-800: #3b3e51;
+  --color-secondary-900: #353745;
+  --color-secondary-950: #23242e;
+
+  --color-tertiary-50: #f9fafb;
+  --color-tertiary-100: #f3f4f6;
+  --color-tertiary-200: #e5e7eb;
+  --color-tertiary-300: #d1d5db;
+  --color-tertiary-400: #9ca3af;
+  --color-tertiary-500: #6b7280;
+  --color-tertiary-600: #4b5563;
+  --color-tertiary-700: #374151;
+  --color-tertiary-800: #1f2937;
+  --color-tertiary-900: #111827;
+  --color-tertiary-950: #030712;
+
+  --shadow-around: 0 0 5px 2px;
+  --shadow-hover-around: 0 0 5px 5px;
+
+  --background-image-card-pattern: url("/src/components/svgs/card-pattern.svg");
+
+  --animate-bg-pan: bg-pan 100s linear infinite;
+
+  @keyframes bg-pan {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 0%;
+    }
   }
 }
 
 @layer components {
+  .active {
+    @apply text-white;
+  }
   .navItem {
-    @apply p-2 transition-colors hover:bg-primary-700;
+    @apply hover:bg-primary-700 p-2 transition-colors;
+  }
+  .btn {
+    @apply flex cursor-pointer items-center justify-center gap-1 rounded-md p-2 text-base shadow-md transition-colors;
   }
 }
 
-.active {
-  @apply text-white;
+@layer base {
+  thead th {
+    @apply border-primary-500 border p-2;
+  }
+  tbody td {
+    @apply border-primary-600 border;
+  }
+  dialog::backdrop {
+    @apply bg-black/40;
+  }
+  button:disabled {
+    @apply pointer-events-none;
+  }
 }

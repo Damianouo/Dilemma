@@ -34,7 +34,7 @@ const EditEntries = () => {
           <PageButtons />
 
           <table
-            className=" border-collapse border-2 border-primary-400 bg-gradient-to-b from-primary-800 to-primary-950 text-xs
+            className=" border-collapse border-2 border-primary-400 bg-linear-to-b from-primary-800 to-primary-950 text-xs
           text-primary-200  md:text-base"
           >
             <thead>

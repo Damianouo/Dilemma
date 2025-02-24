@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { twMerge as tm } from "tailwind-merge";
 import Accordion from "../UI/Accordion";
 import Button from "../UI/Button";
 import PlusMinusSvg from "../svgs/PlusMinusSvg";
 import AccordionItems from "../UI/AccordionItems";
+import { cn } from "../../utils/cn";
 
 const ResultList = ({ children, className, participantsNum }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
@@ -13,20 +12,15 @@ const ResultList = ({ children, className, participantsNum }) => {
     setAccordionOpen((prev) => !prev);
   }
   return (
-    <li className={tm("flex flex-col gap-4", className)}>
+    <li className={cn("flex flex-col gap-4", className)}>
       <Accordion
-        className={tm(
-          "mx-auto bg-primary-600/50",
-          accordionOpen ? "gap-4" : "gap-0",
-        )}
+        className={cn("bg-primary-600/50 mx-auto rounded-md", accordionOpen ? "gap-4" : "gap-0")}
       >
         <Button onClick={handleAccordionOpen} className="gap-4">
           <PlusMinusSvg open={accordionOpen} />
           <span>Stopped at the top {participantsNum}</span>
         </Button>
-        <AccordionItems accordionOpen={accordionOpen}>
-          {children}
-        </AccordionItems>
+        <AccordionItems accordionOpen={accordionOpen}>{children}</AccordionItems>
       </Accordion>
     </li>
   );

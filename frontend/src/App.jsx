@@ -2,14 +2,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Contest from "./pages/Contest";
 import Home from "./pages/Home";
-import BrowseContests, {
-  loader as browseContestsLoader,
-} from "./pages/BrowseContests";
-import CreateContest, {
-  action as creationAction,
-  loader as creationLoader,
-} from "./pages/CreateContest";
-import About from "./pages/About";
+import BrowseContests, { loader as browseContestsLoader } from "./pages/BrowseContests";
+import CreateContest, { action as creationAction } from "./pages/CreateContest";
 import Error from "./pages/Error";
 import { rootAction, rootLoader } from "./utils/root";
 import Layout from "./components/layout/Layout";
@@ -24,6 +18,7 @@ import PageBackground from "./components/layout/PageBackground";
 const router = createBrowserRouter([
   {
     path: "/",
+    id: "root",
     element: <Root />,
     errorElement: <Error />,
     loader: rootLoader,
@@ -51,7 +46,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/create",
-        loader: creationLoader,
         action: creationAction,
         element: (
           <CreationCtxProvider>
@@ -60,7 +54,6 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/login", loader: loginLoader, element: <Login /> },
-      { path: "/about", element: <About /> },
       {
         path: "/ranking/:contestId",
         loader: rankingLoader,

@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import { motion, useAnimate, usePresence } from "framer-motion";
+import { motion, useAnimate, usePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import { ChooseSvg } from "../svgs/ContestSvgs";
@@ -65,16 +64,15 @@ const CompeteItemBox = ({ children, onClick, leftside }) => {
       {/* border animation */}
       <motion.div
         id="animatedBorder"
-        className="absolute left-0 top-full h-full w-full rounded-lg bg-primary-300"
+        className="bg-primary-300 absolute top-full left-0 h-full w-full rounded-lg"
       />
       {/* content */}
-      <div className="relative flex flex-col gap-2 rounded-lg bg-primary-900 sm:gap-4">
+      <div className="bg-primary-900 relative flex flex-col gap-2 rounded-lg sm:gap-4">
         {children}
         <p className="text-base">Chat Votes : 10</p>
         <Button
           onClick={handleClick}
-          className={`text-center font-bold md:text-lg
-            ${isPresent ? "hover:text-primary-300" : ""}`}
+          className="text-center font-bold md:text-lg"
           disabled={!isPresent}
         >
           <ChooseSvg />
