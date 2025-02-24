@@ -1,7 +1,4 @@
 import { createContext, useReducer } from "react";
-import { dummyContests } from "../dummyData";
-
-const dummyEntries = dummyContests[0].entries;
 
 const initialValue = {
   content: {
@@ -9,7 +6,7 @@ const initialValue = {
     description: "",
     totalParticipants: 32,
     category: "video",
-    entries: dummyEntries.slice(0, 32),
+    entries: [],
   },
   addEntry: {
     linkInput: "",
