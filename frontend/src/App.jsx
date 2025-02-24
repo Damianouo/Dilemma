@@ -4,7 +4,6 @@ import Contest from "./pages/Contest";
 import Home from "./pages/Home";
 import BrowseContests, { loader as browseContestsLoader } from "./pages/BrowseContests";
 import CreateContest, { action as creationAction } from "./pages/CreateContest";
-import About from "./pages/About";
 import Error from "./pages/Error";
 import { rootAction, rootLoader } from "./utils/root";
 import Layout from "./components/layout/Layout";
@@ -55,7 +54,6 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/login", loader: loginLoader, element: <Login /> },
-      { path: "/about", element: <About /> },
       {
         path: "/ranking/:contestId",
         loader: rankingLoader,
