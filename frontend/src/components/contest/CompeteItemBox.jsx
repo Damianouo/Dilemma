@@ -69,7 +69,6 @@ const CompeteItemBox = ({ children, onClick, leftside }) => {
       {/* content */}
       <div className="bg-primary-900 relative flex flex-col gap-2 rounded-lg sm:gap-4">
         {children}
-        <p className="text-base">Chat Votes : 10</p>
         <Button
           onClick={handleClick}
           className="text-center font-bold md:text-lg"

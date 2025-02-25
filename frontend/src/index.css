@@ -67,6 +67,12 @@
   .btn {
     @apply flex cursor-pointer items-center justify-center gap-1 rounded-md p-2 text-base shadow-md transition-colors;
   }
+  .btn-light {
+    @apply bg-secondary-400 text-secondary-950 hover:bg-secondary-500;
+  }
+  .btn-dark {
+    @apply bg-secondary-800 text-secondary-300 hover:bg-secondary-700;
+  }
 }
 
 @layer base {
