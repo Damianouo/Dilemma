@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Contest } = require('../models');
+const { contestValidation } = require('../utils/contestValidation');
 
 //? get all contest
 router.get('/', async (req, res) => {
@@ -61,11 +62,15 @@ const authCheck = (req, res, next) => {
 
 //? create new contest
 router.post('/', authCheck, async (req, res) => {
-  //' todo: validate data
-
-  //' create new contest
   const { title, description, category, entries } = req.body;
   const totalParticipants = +req.body.totalParticipants;
+  const validationResult = contestValidation(title, description, totalParticipants, entries.length);
+  if (!validationResult.successful) {
+    return res.status(400).json({
+      message: validationResult.message,
+      details: validationResult.details,
+    });
+  }
   try {
     const newContest = new Contest({
       title,
