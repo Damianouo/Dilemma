@@ -6,7 +6,7 @@ function isEqual(value1, value2) {
   return value1 === value2;
 }
 
-export function contestValidation(title, description, totalEntries, entriesLength) {
+function contestValidation(title, description, totalEntries, entriesLength) {
   const details = [];
   if (!isNotEmpty(title)) {
     details.push({ field: 'title', message: 'Title must not be empty.' });
@@ -24,3 +24,5 @@ export function contestValidation(title, description, totalEntries, entriesLengt
     ? { successful: true }
     : { successful: false, message: 'Validation failed.', details };
 }
+
+module.exports = { contestValidation };
