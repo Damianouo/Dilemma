@@ -15,7 +15,16 @@ const ContestItem = ({ item, mode = "info", className, titleClass }) => {
         <>
           {mode === "info" && <img src={imageUrl} alt="contest item image" />}
           {mode === "compete" && <EmbedVideo url={item.url} />}
-          <p className={cn("p-2 text-sm sm:text-base", titleClass)}>{item.title}</p>
+          <div className="p-2">
+            <p
+              className={cn(
+                "line-clamp-2 h-8 content-center text-sm leading-4 sm:text-base",
+                titleClass,
+              )}
+            >
+              {item.title}
+            </p>
+          </div>
         </>
       ) : (
         <p>can not find contest item</p>
