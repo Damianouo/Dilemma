@@ -16,7 +16,7 @@ const ContestList = () => {
   return (
     <div className="contestList">
       {contests.map((contest) => (
-        <Link className="flex" key={contest._id} to={`/contests/${contest._id}`}>
+        <Link className="flex max-w-[550px]" key={contest._id} to={`/contests/${contest._id}`}>
           <ContestThumbnail contest={contest} />
         </Link>
       ))}

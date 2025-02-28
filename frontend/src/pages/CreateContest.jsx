@@ -1,19 +1,17 @@
 import { useEffect } from "react";
 import Button from "../components/UI/Button";
-import { Form, Navigate, useRouteLoaderData, useSubmit } from "react-router-dom";
+import { Navigate, useRouteLoaderData, useSubmit } from "react-router-dom";
 import { useCreationCtx } from "../hooks/useCreationCtx";
-import InfoUpload from "../components/createContest/InfoUpload";
-import EditEntries from "../components/createContest/EditEntries";
 import TabButtons from "../components/createContest/TabButtons";
 import SubmitModal from "../components/createContest/SubmitModal";
 import useModalCtx from "../hooks/useModalCtx";
-import { creationValidation } from "../utils/validation";
+import { contestValidation } from "../utils/validation";
+import ContestForm from "../components/createContest/ContestForm";
 
 const CreateContest = () => {
-  const isLogin = useRouteLoaderData("root");
+  const user = useRouteLoaderData("root");
   const { creation, dispatch } = useCreationCtx();
   const { creationSubmitRef } = useModalCtx();
-  const { activeTab } = creation;
   const submit = useSubmit();
 
   useEffect(() => {
@@ -48,14 +46,12 @@ const CreateContest = () => {
     creationSubmitRef.current.open();
   }
 
-  return isLogin ? (
+  return user?.isLogin ? (
     <div className="mx-auto flex max-w-[1200px] flex-col p-4 text-base md:p-8 md:text-xl">
       <SubmitModal />
       <TabButtons />
       {/* form */}
-      <Form className="from-primary-700 to-primary-900 text-primary-100 bg-linear-to-b">
-        {activeTab === "info" && <InfoUpload />}
-        {activeTab === "edit" && <EditEntries />}
+      <ContestForm>
         <div className="flex justify-center gap-4 py-8">
           <Button onClick={handleReset} className="px-4 text-xl font-bold">
             Reset
@@ -64,7 +60,7 @@ const CreateContest = () => {
             Create
           </Button>
         </div>
-      </Form>
+      </ContestForm>
     </div>
   ) : (
     <Navigate to="/login?from=create" replace={true} />
@@ -75,7 +71,7 @@ export default CreateContest;
 
 export async function action({ request }) {
   const data = await request.json();
-  const validationResult = creationValidation(
+  const validationResult = contestValidation(
     data.title,
     data.description,
     data.totalParticipants,

@@ -15,6 +15,7 @@ import CompeteCtxProvider from "./contexts/CompeteCtx";
 import { action as competeAction } from "./components/contest/ContestCompetePage.";
 import PageBackground from "./components/layout/PageBackground";
 import User, { loader as userLoader } from "./pages/User";
+import Edit, { loader as editLoader, action as editAction } from "./pages/Edit";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,16 @@ const router = createBrowserRouter([
         element: <Ranking />,
       },
       { path: "/user/:userId", loader: userLoader, element: <User /> },
+      {
+        path: "/edit/:contestId",
+        loader: editLoader,
+        action: editAction,
+        element: (
+          <CreationCtxProvider>
+            <Edit />
+          </CreationCtxProvider>
+        ),
+      },
     ],
   },
 ]);

@@ -7,17 +7,10 @@ function isEqual(value1, value2) {
 }
 
 function isYoutubeUrl(url) {
-  return (
-    url.includes("youtube.com/watch?v=") || url.includes("youtube.com/shorts/")
-  );
+  return url.includes("youtube.com/watch?v=") || url.includes("youtube.com/shorts/");
 }
 
-export function creationValidation(
-  title,
-  description,
-  totalEntries,
-  entriesLength,
-) {
+export function contestValidation(title, description, totalEntries, entriesLength) {
   if (!isNotEmpty(title)) {
     return { successful: false, message: "Please enter title." };
   }

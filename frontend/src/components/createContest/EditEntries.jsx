@@ -29,14 +29,11 @@ const EditEntries = () => {
       <EditModal />
       <DeleteModal />
       {entries.length > 0 ? (
-        <div className="flex flex-col gap-4 p-4">
+        <div className="flex flex-col gap-4 p-2 sm:p-4">
           {/* page buttons */}
           <PageButtons />
 
-          <table
-            className=" border-collapse border-2 border-primary-400 bg-linear-to-b from-primary-800 to-primary-950 text-xs
-          text-primary-200  md:text-base"
-          >
+          <table className="border-primary-400 from-primary-800 to-primary-950 text-primary-200 border-collapse border-2 bg-linear-to-b text-xs md:text-base">
             <thead>
               <tr className="bg-primary-950 text-primary-100">
                 <th scope="col">Order</th>
@@ -51,22 +48,22 @@ const EditEntries = () => {
             <tbody className="">
               {displayedEntries.map((entry, index) => (
                 <tr key={entry.title + (index + startIndex)}>
-                  <td className=" text-center">{index + 1 + startIndex}</td>
-                  <td className="w-[120px] ">
+                  <td className="text-center">{index + 1 + startIndex}</td>
+                  <td className="w-[120px]">
                     <img src={getCoverImageUrl(entry.url)} alt="entry image" />
                   </td>
                   <td className="px-2">{entry.title}</td>
-                  <td className=" hidden px-2 sm:table-cell">{entry.url}</td>
-                  <td className="px-2">
-                    <div className="flex justify-center gap-2">
+                  <td className="hidden px-2 sm:table-cell">{entry.url}</td>
+                  <td className="p-2">
+                    <div className="flex flex-col justify-center gap-2">
                       <Button
-                        className="bg-secondary-500 bg-none text-xs text-white hover:bg-secondary-400"
+                        className="bg-secondary-500 hover:bg-secondary-400 bg-none p-1 text-xs text-white md:p-2"
                         onClick={() => handleEdit(index + startIndex)}
                       >
                         Edit
                       </Button>
                       <Button
-                        className="bg-secondary-700 bg-none text-xs text-white hover:bg-secondary-600"
+                        className="bg-secondary-700 hover:bg-secondary-600 bg-none p-1 text-xs text-white md:p-2"
                         onClick={() => handleDelete(index + startIndex)}
                       >
                         Delete

@@ -6,8 +6,18 @@ const ModalCtxProvider = ({ children }) => {
   const creationSubmitRef = useRef();
   const editEntryRef = useRef();
   const deleteEntryRef = useRef();
+  const updateContestRef = useRef();
+  const deleteContestRef = useRef();
   return (
-    <ModalCtx.Provider value={{ creationSubmitRef, editEntryRef, deleteEntryRef }}>
+    <ModalCtx.Provider
+      value={{
+        creationSubmitRef,
+        editEntryRef,
+        deleteEntryRef,
+        updateContestRef,
+        deleteContestRef,
+      }}
+    >
       {children}
     </ModalCtx.Provider>
   );

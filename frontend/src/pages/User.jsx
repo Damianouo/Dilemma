@@ -1,14 +1,16 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, Navigate, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import ContestThumbnail from "../components/contest/ContestThumbnail";
 
 const User = () => {
   const contests = useLoaderData();
-  return (
+  const user = useRouteLoaderData("root");
+  return user?.isLogin ? (
     <div className="contestList p-4 sm:p-6">
-      {contests.map((contest) => (
-        <ContestEditWrapper key={contest._id} contest={contest} />
-      ))}
+      {contests &&
+        contests?.map((contest) => <ContestEditWrapper key={contest._id} contest={contest} />)}
     </div>
+  ) : (
+    <Navigate to="/login" replace={true} />
   );
 };
 
@@ -18,22 +20,20 @@ export const loader = async ({ params }) => {
   const { userId } = params;
 
   const response = await fetch(`http://localhost:8080/contest/user/${userId}`);
-  if (!response.ok) {
-    throw new Response.json({ message: "could not get contests" }, { status: 500 });
-  }
+
   return response;
 };
 
 const ContestEditWrapper = ({ contest }) => {
   return (
-    <div className="group relative overflow-hidden rounded-md shadow-md shadow-black">
+    <div className="group relative max-w-[550px] overflow-hidden rounded-md shadow-md shadow-black">
       <ContestThumbnail className="shadow-none" contest={contest} />
 
-      <div className="pointer-events-none absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center gap-8 rounded-md bg-black/20 opacity-0 backdrop-blur-xs transition-all group-hover:pointer-events-auto group-hover:opacity-100">
+      <div className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center gap-8 rounded-md bg-black/40 transition-all group-hover:pointer-events-auto group-hover:opacity-100 lg:pointer-events-none lg:opacity-0 lg:backdrop-blur-xs">
         <Link className="btn btn-light font-bold" to={`/contests/${contest._id}`}>
           Contest Page
         </Link>
-        <Link className="btn btn-dark font-bold" to="edit">
+        <Link className="btn btn-dark font-bold" to={`/edit/${contest._id}`}>
           Edit Contest
         </Link>
       </div>
