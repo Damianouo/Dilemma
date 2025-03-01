@@ -3,7 +3,7 @@ import DilemmaDemoFirstFrame from "../assets/DilemmaDemoFirstFrame.jpg";
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
-    <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-y-8 p-4 pt-12 md:grid-cols-2 md:gap-x-8 md:p-8 md:pt-30">
+    <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-y-6 p-4 pt-8 md:grid-cols-2 md:gap-x-8 md:gap-y-16 md:p-8 md:pt-30">
       <div>
         <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-6xl">
           Your Stream, Your Tournament

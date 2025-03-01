@@ -43,16 +43,16 @@
   --shadow-around: 0 0 5px 2px;
   --shadow-hover-around: 0 0 5px 5px;
 
-  --background-image-card-pattern: url("/src/components/svgs/card-pattern.svg");
+  --background-image-card-pattern: url("/src/assets/card-pattern.png");
 
-  --animate-bg-pan: bg-pan 100s linear infinite;
+  --animate-bg-pan: bg-pan 80s linear infinite;
 
   @keyframes bg-pan {
     0% {
-      background-position: 0% 0%;
+      background-position: 100% 0%;
     }
     100% {
-      background-position: 100% 0%;
+      background-position: 0% 0%;
     }
   }
 }
