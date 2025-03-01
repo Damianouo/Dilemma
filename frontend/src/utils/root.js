@@ -19,7 +19,12 @@ export async function rootLoader() {
     }
 
     if (!response.ok) {
-      throw new Response.json({ message: "Failed to check login status" }, { status: 500 });
+      throw new Response(JSON.stringify({ message: "Failed to check login status" }), {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     }
 
     const user = await response.json();
@@ -35,7 +40,12 @@ export async function rootAction() {
   });
 
   if (!response.ok) {
-    throw new Response.json({ message: "Logout failed, please try again later" }, { status: 500 });
+    throw new Response(JSON.stringify({ message: "Logout failed, please try again later" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
   store.dispatch(userActions.logout());
   return redirect("/");

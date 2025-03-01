@@ -30,7 +30,7 @@ const PageButtons = () => {
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
-        className="bg-secondary-300 text-secondary-900 hover:bg-secondary-400 disabled:bg-secondary-800 disabled:text-secondary-600 bg-none px-6"
+        className="bg-secondary-300 text-secondary-900 hover:bg-secondary-400 disabled:bg-secondary-800 disabled:text-secondary-600 bg-none px-2 py-1 md:px-6"
         disabled={currentPage === 1}
         onClick={handler.previousPage}
       >
@@ -46,7 +46,7 @@ const PageButtons = () => {
       {totalPages > 1 && <PageBtn pageNum={totalPages}>{totalPages}</PageBtn>}
 
       <Button
-        className="bg-secondary-300 text-secondary-900 hover:bg-secondary-400 disabled:bg-secondary-800 disabled:text-secondary-600 bg-none px-6"
+        className="bg-secondary-300 text-secondary-900 hover:bg-secondary-400 disabled:bg-secondary-800 disabled:text-secondary-600 bg-none px-2 py-1 md:px-6"
         disabled={currentPage === totalPages}
         onClick={handler.nextPage}
       >
@@ -62,7 +62,7 @@ const PageBtn = ({ pageNum }) => {
   const { creation, handler } = useCreationCtx();
   return (
     <Button
-      className="bg-secondary-400 text-secondary-900 outline-secondary-950 hover:bg-secondary-300 disabled:bg-secondary-300 h-10 w-10 bg-none outline outline-0 disabled:outline-4"
+      className="bg-secondary-400 text-secondary-900 outline-secondary-950 hover:bg-secondary-300 disabled:bg-secondary-300 size-8 bg-none outline disabled:outline-4 md:size-10"
       type="button"
       key={"pageButton" + pageNum}
       disabled={creation.pageNum === pageNum}

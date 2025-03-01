@@ -13,7 +13,7 @@ const ContestInfoPage = () => {
       <p className="mb-6 text-center sm:mb-10">{contest.description}</p>
 
       {/* contest item preview */}
-      <div className="flex items-center justify-center gap-2">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-4">
         <ContestItem item={contest.entries[0]} />
         <p className="text-2xl font-bold sm:text-4xl">vs</p>
         <ContestItem item={contest.entries[1]} />

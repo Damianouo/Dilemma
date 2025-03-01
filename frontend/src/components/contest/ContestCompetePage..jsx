@@ -13,15 +13,10 @@ const ContestCompetePage = () => {
 
   useEffect(() => {
     if (compete.finished) {
-      submit(
-        {
-          entryId: compete.result[compete.result.length - 1].winners[0]._id,
-        },
-        {
-          method: "patch",
-          encType: "application/json",
-        },
-      );
+      submit(compete.result[compete.result.length - 1].winners[0]._id, {
+        method: "PATCH",
+        encType: "text/plain",
+      });
     }
   }, [compete, submit]);
 
@@ -65,14 +60,10 @@ const ContestCompetePage = () => {
 export default ContestCompetePage;
 
 export async function action({ request, params }) {
-  const data = await request.json();
+  const entryId = await request.text();
   const { contestId } = params;
-  await fetch(`http://localhost:8080/contest/${contestId}`, {
+  await fetch(`http://localhost:8080/contest/${contestId}/entries/${entryId}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
   });
 
   return null;
