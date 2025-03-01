@@ -34,9 +34,14 @@ export async function loader({ params }) {
   const { contestId } = params;
   const response = await fetch(`http://localhost:8080/contest/${contestId}`);
   if (!response.ok) {
-    throw new Response.json(
-      { message: "Can not get contest detail, please try again later." },
-      { status: 500 },
+    throw new Response(
+      JSON.stringify({ message: "Can not get contest detail, please try again later" }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
     );
   }
   const data = await response.json();

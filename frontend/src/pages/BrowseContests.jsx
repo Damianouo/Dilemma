@@ -27,7 +27,12 @@ const ContestList = () => {
 export async function loader() {
   const response = await fetch("http://localhost:8080/contest");
   if (!response.ok) {
-    throw new Response.json({ message: "Could not fetch contests" }, { status: 500 });
+    throw new Response(JSON.stringify({ message: "Could not fetch contests" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
   return response;
 }
