@@ -8,11 +8,11 @@ import FormTitle from "./FormTitle";
 const InfoUpload = () => {
   const { creation, handler } = useCreationCtx();
   return (
-    <div className="divide-y-2 divide-primary-500/60">
+    <div className="divide-primary-500/60 divide-y-2">
       {/* info/upload form */}
       <fieldset>
         <FormTitle>Contest Information</FormTitle>
-        <div className="flex flex-col divide-y-[1px] divide-primary-500/60 px-2 text-base md:px-8">
+        <div className="divide-primary-500/60 flex flex-col divide-y-[1px] px-2 text-base md:px-8">
           <Input
             className="py-4 md:py-6"
             id="contestTitle"
@@ -30,8 +30,7 @@ const InfoUpload = () => {
           <div className="flex items-center gap-6 py-4 md:py-6">
             <label htmlFor="totalEntries">Total Number of Entries</label>
             <select
-              className="rounded-md border-2 border-primary-500 bg-primary-200 px-1 py-1 text-center text-primary-950 transition-colors 
-            focus-visible:border-primary-950 focus-visible:outline-hidden"
+              className="border-primary-500 bg-primary-200 text-primary-950 focus-visible:border-primary-950 rounded-md border-2 px-1 py-1 text-center transition-colors focus-visible:outline-hidden"
               name="totalEntries"
               id="totalEntries"
               value={creation.content.totalParticipants}
@@ -50,15 +49,14 @@ const InfoUpload = () => {
       {/* video link */}
       <fieldset>
         <FormTitle>Video Links Upload</FormTitle>
-        <div className=" px-2 py-4 md:px-8 md:py-6 ">
+        <div className="px-2 py-4 md:px-8 md:py-6">
           <Input
-            className=""
             id="videoLink"
             label="Link"
             value={creation.addEntry.linkInput}
             onChange={(e) => handler.linkChange(e)}
           />
-          <div className="mt-4 grid grid-cols-[75px_1fr_75px] ">
+          <div className="mt-4 grid grid-cols-[75px_1fr_75px]">
             <div className="col-[1_/_3] justify-self-center md:col-[2_/_3] md:justify-self-center">
               {creation.addEntry.state === "loading" && (
                 <PendingMessage>Please wait ...</PendingMessage>
@@ -71,8 +69,7 @@ const InfoUpload = () => {
               )}
             </div>
             <Button
-              className="col-start-3 self-center justify-self-end 
-              bg-secondary-400 bg-none px-4 text-secondary-950 hover:bg-secondary-300"
+              className="bg-secondary-400 text-secondary-950 hover:bg-secondary-300 col-start-3 self-center justify-self-end bg-none px-4"
               disabled={creation.addEntry.state === "loading"}
               onClick={handler.addEntry}
             >

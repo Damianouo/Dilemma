@@ -31,7 +31,7 @@ const UserMenu = () => {
               className="from-primary-800 divide-primary-500 to-primary-900 divide-y bg-linear-to-b text-left shadow-lg"
               state={menuShow}
             >
-              <li className="">
+              <li>
                 <Link
                   to={`/user/${user.info._id}`}
                   className="navItem text-primary-200 flex items-center gap-1 rounded-md text-sm"

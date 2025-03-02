@@ -15,20 +15,23 @@ const EditModal = () => {
   const { editingIndex } = creation.updateEntry;
 
   return (
-    <Modal ref={editEntryRef} onClose={editEntryRef.current?.close}>
-      <div className="grid grid-rows-[repeat(5,minmax(40px,auto))] gap-8">
-        <h2 className=" text-3xl font-bold">Edit Entry</h2>
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 overflow-hidden rounded-md bg-tertiary-400 pr-4 text-black shadow-md shadow-tertiary-800">
-          <div className="row-span-2 flex max-w-[300px] items-center">
+    <Modal
+      ref={editEntryRef}
+      onClose={editEntryRef.current?.close}
+      className="w-[90vw] max-w-[800px]"
+    >
+      <div className="grid grid-rows-[repeat(5,minmax(40px,auto))] gap-4 sm:gap-8">
+        <h2 className="text-3xl font-bold">Edit Entry</h2>
+        <div className="bg-tertiary-400 shadow-tertiary-800 items-center gap-4 overflow-hidden rounded-md p-2 text-black shadow-md sm:grid sm:grid-cols-2 sm:grid-rows-2 sm:pr-4">
+          <div className="bg-primary-500 row-span-2 mx-auto flex aspect-[4/3] max-w-[400px]">
             <img
-              src={getCoverImageUrl(
-                creation.content.entries[editingIndex]?.url,
-              )}
+              src={getCoverImageUrl(creation.content.entries[editingIndex]?.url)}
               alt="entry image"
+              loading="lazy"
             />
           </div>
           <Input
-            className="self-center"
+            className="my-4 self-center"
             onChange={handler.entryTitleChange}
             label="Title"
             id="editTitleInput"
@@ -42,7 +45,7 @@ const EditModal = () => {
             value={creation.updateEntry.entryUrlInput}
           />
         </div>
-        <div className=" self-center justify-self-center">
+        <div className="self-center justify-self-center">
           {creation.updateEntry.state === "loading" && (
             <PendingMessage>Please wait...</PendingMessage>
           )}
@@ -54,13 +57,13 @@ const EditModal = () => {
           )}
         </div>
 
-        <p className=" flex flex-col px-4 text-base text-tertiary-300">
-          <span>Link Example :</span>
-          <span>https://www.youtube.com/watch?v=xKmEOXZsU_0</span>
-          <span>https://www.youtube.com/shorts/PMIoaCzUYBY</span>
-        </p>
+        <div className="text-tertiary-300 flex flex-col text-xs sm:text-base">
+          <p>Link Example :</p>
+          <p>https://www.youtube.com/watch?v=xKmEOXZsU_0</p>
+          <p>https://www.youtube.com/shorts/PMIoaCzUYBY</p>
+        </div>
 
-        <div className=" flex justify-center gap-8">
+        <div className="flex justify-center gap-8">
           <Button onClick={editEntryRef.current?.close}>Close</Button>
           <Button onClick={handler.updateEntry}>Update</Button>
         </div>
