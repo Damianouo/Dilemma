@@ -32,10 +32,3 @@ const Login = () => {
 };
 
 export default Login;
-
-export function loader({ request }) {
-  const searchParams = new URL(request.url).searchParams;
-  const prev = searchParams.get("from") || null;
-
-  return prev;
-}

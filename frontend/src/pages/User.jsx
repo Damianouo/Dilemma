@@ -16,14 +16,6 @@ const User = () => {
 
 export default User;
 
-export const loader = async ({ params }) => {
-  const { userId } = params;
-
-  const response = await fetch(`http://localhost:8080/contest/user/${userId}`);
-
-  return response;
-};
-
 const ContestEditWrapper = ({ contest }) => {
   return (
     <div className="group relative max-w-[550px] overflow-hidden rounded-md shadow-md shadow-black">

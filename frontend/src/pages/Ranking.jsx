@@ -16,7 +16,9 @@ const Ranking = () => {
           >
             <p className="justify-self-center text-xl text-white sm:text-3xl">{index + 1}</p>
 
-            <img src={getCoverImageUrl(entry.url)} alt="entry image" />
+            <div className="bg-primary-500 aspect-[4/3]">
+              <img src={getCoverImageUrl(entry.url)} alt="entry image" loading="lazy" />
+            </div>
             <div className="px-2 sm:px-8">
               <p className="text-sm text-white sm:text-2xl">{entry.title}</p>
               <p className="text-xs sm:text-xl">{entry.winCount} Wins</p>
@@ -29,22 +31,3 @@ const Ranking = () => {
 };
 
 export default Ranking;
-
-export async function loader({ params }) {
-  const { contestId } = params;
-  const response = await fetch(`http://localhost:8080/contest/${contestId}`);
-  if (!response.ok) {
-    throw new Response(
-      JSON.stringify({ message: "Can not get contest detail, please try again later" }),
-      {
-        status: 500,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-  }
-  const data = await response.json();
-  data.entries.sort((a, b) => b.winCount - a.winCount);
-  return data;
-}

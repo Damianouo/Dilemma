@@ -4,26 +4,28 @@ import Navbar from "./components/navbar/Navbar";
 const Contest = lazy(() => import("./pages/Contest"));
 const Home = lazy(() => import("./pages/Home"));
 const BrowseContests = lazy(() => import("./pages/BrowseContests"));
-import { loader as browseContestsLoader } from "./pages/BrowseContests";
 const CreateContest = lazy(() => import("./pages/CreateContest"));
-import { action as creationAction } from "./pages/CreateContest";
 const Error = lazy(() => import("./pages/Error"));
-import { rootAction, rootLoader } from "./utils/root";
 import Layout from "./components/layout/Layout";
 const ContestCtxProvider = lazy(() => import("./contexts/ContestCtx"));
 const CompeteCtxProvider = lazy(() => import("./contexts/CompeteCtx"));
 const CreationCtxProvider = lazy(() => import("./contexts/CreationCtx"));
 const Login = lazy(() => import("./pages/Login"));
-import { loader as loginLoader } from "./pages/Login";
 const Ranking = lazy(() => import("./pages/Ranking"));
-import { loader as rankingLoader } from "./pages/Ranking";
-import { action as competeAction } from "./components/contest/ContestCompetePage.";
 import PageBackground from "./components/layout/PageBackground";
 const User = lazy(() => import("./pages/User"));
-import { loader as userLoader } from "./pages/User";
 const Edit = lazy(() => import("./pages/Edit"));
-import { loader as editLoader, action as editAction } from "./pages/Edit";
 import Loading from "./pages/Loading";
+import { contestsLoader } from "./loaders/contestsLoader";
+import { creationAction } from "./actions/creationAction";
+import { loginLoader } from "./loaders/loginLoader";
+import { rankingLoader } from "./loaders/rankingLoader";
+import { competeAction } from "./actions/competeAction";
+import { userLoader } from "./loaders/userLoader";
+import { editLoader } from "./loaders/editLoader";
+import { editAction } from "./actions/editAction";
+import { rootLoader } from "./loaders/rootLoader";
+import { rootAction } from "./actions/rootAction";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
       {
         path: "/contests",
         id: "contests",
-        loader: browseContestsLoader,
+        loader: contestsLoader,
         children: [
           {
             index: true,

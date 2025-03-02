@@ -16,23 +16,10 @@ const ContestList = () => {
   return (
     <div className="contestList">
       {contests.map((contest) => (
-        <Link className="flex max-w-[550px]" key={contest._id} to={`/contests/${contest._id}`}>
+        <Link className="grid max-w-[550px]" key={contest._id} to={`/contests/${contest._id}`}>
           <ContestThumbnail contest={contest} />
         </Link>
       ))}
     </div>
   );
 };
-
-export async function loader() {
-  const response = await fetch("http://localhost:8080/contest");
-  if (!response.ok) {
-    throw new Response(JSON.stringify({ message: "Could not fetch contests" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-  return response;
-}

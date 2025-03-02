@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
+import { cn } from "../../utils/cn";
 
-const Modal = forwardRef(function Modal({ children, onClose }, ref) {
+const Modal = forwardRef(function Modal({ children, className, onClose }, ref) {
   const dialogRef = useRef();
   useImperativeHandle(ref, () => {
     return {
@@ -30,7 +31,7 @@ const Modal = forwardRef(function Modal({ children, onClose }, ref) {
       onMouseDown={handleClose}
       ref={dialogRef}
       onClose={onClose}
-      className="bg-tertiary-700 m-auto rounded-md px-6 py-8 text-white"
+      className={cn("bg-tertiary-700 m-auto rounded-md p-4 text-white sm:px-6 sm:py-8", className)}
     >
       {children}
     </dialog>

@@ -17,18 +17,18 @@ const DeleteModal = () => {
   }
   return (
     <Modal ref={deleteEntryRef} onClose={deleteEntryRef.current?.close}>
-      <div className="flex flex-col items-center gap-8">
-        <h2 className=" self-start text-3xl font-bold">Delete Entry</h2>
-        <ContestItem className=" max-w-[300px] text-base" item={targetEntry} />
-        <Message className="">
+      <div className="flex flex-col items-center gap-8 sm:min-w-[500px]">
+        <h2 className="self-start text-3xl font-bold">Delete Entry</h2>
+        <ContestItem className="max-w-[300px] text-base" item={targetEntry} />
+        <Message>
           <QuestionSvg />
-          <span>Do you sure you wanna delete this entry?</span>
+          <span>Delete this entry?</span>
         </Message>
         <div className="flex gap-8">
-          <Button onClick={deleteEntryRef.current?.close} className="w-20 ">
+          <Button onClick={deleteEntryRef.current?.close} className="w-20">
             No
           </Button>
-          <Button onClick={handleDelete} className="w-20 ">
+          <Button onClick={handleDelete} className="w-20">
             Yes
           </Button>
         </div>

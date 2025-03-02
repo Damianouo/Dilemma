@@ -13,7 +13,11 @@ const ContestItem = ({ item, mode = "info", className, titleClass }) => {
     >
       {item ? (
         <>
-          {mode === "info" && <img src={imageUrl} alt="contest item image" />}
+          {mode === "info" && (
+            <div className="bg-primary-500 aspect-[4/3]">
+              <img src={imageUrl} alt="contest item image" loading="lazy" />
+            </div>
+          )}
           {mode === "compete" && <EmbedVideo url={item.url} />}
           <div className="p-2">
             <p

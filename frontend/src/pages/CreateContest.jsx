@@ -5,7 +5,6 @@ import { useCreationCtx } from "../hooks/useCreationCtx";
 import TabButtons from "../components/createContest/TabButtons";
 import SubmitModal from "../components/createContest/SubmitModal";
 import useModalCtx from "../hooks/useModalCtx";
-import { contestValidation } from "../utils/validation";
 import ContestForm from "../components/createContest/ContestForm";
 
 const CreateContest = () => {
@@ -68,37 +67,3 @@ const CreateContest = () => {
 };
 
 export default CreateContest;
-
-export async function action({ request }) {
-  const data = await request.json();
-  const validationResult = contestValidation(
-    data.title,
-    data.description,
-    data.totalParticipants,
-    data.entries.length,
-  );
-  if (!validationResult.successful) {
-    return validationResult;
-  }
-
-  const response = await fetch("http://localhost:8080/contest", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    return {
-      successful: false,
-      message: "Could not create new contest, please try again later.",
-    };
-  }
-  const responseData = await response.json();
-  return {
-    successful: true,
-    message: "Creation successful!",
-    id: responseData.savedContest._id,
-  };
-}

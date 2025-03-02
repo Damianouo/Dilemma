@@ -45,14 +45,18 @@ const EditEntries = () => {
                 <th scope="col">Edit/Delete</th>
               </tr>
             </thead>
-            <tbody className="">
+            <tbody>
               {displayedEntries.map((entry, index) => (
                 <tr key={entry.title + (index + startIndex)}>
                   <td className="text-center">{index + 1 + startIndex}</td>
-                  <td className="w-[120px]">
-                    <img src={getCoverImageUrl(entry.url)} alt="entry image" />
+                  <td>
+                    <div className="bg-primary-500 aspect-[4/3] w-[65px] sm:w-[120px]">
+                      <img src={getCoverImageUrl(entry.url)} alt="entry image" loading="lazy" />
+                    </div>
                   </td>
-                  <td className="px-2">{entry.title}</td>
+                  <td className="px-2">
+                    <p className="line-clamp-3">{entry.title}</p>
+                  </td>
                   <td className="hidden px-2 sm:table-cell">{entry.url}</td>
                   <td className="p-2">
                     <div className="flex flex-col justify-center gap-2">
