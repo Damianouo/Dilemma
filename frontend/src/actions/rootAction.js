@@ -3,7 +3,7 @@ import { store } from "../store";
 import { userActions } from "../store/userSlice";
 
 export async function rootAction() {
-  const response = await fetch("http://localhost:8080/auth/logout", {
+  const response = await fetch("/auth/logout", {
     method: "POST",
     credentials: "include",
   });

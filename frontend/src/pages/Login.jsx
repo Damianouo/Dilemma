@@ -7,7 +7,7 @@ const Login = () => {
   const prev = useLoaderData();
 
   function handleLogin() {
-    window.location.href = "http://localhost:8080/auth/google";
+    window.location.href = "/auth/google";
   }
 
   return (

@@ -1,12 +1,15 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { contestRoute, authRoute, youtubeApiRoute } = require('./routes');
-require('./config/passport');
+const { contestRoute, authRoute, youtubeApiRoute } = require('./backend/routes');
+require('./backend/config/passport');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
+
+const PORT = process.env.PORT || 8080;
 
 //? Mongo DB connection
 mongoose
@@ -17,7 +20,7 @@ mongoose
 //? Middlewares
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://dilemma.onrender.com',
     credentials: true,
   })
 );
@@ -31,7 +34,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: 'Lax',
     },
   })
@@ -39,9 +42,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
 //? routes
 app.use('/auth', authRoute);
 app.use('/contest', contestRoute);
 app.use('/ytapi', youtubeApiRoute);
 
-app.listen(8080, () => console.log('server is running on port 8080'));
+app.get('*', (req, res) => {
+  return res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
+
+app.listen(PORT, () => console.log(`server is running on port ${PORT}`));

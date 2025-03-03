@@ -1,7 +1,7 @@
 export const userLoader = async ({ params }) => {
   const { userId } = params;
 
-  const response = await fetch(`http://localhost:8080/contest/user/${userId}`);
+  const response = await fetch(`/contest/user/${userId}`);
 
   return response;
 };

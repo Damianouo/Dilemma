@@ -28,7 +28,7 @@ export async function getVideoTitle(url) {
   const id = getVideoId(url);
 
   try {
-    const response = await fetch(`http://localhost:8080/ytapi/${id}`);
+    const response = await fetch(`/ytapi/${id}`);
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

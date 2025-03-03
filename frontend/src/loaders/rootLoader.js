@@ -7,7 +7,7 @@ export async function rootLoader() {
   if (state.user.isLogin) {
     return state.user;
   } else {
-    const response = await fetch("http://localhost:8080/auth/login/success", {
+    const response = await fetch("/auth/login/success", {
       method: "GET",
       credentials: "include",
     });

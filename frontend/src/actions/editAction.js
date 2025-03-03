@@ -8,7 +8,7 @@ export const editAction = async ({ request }) => {
     options.body = JSON.stringify(data.contestContent);
   }
 
-  const response = await fetch(`http://localhost:8080/contest/${contestId}`, options);
+  const response = await fetch(`/contest/${contestId}`, options);
   const { message } = await response.json();
   if (!response.ok) {
     return { successful: false, message };
