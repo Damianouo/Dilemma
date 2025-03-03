@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-const CLIENT_URL = 'http://localhost:5173';
-
 router.get(
   '/google',
   passport.authenticate('google', {
@@ -14,7 +12,7 @@ router.get(
 router.get(
   '/google/redirect',
   passport.authenticate('google', {
-    successRedirect: CLIENT_URL,
+    successRedirect: '/',
     failureRedirect: '/login/failed',
   })
 );
