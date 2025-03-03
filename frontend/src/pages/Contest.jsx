@@ -1,6 +1,6 @@
 import { Link, useParams, useRouteLoaderData } from "react-router-dom";
 import ContestInfoPage from "../components/contest/ContestInfoPage";
-import ContestCompetePage from "../components/contest/ContestCompetePage.";
+import ContestCompetePage from "../components/contest/ContestCompetePage";
 import ContestResultPage from "../components/contest/ContestResultPage";
 import useContestCtx from "../hooks/useContestCtx";
 import useCompeteCtx from "../hooks/useCompeteCtx";

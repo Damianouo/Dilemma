@@ -1,13 +1,14 @@
 {
-  "name": "backend",
+  "name": "dilemma",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "server": "nodemon app.js",
+    "start": "node app.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "author": "",
+  "author": "Damian",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

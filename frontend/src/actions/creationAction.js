@@ -12,7 +12,7 @@ export async function creationAction({ request }) {
     return validationResult;
   }
 
-  const response = await fetch("http://localhost:8080/contest", {
+  const response = await fetch("/contest", {
     method: "POST",
     credentials: "include",
     headers: {
