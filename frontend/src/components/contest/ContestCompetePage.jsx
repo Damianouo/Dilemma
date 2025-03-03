@@ -1,7 +1,7 @@
 import ContestItem from "./ContestItem";
 import Button from "../UI/Button";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSubmit } from "react-router-dom";
 import MatchHeader from "./MatchHeader";
 import CompeteItems from "./CompeteItems";
@@ -10,9 +10,10 @@ import { variants } from "./variants";
 const ContestCompetePage = () => {
   const submit = useSubmit();
   const { compete, handler } = useCompeteCtx();
-
+  const hasSubmitted = useRef(false);
   useEffect(() => {
-    if (compete.finished) {
+    if (compete.finished && !hasSubmitted.current) {
+      hasSubmitted.current = true;
       submit(compete.result[compete.result.length - 1].winners[0]._id, {
         method: "PATCH",
         encType: "text/plain",
