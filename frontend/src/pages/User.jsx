@@ -4,13 +4,22 @@ import ContestThumbnail from "../components/contest/ContestThumbnail";
 const User = () => {
   const contests = useLoaderData();
   const user = useRouteLoaderData("root");
-  return user?.isLogin ? (
+
+  if (!user?.isLogin) return <Navigate to="/login" replace={true} />;
+
+  return contests.length > 0 ? (
     <div className="contestList p-4 sm:p-6">
-      {contests &&
-        contests?.map((contest) => <ContestEditWrapper key={contest._id} contest={contest} />)}
+      {contests?.map((contest) => (
+        <ContestEditWrapper key={contest._id} contest={contest} />
+      ))}
     </div>
   ) : (
-    <Navigate to="/login" replace={true} />
+    <div className="flex flex-col items-center gap-8 px-6 py-12 sm:py-20">
+      <h1 className="text-3xl">No contest created.</h1>
+      <Link to="/create" className="btn btn-light text-xl">
+        Create One!
+      </Link>
+    </div>
   );
 };
 
