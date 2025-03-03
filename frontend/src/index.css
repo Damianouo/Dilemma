@@ -45,7 +45,9 @@
 
   --background-image-card-pattern: url("/src/assets/card-pattern.png");
 
-  --animate-bg-pan: bg-pan 80s linear infinite;
+  --animate-bg-pan: bg-pan 100s linear infinite;
+  --animate-bg-pan-lg: bg-pan 50s linear infinite;
+  --animate-bg-pan-xl: bg-pan 30s linear infinite;
 
   @keyframes bg-pan {
     0% {
