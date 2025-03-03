@@ -20,7 +20,7 @@ mongoose
 //? Middlewares
 app.use(
   cors({
-    origin: 'https://dilemma.onrender.com',
+    origin: 'https://dilemma-rjzk.onrender.com',
     credentials: true,
   })
 );
