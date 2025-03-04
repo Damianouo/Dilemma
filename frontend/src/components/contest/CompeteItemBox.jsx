@@ -1,7 +1,7 @@
 import { motion, useAnimate, usePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import Button from "../UI/Button";
-import { ChooseSvg } from "../svgs/ContestSvgs";
+import ChooseSvg from "../svgs/contest/ChooseSvg";
 import { duration } from "./variants";
 
 const CompeteItemBox = ({ children, onClick, leftside }) => {

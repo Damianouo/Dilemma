@@ -6,7 +6,7 @@ const NavbarLinks = () => {
     <ul className="hidden flex-1 md:flex">
       {routes.map((route) => (
         <li className="flex h-full" key={route.label}>
-          <NavLink to={route.path} className="navItem content-center">
+          <NavLink to={route.path} className="navItem flex items-center">
             {route.label}
           </NavLink>
         </li>

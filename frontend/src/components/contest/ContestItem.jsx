@@ -7,7 +7,7 @@ const ContestItem = ({ item, mode = "info", className, titleClass }) => {
   return (
     <div
       className={cn(
-        "from-primary-300 to-primary-400 text-primary-950 shadow-primary-950 flex max-w-[550px] flex-col overflow-hidden rounded-md bg-linear-to-b text-center shadow-md",
+        "from-primary-300 to-primary-400 text-primary-950 shadow-primary-950 grid max-w-[550px] overflow-hidden rounded-md bg-linear-to-b text-center shadow-md",
         className,
       )}
     >

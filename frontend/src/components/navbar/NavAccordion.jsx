@@ -4,7 +4,7 @@ import Accordion from "../UI/Accordion";
 import AccordionItems from "../UI/AccordionItems";
 import { useState } from "react";
 import Button from "../UI/Button";
-import { MenuSvg } from "../svgs/NavSvgs";
+import MenuSvg from "../svgs/Navbar/MenuSvg";
 import { cn } from "../../utils/cn";
 
 const NavAccordion = () => {
@@ -20,10 +20,10 @@ const NavAccordion = () => {
       <Button
         onClick={handleAccordionOpen}
         className={
-          "from-primary-800 to-primary-900 hover:bg-primary-500 justify-start rounded-none bg-linear-to-b text-inherit"
+          "from-primary-800 to-primary-900 hover:bg-primary-500 justify-start gap-2 rounded-none bg-linear-to-b text-inherit"
         }
       >
-        <MenuSvg accordionOpen={accordionOpen} className="h-8 w-8" />
+        <MenuSvg accordionOpen={accordionOpen} />
         <span>{title}</span>
       </Button>
       <AccordionItems
