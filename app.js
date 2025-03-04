@@ -35,8 +35,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'dev',
-      sameSite: 'Lax',
-      domain: '.dilemma-rjzk.onrender.com',
+      sameSite: 'none',
     },
   })
 );
