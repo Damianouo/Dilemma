@@ -20,7 +20,7 @@ mongoose
 //? Middlewares
 app.use(
   cors({
-    origin: 'https://dilemma-rjzk.onrender.com',
+    origin: process.env.NODE_ENV !== 'dev' ? process.env.DOMAIN : 'http://localhost:8080',
     credentials: true,
   })
 );
@@ -35,11 +35,11 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'dev',
-      sameSite: 'none',
+      sameSite: 'Lax',
     },
   })
 );
-console.log(process.env.NODE_ENV !== 'dev');
+
 app.use(passport.initialize());
 app.use(passport.session());
 

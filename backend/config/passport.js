@@ -15,7 +15,10 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'https://dilemma-rjzk.onrender.com/auth/google/redirect',
+      callbackURL:
+        process.env.NODE_ENV !== 'dev'
+          ? process.env.DOMAIN + '/auth/google/redirect'
+          : 'http://localhost:8080/auth/google/redirect',
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
