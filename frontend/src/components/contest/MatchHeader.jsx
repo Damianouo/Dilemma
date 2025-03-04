@@ -39,14 +39,14 @@ const CompeteBtns = () => {
     <div className="flex gap-4">
       <Button
         onClick={() => handler.changeOpponent(competeItemIndex)}
-        className="hover:bg-primary-800 bg-transparent p-1 shadow-none"
+        className="hover:bg-primary-800 size-10 bg-transparent p-1 shadow-none"
         disabled={!isPresent}
       >
         <RefreshSvg />
       </Button>
       <Button
         onClick={handler.endCompeting}
-        className="hover:bg-primary-800 bg-transparent p-1 shadow-none"
+        className="hover:bg-primary-800 size-10 bg-transparent p-1 shadow-none"
         disabled={!isPresent}
       >
         <XmarkSvg />

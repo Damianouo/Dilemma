@@ -78,6 +78,9 @@
   .contestList {
     @apply flex flex-wrap gap-4 *:flex-[1_0_280px] sm:gap-6;
   }
+  .icon {
+    @apply size-6;
+  }
 }
 
 @layer base {

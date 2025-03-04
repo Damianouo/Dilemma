@@ -23,7 +23,7 @@ const Login = () => {
           className="gap-2 text-base font-semibold transition-colors md:text-xl"
           onClick={handleLogin}
         >
-          <GoogleSvg className="h-8 w-8 md:h-10 md:w-10" />
+          <GoogleSvg className="size-8 md:h-10 md:w-10" />
           Login With Google
         </Button>
       </div>

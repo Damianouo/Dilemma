@@ -1,4 +1,5 @@
-import { ShareBtnSvg, StartBtnSvg } from "../svgs/ContestSvgs";
+import ShareSvg from "../svgs/contest/ShareSvg";
+import StartSvg from "../svgs/contest/StartSvg";
 import Button from "../UI/Button";
 import ContestItem from "./ContestItem";
 import useContestCtx from "../../hooks/useContestCtx";
@@ -28,12 +29,12 @@ const ContestInfoPage = () => {
             onClick={() => handler.startCompeting(contest)}
             className="bg-red-300 text-black hover:bg-red-400"
           >
-            <StartBtnSvg />
+            <StartSvg />
             <span>Start</span>
           </Button>
           <RankingLink />
           <Button className="bg-emerald-300 text-black hover:bg-emerald-400">
-            <ShareBtnSvg />
+            <ShareSvg />
             <span>Share</span>
           </Button>
         </div>

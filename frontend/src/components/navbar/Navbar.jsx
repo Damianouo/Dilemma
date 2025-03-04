@@ -14,7 +14,7 @@ const Navbar = () => {
             to="/"
             className="navItem from-primary-500 to-primary-800 text-primary-100 flex items-center gap-1 bg-linear-to-b text-2xl font-bold"
           >
-            <CardSvg className="h-10 w-10" />
+            <CardSvg className="size-10" />
             <span>Dilemma</span>
           </Link>
           {/* nav links */}
