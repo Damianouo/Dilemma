@@ -36,9 +36,11 @@ app.use(
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'dev',
       sameSite: 'Lax',
+      domain: '.dilemma-rjzk.onrender.com',
     },
   })
 );
+console.log(process.env.NODE_ENV !== 'dev');
 app.use(passport.initialize());
 app.use(passport.session());
 
