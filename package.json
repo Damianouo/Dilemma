@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon app.js",
     "start": "node app.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "install": "npm install && npm install --prefix frontend",
+    "build": "npm run build --prefix frontend"
   },
   "author": "Damian",
   "license": "ISC",
