@@ -22,6 +22,7 @@ const Home = () => {
         poster={DilemmaDemoFirstFrame} // A still image to show before the video loads
         autoPlay
         loop
+        playsInline
       >
         <source src={DilemmaDemo} type="video/mp4" />
         Your browser does not support the video tag.
