@@ -6,7 +6,7 @@ Dilemma 是針對近年在 twitch 很熱門的「二選一競賽」而設計的�
 
 - **[https://dilemma-rjzk.onrender.com](https://dilemma-rjzk.onrender.com/)**
 
-![專案操作動畫](frontend\src\assets\DilemmaDemoGIF.gif)
+![專案操作動畫](frontend/src/assets/DilemmaDemoGIF.gif)
 
 ## 🛠️ Tech Stack
 
