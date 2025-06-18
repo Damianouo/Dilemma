@@ -26,6 +26,7 @@ import { editLoader } from "./loaders/editLoader";
 import { editAction } from "./actions/editAction";
 import { rootLoader } from "./loaders/rootLoader";
 import { rootAction } from "./actions/rootAction";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,7 @@ function Root() {
           <Outlet />
         </div>
       </main>
+      <Toaster />
     </Layout>
   );
 }

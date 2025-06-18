@@ -5,10 +5,25 @@ import ContestItem from "./ContestItem";
 import useContestCtx from "../../hooks/useContestCtx";
 import useCompeteCtx from "../../hooks/useCompeteCtx";
 import RankingLink from "./RankingLink";
+import { toast } from "react-hot-toast";
 
 const ContestInfoPage = () => {
   const { handler } = useCompeteCtx();
   const { contest } = useContestCtx();
+
+  const handleShare = () => {
+    const currentUrl = window.location.href;
+
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        toast.success("Copied to clipboard!");
+      })
+      .catch(() => {
+        toast.error("Failed to copy link. Please try again.");
+      });
+  };
+
   return (
     <div className="text-base sm:text-xl md:text-2xl">
       <p className="mb-6 text-center sm:mb-10">{contest.description}</p>
@@ -33,7 +48,7 @@ const ContestInfoPage = () => {
             <span>Start</span>
           </Button>
           <RankingLink />
-          <Button className="bg-emerald-300 text-black hover:bg-emerald-400">
+          <Button className="bg-emerald-300 text-black hover:bg-emerald-400" onClick={handleShare}>
             <ShareSvg />
             <span>Share</span>
           </Button>
